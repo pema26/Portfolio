@@ -7,7 +7,7 @@
 
    It uses Tailwind CSS v4. The single line `@import "tailwindcss";` brings in
    all of Tailwind's utility classes (things like  class="text-center p-4").
-   You mostly style pages by adding those classes in the .astro files; this
+   You mostly style pages by adding those classes in the .jsx files; this
    file just sets the palette and a couple of shared touches.
    ========================================================================== */
 
@@ -50,6 +50,16 @@
   html {
     /* Smooth in-page anchor scrolling, unless the visitor prefers no motion. */
     scroll-behavior: smooth;
+    /* The page background colour lives on <html> (and <body> stays
+       transparent) so the animated background canvas, which sits behind the
+       content at z-index:-1, shows through. White / slate-950. */
+    background-color: #ffffff;
+  }
+  html.dark {
+    background-color: #020617;
+  }
+  body {
+    background-color: transparent;
   }
 
   /* Respect visitors who have asked their device to reduce animation. This is
@@ -67,7 +77,7 @@
     }
   }
 
-  /* The site's base font. (The Google Fonts link in SEO.astro already asks
+  /* The site's base font. (The Google Fonts link in index.html already asks
      for `display=swap`, so text stays readable while the fonts load.) */
   body {
     font-family: var(--font-sans);
@@ -102,32 +112,22 @@
 }
 
 /* --------------------------------------------------------------------------
-   SMOOTH PAGE TRANSITIONS
-   Astro's <ClientRouter /> (in BaseLayout) moves between pages using the
-   browser's View Transitions API. Its default cross-fade is very quick and can
-   feel abrupt, so here we lengthen and ease it. Combined with the gentle rise
-   of the incoming <main> (which keeps `.animate-fade-in`), a navigation reads
-   as: the old page fades out while the new page fades in and lifts into place —
-   and the animated background cross-fades from one section's motif to the next.
-   We keep the whole-page transition to opacity only (no movement) so the fixed
-   background and sticky header don't visibly shift. Respects reduced motion.
+   The site-wide animated background canvas (src/components/Background.jsx).
+   It is pinned to the viewport and sits behind all the content.
    -------------------------------------------------------------------------- */
-::view-transition-old(root),
-::view-transition-new(root) {
-  animation-duration: 0.4s;
-  animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  ::view-transition-old(root),
-  ::view-transition-new(root) {
-    animation: none !important;
-  }
+#site-bg {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  pointer-events: none;
 }
 
 /* --------------------------------------------------------------------------
-   Styling for the prose (Markdown) on project + notes pages. Markdown turns
-   into plain <h2>, <p>, <ul> etc., so we give those readable defaults here.
+   Styling for the prose on project, research, problem and note pages. The
+   content components (src/content/) use plain <h2>, <p>, <ul> etc., so we
+   give those readable defaults here.
    -------------------------------------------------------------------------- */
 .prose-content :where(h2) {
   font-family: var(--font-serif);
@@ -174,10 +174,11 @@
   border-radius: 4px;
 }
 
-/* Fenced code blocks (```python … ```). Astro/Shiki sets the colours via an
-   inline background on <pre>; here we just add padding, rounded corners, and
-   horizontal scrolling for long lines. */
+/* Code blocks (the CodeBlock component). A dark panel in both themes, with
+   padding, rounded corners, and horizontal scrolling for long lines. */
 .prose-content :where(pre) {
+  background-color: #24292e;
+  color: #e1e4e8;
   margin: 1.25rem 0;
   padding: 1rem 1.25rem;
   border-radius: 0.5rem;

@@ -1,7 +1,3 @@
 # robots.txt — tells search engines they may crawl the whole site.
 User-agent: *
 Allow: /
-
-# EDIT HERE: after you set `site` in astro.config.mjs, this sitemap line will
-# point to your real domain. Update it to match if you change domains.
-Sitemap: https://[[YOUR_DOMAIN]]/sitemap-index.xml

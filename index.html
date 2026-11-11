@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- ======================================================================
+         index.html  —  the ONE real HTML page of the site
+         ----------------------------------------------------------------------
+         This is a single-page application: React (started by src/main.jsx at
+         the bottom of this file) draws every page inside <div id="root">.
+         The tags below are the site-wide defaults. Each page then sets its
+         own tab title and description with the usePageMeta hook
+         (src/hooks/usePageMeta.js).
+         ====================================================================== -->
+
+    <!-- Character set + responsive viewport (required for mobile) -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Primary SEO tags (EDIT HERE: the site-wide defaults) -->
+    <title>[[YOUR_NAME]] — Developer &amp; Researcher</title>
+    <meta
+      name="description"
+      content="London-based developer and researcher working across software engineering, low-level graphics, and molecular biology."
+    />
+
+    <!-- Open Graph (Facebook / LinkedIn / Slack) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="[[YOUR_NAME]] — Developer &amp; Researcher" />
+    <meta
+      property="og:description"
+      content="London-based developer and researcher working across software engineering, low-level graphics, and molecular biology."
+    />
+    <meta property="og:image" content="/og-image.png" />
+
+    <!-- Twitter / X card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[[YOUR_NAME]] — Developer &amp; Researcher" />
+    <meta
+      name="twitter:description"
+      content="London-based developer and researcher working across software engineering, low-level graphics, and molecular biology."
+    />
+    <meta name="twitter:image" content="/og-image.png" />
+
+    <!-- Favicon (replace public/favicon.svg with your own if you like) -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <!-- Web fonts (Inter for UI, Lora for headings). display=swap keeps the
+         page readable while they load. -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:wght@500;600;700&display=swap"
+    />
+
+    <!-- NO-FLASH THEME SCRIPT.
+         This runs immediately, before the page is painted and before React
+         has loaded, so the correct theme is applied instantly and you never
+         see a flash of the wrong colours.
+
+         WHICH THEME WINS: a choice the visitor made with the toggle button
+         (saved in localStorage) always wins; otherwise we follow the
+         operating system / browser "dark mode" setting. After this first
+         paint, the useTheme hook (src/hooks/useTheme.js) takes over. -->
+    <script>
+      (function () {
+        const saved = localStorage.getItem('theme');
+        const osPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        const dark = saved ? saved === 'dark' : osPrefersDark;
+        document.documentElement.classList.toggle('dark', dark);
+      })();
+    </script>
+  </head>
+
+  <body class="min-h-screen text-slate-800 antialiased dark:text-slate-200">
+    <!-- React renders the whole site inside this element. -->
+    <div id="root"></div>
+    <noscript>This site needs JavaScript switched on to display its pages.</noscript>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
