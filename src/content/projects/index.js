@@ -23,6 +23,7 @@ import YoutubeClone, { meta as youtubeCloneMeta } from './youtube-clone';
 import ParcelBoard, { meta as parcelBoardMeta } from './parcel-board';
 import VirtualLab, { meta as virtualLabMeta } from './virtual-lab';
 import DnaSequenceSorter, { meta as dnaSequenceSorterMeta } from './dna-sequence-sorter';
+import WordleAssistant, { meta as wordleAssistantMeta } from './wordle-assistant';
 
 export const projects = [
   { ...tinyrendererMeta, Content: Tinyrenderer },
@@ -31,4 +32,5 @@ export const projects = [
   { ...parcelBoardMeta, Content: ParcelBoard },
   { ...virtualLabMeta, Content: VirtualLab },
   { ...dnaSequenceSorterMeta, Content: DnaSequenceSorter },
+  { ...wordleAssistantMeta, Content: WordleAssistant },
 ];
