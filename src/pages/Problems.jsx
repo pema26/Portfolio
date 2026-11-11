@@ -3,8 +3,9 @@
 // ============================================================================
 //
 //  WHAT'S HERE: three parts —
-//    1. A "Competitive profiles" card linking out to my Codeforces account so
-//       visitors can see my live rating and history.
+//    1. My live Codeforces profile: rating, a rating chart, an activity
+//       calendar and the problems I've solved, fetched from the Codeforces API
+//       each time the page opens.
 //    2. A search box that filters the worked solutions live (handy as the list
 //       grows).
 //    3. A showcase of individual solved problems from src/content/challenges/,
@@ -19,6 +20,7 @@
 
 import { useState } from 'react';
 import ChallengeCard from '../components/ChallengeCard';
+import CodeforcesProfile from '../components/codeforces/CodeforcesProfile';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { challenges } from '../content/challenges';
 import { oldestFirst } from '../lib/dates';
@@ -44,6 +46,16 @@ const groups = sources.map((source) => ({
       return { challenge, label, searchText };
     }),
 }));
+
+// Which Codeforces problems have a worked solution on this site. A challenge
+// says so with a `codeforcesId` in its meta (e.g. '339A'). The result is a
+// lookup object:  { '339A': 'codeforces-helpful-maths', ... }
+const writeUps = {};
+for (const challenge of challenges) {
+  if (challenge.codeforcesId) {
+    writeUps[challenge.codeforcesId] = challenge.id;
+  }
+}
 
 function Problems() {
   usePageMeta(
@@ -82,27 +94,9 @@ function Problems() {
         <h2 className="font-serif text-2xl font-semibold text-slate-900 dark:text-white">
           Competitive profiles
         </h2>
-        {/* EDIT HERE: set [[CODEFORCES_URL]] (and the handle/rating) to your
-            real account. */}
-        <div className="mt-4 max-w-2xl rounded-xl border border-slate-200 p-5 dark:border-slate-800">
-          <div className="flex items-center justify-between gap-4">
-            <div>
-              <p className="font-semibold text-slate-900 dark:text-white">Codeforces</p>
-              <p className="text-sm text-slate-500 dark:text-slate-400">
-                Handle <span className="font-medium">[[CODEFORCES_HANDLE]]</span> ·
-                current rating <span className="font-medium">[[CODEFORCES_RATING]]</span>
-              </p>
-            </div>
-            <a
-              href="[[CODEFORCES_URL]]"
-              className="shrink-0 rounded-lg bg-accent-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-accent-500"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              View profile &rarr;
-            </a>
-          </div>
-        </div>
+        {/* Live rating, chart, calendar and solved problems, straight from
+            the Codeforces API. See src/components/codeforces/. */}
+        <CodeforcesProfile writeUps={writeUps} />
       </section>
 
       {/* ===================== WORKED SOLUTIONS ===================== */}

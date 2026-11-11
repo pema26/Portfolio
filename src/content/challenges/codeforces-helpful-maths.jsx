@@ -13,6 +13,7 @@ export const meta = {
   description:
     'Rearrange a sum of 1s, 2s and 3s into non-decreasing order — a warm-up in counting and stable output.',
   source: 'Codeforces', // where the problem came from
+  codeforcesId: '339A', // contest number + problem letter; links it to my live profile
   problemUrl: 'https://codeforces.com/problemset/problem/339/A', // optional
   difficulty: '800', // Codeforces rating; optional
   date: '2026-01-20', // YYYY-MM-DD
