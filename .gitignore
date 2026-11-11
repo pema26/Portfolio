@@ -20,3 +20,7 @@ pnpm-debug.log*
 # editors
 .vscode/
 .idea/
+
+# python
+__pycache__/
+*.pyc

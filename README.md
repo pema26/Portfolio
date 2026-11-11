@@ -27,6 +27,8 @@ src/hooks/            custom hooks (useTheme, usePageMeta)
 src/lib/              plain JavaScript helpers (dates, labels, canvas drawing)
 src/content/          the projects, research, problems and notes themselves
 src/styles/global.css colours, fonts and shared styles
+python-projects/      my Python programs (the Wordle assistant and its tests)
+public/wordle/        the word list the in-browser Wordle terminal downloads
 ```
 
 ## Running it
