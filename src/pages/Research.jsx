@@ -18,7 +18,7 @@ const sortedResearch = [...research].sort(newestFirst);
 
 function Research() {
   usePageMeta(
-    'Research — [[YOUR_NAME]]',
+    'Research — Pema Tsering',
     'Scientific and research work in molecular biology, presented as short write-ups.',
   );
 

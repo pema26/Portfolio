@@ -44,7 +44,8 @@ export const CATEGORY_META = {
     tone: 'amber',
     order: 2,
     title: 'Mini projects',
-    blurb: 'Small tools I wrote to solve a real, everyday annoyance of my own.',
+    blurb:
+      'Small tools I wrote to solve a real, everyday annoyance of my own (and anything I found interesting).',
   },
 };
 

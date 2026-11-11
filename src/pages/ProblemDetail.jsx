@@ -19,7 +19,7 @@ function ProblemDetail() {
   const challenge = challenges.find((item) => item.id === slug);
 
   usePageMeta(
-    challenge ? `${challenge.title} — [[YOUR_NAME]]` : 'Page not found — [[YOUR_NAME]]',
+    challenge ? `${challenge.title} — Pema Tsering` : 'Page not found — Pema Tsering',
     challenge ? challenge.description : 'That page could not be found.',
   );
 

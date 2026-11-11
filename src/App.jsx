@@ -30,8 +30,6 @@ import Problems from './pages/Problems';
 import ProblemDetail from './pages/ProblemDetail';
 import Research from './pages/Research';
 import ResearchDetail from './pages/ResearchDetail';
-import Notes from './pages/Notes';
-import NoteDetail from './pages/NoteDetail';
 import NotFound from './pages/NotFound';
 
 function App() {
@@ -55,11 +53,6 @@ function App() {
         <Route path="research">
           <Route index element={<Research />} />
           <Route path=":slug" element={<ResearchDetail />} />
-        </Route>
-
-        <Route path="notes">
-          <Route index element={<Notes />} />
-          <Route path=":slug" element={<NoteDetail />} />
         </Route>
 
         <Route path="*" element={<NotFound />} />

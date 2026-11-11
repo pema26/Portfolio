@@ -24,7 +24,7 @@ function ProjectDetail() {
   const project = projects.find((item) => item.id === slug);
 
   usePageMeta(
-    project ? `${project.title} — [[YOUR_NAME]]` : 'Page not found — [[YOUR_NAME]]',
+    project ? `${project.title} — Pema Tsering` : 'Page not found — Pema Tsering',
     project ? project.description : 'That page could not be found.',
   );
 

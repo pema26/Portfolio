@@ -20,7 +20,7 @@ function ResearchDetail() {
   const entry = research.find((item) => item.id === slug);
 
   usePageMeta(
-    entry ? `${entry.title} — [[YOUR_NAME]]` : 'Page not found — [[YOUR_NAME]]',
+    entry ? `${entry.title} — Pema Tsering` : 'Page not found — Pema Tsering',
     entry ? entry.description : 'That page could not be found.',
   );
 

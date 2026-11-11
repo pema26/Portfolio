@@ -15,9 +15,18 @@ import { projects } from '../content/projects';
 import { CATEGORY_META, STATUS_META } from '../lib/projectMeta';
 import { newestFirst } from '../lib/dates';
 
-// Every project, newest first. ([...projects] copies the array first, because
-// sort() changes the array it is called on.)
-const sortedProjects = [...projects].sort(newestFirst);
+// Finished work is listed first, then work in progress, then plans.
+const STATUS_ORDER = { complete: 0, 'in-progress': 1, planned: 2 };
+
+// Every project: grouped by status as above, and newest first within each
+// status. ([...projects] copies the array first, because sort() changes the
+// array it is called on.)
+const sortedProjects = [...projects].sort((a, b) => {
+  if (a.status !== b.status) {
+    return STATUS_ORDER[a.status] - STATUS_ORDER[b.status];
+  }
+  return newestFirst(a, b);
+});
 
 // Build the sections in the order defined in projectMeta.js, each holding the
 // projects whose category matches.
@@ -31,21 +40,24 @@ const sections = Object.keys(CATEGORY_META)
 
 // Each tier shows something different in the card's corner:
 //   guided builds  -> a progress bar
-//   mini projects  -> a "Completed" pill once finished
+//   mini projects  -> a "Completed" pill once finished, otherwise a status pill
 //   flagship       -> a status pill (Planned / In progress)
 function extraCardProps(category, project) {
   if (category === 'guided') {
     return { progress: project.progress };
   }
   if (category === 'mini-unique') {
-    return { completed: project.status === 'complete' };
+    if (project.status === 'complete') {
+      return { completed: true };
+    }
+    return { status: STATUS_META[project.status] };
   }
   return { status: STATUS_META[project.status] };
 }
 
 function Projects() {
   usePageMeta(
-    'Projects — [[YOUR_NAME]]',
+    'Projects — Pema Tsering',
     'Software projects in three tiers: flagship original ideas, guided tutorial builds, and small tools that solve real problems.',
   );
 

@@ -1,8 +1,7 @@
 # Personal Portfolio Website
 
 It presents software projects, solved coding problems, and scientific research
-side by side as short case studies, with a notes/blog section and an interactive
-graphics demo on the home page.
+side by side as short case studies.
 
 The site is organised into these sections:
 
@@ -10,7 +9,6 @@ The site is organised into these sections:
 - **Problems** — my competitive-programming profile (in progress),
   plus worked coding-challenge solutions with complexity analysis.
 - **Research** — my scientific work, kept in its own section.
-- **Notes** — short blog-style write-ups.
 
 ## How it's built
 
@@ -25,7 +23,7 @@ src/pages/            one component per page
 src/components/       reusable pieces (header, cards, canvases, …)
 src/hooks/            custom hooks (useTheme, usePageMeta)
 src/lib/              plain JavaScript helpers (dates, labels, canvas drawing)
-src/content/          the projects, research, problems and notes themselves
+src/content/          the projects, research and problems themselves
 src/styles/global.css colours, fonts and shared styles
 python-projects/      my Python programs (the Wordle assistant and its tests)
 public/wordle/        the word list the in-browser Wordle terminal downloads
@@ -47,7 +45,7 @@ build into `dist/`), `npm run preview` (serve that build), `npm run lint`.
 ## Adding content
 
 Each entry is one `.jsx` file in the matching `src/content/` folder
-(`projects`, `research`, `challenges`, `notes`). It exports a `meta` object
+(`projects`, `research`, `challenges`). It exports a `meta` object
 (title, date, tags, …) and a default component containing the write-up.
 
 1. Copy an existing file in the folder and rename it.

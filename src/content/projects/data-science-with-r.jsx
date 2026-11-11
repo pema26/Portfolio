@@ -1,10 +1,10 @@
-// A GUIDED build — following a book/course.
+// A GUIDED build — following a book.
 
 export const meta = {
   id: 'data-science-with-r', // becomes the URL: /projects/data-science-with-r
-  title: 'Data science with R',
+  title: 'Data science with R (book)',
   description:
-    'Working through R for Data Science — turning raw, messy data into clear, reproducible analysis and visualisation.',
+    'Working through the book R for Data Science by Hadley Wickham, Mine Çetinkaya-Rundel and Garrett Grolemund — turning raw, messy data into clear, reproducible analysis and visualisation.',
   category: 'guided', // big-unique | guided | mini-unique
   status: 'complete', // planned | in-progress | complete
   date: '2025-12-05', // YYYY-MM-DD
