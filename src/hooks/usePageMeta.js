@@ -4,7 +4,7 @@
 //
 //  PURPOSE: every page calls this once with its own title and description:
 //
-//      usePageMeta('About — [[YOUR_NAME]]', 'A little about me.');
+//      usePageMeta('About — Pema Tsering', 'A little about me.');
 //
 //  Changing the browser tab's title is a "side effect" (something outside of
 //  React's rendering), so it belongs in a useEffect. The effect re-runs only

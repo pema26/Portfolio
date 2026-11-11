@@ -10,16 +10,36 @@
 import { usePageMeta } from '../hooks/usePageMeta';
 
 // EDIT HERE: your skills, grouped by category. Add/remove freely.
+// The first three groups and the certifications mirror my CV; the rest are
+// skills the projects on this site use.
 const skillGroups = [
-  { heading: 'Languages', items: ['Python', 'R', 'C++'] },
-  { heading: 'Practice', items: ['Algorithms / Codeforces', 'Data science with R'] },
-  { heading: 'Graphics', items: ['C++', 'Software rendering'] },
-  { heading: 'Tools', items: ['Git', 'Command line'] },
+  { heading: 'Programming', items: ['Python', 'SQL', 'R', 'Bash', 'C / C++ (learning)'] },
+  {
+    heading: 'Web development',
+    items: ['JavaScript', 'HTML', 'CSS', 'Vue.js', 'React', 'Tailwind CSS'],
+  },
+  {
+    heading: 'Tools',
+    items: ['Git & GitHub', 'Command line', 'Figma', 'Microsoft Office (Word, Excel, PowerPoint)'],
+  },
+  {
+    heading: 'Engineering practice',
+    items: [
+      'Algorithms & data structures (Codeforces)',
+      'Automated testing (Python unittest)',
+      'Relational databases (PostgreSQL)',
+      'Working with REST APIs',
+    ],
+  },
+  {
+    heading: 'Certifications — freeCodeCamp (~600 hours)',
+    items: ['Python Programming', 'Relational Database', 'JavaScript', 'Responsive Web Design'],
+  },
 ];
 
 function About() {
   usePageMeta(
-    'About — [[YOUR_NAME]]',
+    'About — Pema Tsering',
     'The coding journey and research background of a London-based developer and molecular-biology researcher.',
   );
 

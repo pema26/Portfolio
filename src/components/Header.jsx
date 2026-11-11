@@ -22,7 +22,6 @@ const links = [
   { href: '/projects', label: 'Projects' },
   { href: '/problems', label: 'Problems' },
   { href: '/research', label: 'Research' },
-  { href: '/notes', label: 'Notes' },
   { href: '/contact', label: 'Contact' },
 ];
 
@@ -36,7 +35,7 @@ function Header() {
       <nav className="flex w-full items-center justify-between px-4 py-3 sm:px-6 lg:px-10" aria-label="Main navigation">
         {/* Name / wordmark links back home. EDIT HERE to change the wordmark. */}
         <Link to="/" className="font-serif text-lg font-semibold tracking-tight text-slate-900 dark:text-white">
-          [[YOUR_NAME]]
+          Pema Tsering
         </Link>
 
         <div className="flex items-center gap-1">

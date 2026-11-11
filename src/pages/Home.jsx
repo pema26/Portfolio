@@ -2,13 +2,12 @@
 //  src/pages/Home.jsx  —  the HOME page  (the "/" route)
 // ============================================================================
 //
-//  WHAT'S HERE: a hero with your name + one-liner, the section portals, the
-//  interactive canvas demo, a strip of "featured" projects and research, and a
-//  contact call-to-action. Edit the marked spots to make it yours.
+//  WHAT'S HERE: a hero with your name + one-liner, the section portals, a
+//  strip of "featured" projects and research, and a contact call-to-action.
+//  Edit the marked spots to make it yours.
 // ============================================================================
 
 import { Link } from 'react-router';
-import CanvasDemo from '../components/CanvasDemo';
 import ProjectCard from '../components/ProjectCard';
 import SectionPortals from '../components/SectionPortals';
 import { usePageMeta } from '../hooks/usePageMeta';
@@ -26,7 +25,7 @@ const featuredResearch = research.filter((entry) => entry.featured).sort(newestF
 
 function Home() {
   usePageMeta(
-    '[[YOUR_NAME]] — Developer & Researcher',
+    'Pema Tsering — Developer & Researcher',
     'London-based developer and researcher working across software engineering, low-level graphics, and molecular biology.',
   );
 
@@ -39,7 +38,7 @@ function Home() {
           London-based developer &amp; researcher
         </p>
         <h1 className="font-serif text-4xl font-bold leading-tight text-slate-900 sm:text-5xl dark:text-white">
-          [[YOUR_NAME]]
+          Pema Tsering
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
           I build with <strong className="font-semibold text-slate-800 dark:text-slate-100">Python</strong>, <strong className="font-semibold text-slate-800 dark:text-slate-100">R</strong>, and
@@ -67,11 +66,6 @@ function Home() {
       {/* Three cards that preview each section's background motif on hover and
           link to it. See src/components/SectionPortals.jsx. */}
       <SectionPortals />
-
-      {/* ===================== CANVAS DEMO ===================== */}
-      <section className="py-8">
-        <CanvasDemo />
-      </section>
 
       {/* ===================== FEATURED PROJECTS ===================== */}
       <section className="py-8">

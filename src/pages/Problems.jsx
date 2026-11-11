@@ -59,7 +59,7 @@ for (const challenge of challenges) {
 
 function Problems() {
   usePageMeta(
-    'Problems solved — [[YOUR_NAME]]',
+    'Problems solved — Pema Tsering',
     'Competitive programming and coding challenges — my Codeforces profile, plus worked solutions with complexity analysis.',
   );
 
