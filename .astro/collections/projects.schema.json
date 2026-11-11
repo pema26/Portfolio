@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "big-unique",
+        "guided",
+        "mini-unique"
+      ]
+    },
+    "status": {
+      "default": "complete",
+      "type": "string",
+      "enum": [
+        "planned",
+        "in-progress",
+        "complete"
+      ]
+    },
+    "date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "tags": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "githubUrl": {
+      "type": "string",
+      "format": "uri"
+    },
+    "demoUrl": {
+      "type": "string",
+      "format": "uri"
+    },
+    "featured": {
+      "default": false,
+      "type": "boolean"
+    },
+    "$schema": {
+      "type": "string"
+    }
+  },
+  "required": [
+    "title",
+    "description",
+    "category",
+    "date",
+    "tags"
+  ]
+}

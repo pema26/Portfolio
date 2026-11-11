@@ -13,7 +13,7 @@ import { usePageMeta } from '../hooks/usePageMeta';
 // The first three groups and the certifications mirror my CV; the rest are
 // skills the projects on this site use.
 const skillGroups = [
-  { heading: 'Programming', items: ['Python', 'SQL', 'R', 'Bash', 'C / C++ (learning)'] },
+  { heading: 'Programming', items: ['Python', 'SQL', 'R', 'Bash'] },
   {
     heading: 'Web development',
     items: ['JavaScript', 'HTML', 'CSS', 'Vue.js', 'React', 'Tailwind CSS'],
@@ -25,8 +25,8 @@ const skillGroups = [
   {
     heading: 'Engineering practice',
     items: [
-      'Algorithms & data structures (Codeforces)',
-      'Automated testing (Python unittest)',
+      'Algorithms & data structures (Codeforces & FreeCodeCamp Coding Challenges)',
+      'Automated testing (Python unit test)',
       'Relational databases (PostgreSQL)',
       'Working with REST APIs',
     ],
