@@ -1,0 +1,76 @@
+:root {
+    color-scheme: light;
+    font-family: Inter, system-ui, sans-serif;
+    color: #122b28;
+    background: #f2f6f4;
+    font-variant-numeric: tabular-nums;
+}
+
+* { box-sizing: border-box; }
+body { margin: 0; }
+a { color: #126050; text-underline-offset: .2em; }
+:focus-visible { outline: 3px solid #147b65; outline-offset: 3px; }
+.wrap { width: min(1100px, calc(100% - 36px)); margin-inline: auto; }
+.topbar { background: #123a32; color: #fff; }
+.topbar-inner { min-height: 64px; display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+.topbar a { color: inherit; }
+.brand { font-size: 1.15rem; font-weight: 750; text-decoration: none; }
+nav { display: flex; gap: 20px; font-size: .9rem; }
+main { padding-top: 42px; }
+h1, h2, h3, p { margin: 0; }
+h1 { font-size: clamp(2rem, 4vw, 3.2rem); letter-spacing: -.045em; line-height: 1.06; }
+h2 { font-size: 1.5rem; letter-spacing: -.025em; }
+h3 { font-size: 1rem; }
+.intro { display: flex; justify-content: space-between; align-items: end; flex-wrap: wrap; gap: 20px; margin-bottom: 32px; }
+.intro p { margin-top: 10px; color: #49635c; }
+.filters, .review-form { display: flex; align-items: end; flex-wrap: wrap; gap: 8px; }
+label { display: grid; gap: 4px; font-size: .83rem; font-weight: 650; }
+button, select { min-height: 40px; border-radius: 7px; padding: 7px 10px; font: inherit; }
+select { max-width: min(45vw, 260px); background: white; border: 1px solid #aabfb7; color: inherit; }
+button { cursor: pointer; background: #14614f; border: 1px solid #14614f; color: white; font-size: .87rem; font-weight: 650; }
+button:hover { background: #104e3f; }
+button.secondary { background: white; color: #14614f; }
+button.secondary:hover { background: #eaf4ef; }
+
+.panel { border: 1px solid #d5e2db; border-radius: 12px; padding: 18px; background: white; min-width: 0; }
+.stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin: 12px 0 8px; }
+dt, .note { color: #49635c; font-size: .86rem; line-height: 1.55; }
+dd { font-size: clamp(1rem, 2.8vw, 1.8rem); font-weight: 750; margin: 5px 0 0; }
+.breakdowns { display: grid; grid-template-columns: 1.2fr 1fr; gap: 14px; margin-top: 15px; }
+.table-scroll { overflow: auto; max-height: 370px; margin-top: 8px; }
+table { width: 100%; border-collapse: collapse; font-size: .9rem; }
+th, td { padding: 8px 5px; border-bottom: 1px solid #e6eee9; }
+th { text-align: left; }
+td, thead th:not(:first-child) { text-align: right; }
+tbody th { font-weight: 500; }
+thead th { position: sticky; top: 0; background: white; }
+.bar { height: 3px; margin: 4px 0 1px auto; width: min(100%, 90px); }
+.bar span { background: #278c75; height: 100%; display: block; margin-left: auto; border-radius: 2px; }
+
+.recurring { margin-top: 22px; }
+.section-title { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 8px; margin-bottom: 6px; }
+.section-title span { color: #49635c; font-size: .87rem; }
+.payment { padding: 14px 0; border-top: 1px solid #e1eae5; margin-top: 10px; }
+.payment-heading { display: flex; justify-content: space-between; gap: 12px; }
+.payment-heading h3 { overflow-wrap: anywhere; }
+.payment-amount { display: grid; gap: 3px; text-align: right; white-space: nowrap; }
+.payment-amount span { font-size: .82rem; color: #49635c; }
+.payment-amount .increase { color: #8a351d; font-weight: 650; }
+details { margin-top: 7px; }
+summary { cursor: pointer; color: #126050; font-size: .87rem; }
+.status { margin-left: 5px; color: #49635c; background: #edf2ef; padding: 2px 7px; border-radius: 4px; }
+.status.confirmed { background: #dff4ea; color: #175744; }
+.status.dismissed { background: #faeee7; color: #773b23; }
+.evidence { max-width: 320px; list-style: none; padding: 0; font-size: .88rem; }
+.evidence li { display: flex; justify-content: space-between; border-bottom: 1px solid #e1eae5; padding: 6px 0; }
+.empty p { margin-top: 12px; }
+pre { overflow: auto; }
+footer { padding-block: 22px; font-size: .85rem; }
+
+@media (max-width: 680px) {
+    .breakdowns { grid-template-columns: 1fr; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+    .panel { padding: 13px; }
+    main { padding-top: 28px; }
+    nav { gap: 9px; font-size: .78rem; }
+}

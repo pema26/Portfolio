@@ -1,0 +1,8 @@
+Transaction Number,Transaction Date,Transaction Type,Transaction Description,Debit Amount,Credit Amount,Balance,Category
+1,2024-01-31,DD,Music Plan,8.99,,991.01,Entertainment
+2,2024-02-29,DD,MUSIC  PLAN,8.99,,982.02,Entertainment
+3,2024-03-04,DEB,Groceries,12.50,,969.52,Groceries
+4,2024-03-04,DEB,Groceries,12.50,,957.02,Groceries
+5,2024-03-05,DEB,Groceries,,12.50,969.52,Groceries
+6,2024-03-15,TFR,Savings Transfer,100.00,,869.52,Savings
+7,2024-03-31,DD,Music Plan,12.99,,856.53,Entertainment

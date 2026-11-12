@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Payment Review</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<header class="topbar">
+    <div class="wrap topbar-inner">
+        <a class="brand" href="{{ url_for('dashboard') }}">Payment Review</a>
+        {% if datasets %}
+        <nav aria-label="Dashboard sections">
+            <a href="#cash-flow">Cash flow</a>
+            <a href="#recurring">Recurring payments</a>
+        </nav>
+        {% endif %}
+    </div>
+</header>
+<main class="wrap">
+    {% if not datasets %}
+    <section class="panel empty">
+        <h1>{{ 'Database unavailable' if error else 'Import your first dataset' }}</h1>
+        <p>{{ error or 'Run the importer from the project folder, then reload this page.' }}</p>
+        <pre><code>python import_data.py data/sample.csv --dataset Demo</code></pre>
+    </section>
+    {% else %}
+    <div class="intro">
+        <div>
+            <h1>Transaction overview</h1>
+            <p>Review account activity and changes in regular payments.</p>
+        </div>
+        <form class="filters" method="get">
+            <label>Dataset
+                <select name="dataset">
+                    {% for dataset in datasets %}
+                    <option value="{{ dataset.id }}"{% if dataset.id == dataset_id %} selected{% endif %}>
+                        {{ dataset.name }}
+                    </option>
+                    {% endfor %}
+                </select>
+            </label>
+            <label>Year
+                <select name="year">
+                    {% for option in years %}
+                    <option{% if option == year %} selected{% endif %}>{{ option }}</option>
+                    {% endfor %}
+                </select>
+            </label>
+            <button>Apply</button>
+        </form>
+    </div>
+
+    <section id="cash-flow" aria-labelledby="cash-flow-title">
+        <h2 id="cash-flow-title">Cash flow</h2>
+        <dl class="stats">
+            <div class="panel"><dt>Money in</dt><dd>{{ incoming|gbp }}</dd></div>
+            <div class="panel"><dt>Money out</dt><dd>{{ outgoing|gbp }}</dd></div>
+            <div class="panel"><dt>Net cash flow</dt><dd>{{ (incoming - outgoing)|gbp }}</dd></div>
+            <div class="panel"><dt>Transactions</dt><dd>{{ "{:,}".format(count) }}</dd></div>
+        </dl>
+        <p class="note">Money out includes all debits, including savings and transfers. Refunds appear under money in.</p>
+
+        <div class="breakdowns">
+            <div class="panel">
+                <h3>Monthly totals</h3>
+                <div class="table-scroll" role="region" aria-label="Monthly totals" tabindex="0">
+                    <table>
+                        <thead><tr><th scope="col">Month</th><th scope="col">Money in</th><th scope="col">Money out</th></tr></thead>
+                        <tbody>
+                        {% for month in months %}
+                        <tr>
+                            <th scope="row">{{ month.month.strftime('%b %Y') }}</th>
+                            <td>{{ month.incoming|gbp }}</td>
+                            <td>
+                                {{ month.outgoing|gbp }}
+                                <div class="bar" aria-hidden="true"><span style="width: {{ month.bar_width }}%"></span></div>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel">
+                <h3>Money out by category</h3>
+                {% if categories %}
+                <div class="table-scroll" role="region" aria-label="Money out by category" tabindex="0">
+                    <table>
+                        <thead><tr><th scope="col">Category</th><th scope="col">Money out</th></tr></thead>
+                        <tbody>
+                        {% for category in categories %}
+                        <tr><th scope="row">{{ category.category }}</th><td>{{ category.outgoing|gbp }}</td></tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p>No outgoing transactions in this period.</p>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+    <section id="recurring" class="panel recurring" aria-labelledby="recurring-title">
+        <div class="section-title">
+            <h2 id="recurring-title">Recurring payments</h2>
+            <span>{{ candidates|length }} suggestions</span>
+        </div>
+        <p class="note">
+            As of {{ as_of.strftime('%d %b %Y') }}. Suggestions use three payments with the same description
+            and type, roughly a month apart. The amount change shown is the most recent change across those three payments.
+        </p>
+        {% if not candidates %}
+        <p>No payment histories matched the rule for this period.</p>
+        {% endif %}
+        {% for payment in candidates %}
+        <article class="payment">
+            <div class="payment-heading">
+                <div>
+                    <h3>{{ payment.description }}</h3>
+                    <p class="note">{{ payment.kind }} · Last matching payment {{ payment.booked_on.strftime('%d %b %Y') }}</p>
+                </div>
+                <div class="payment-amount">
+                    <strong>{{ payment.debit|gbp }}</strong>
+                    {% if payment.change > 0 %}
+                    <span class="increase">Up {{ payment.change|gbp }} on {{ payment.change_date.strftime('%d %b') }}</span>
+                    {% elif payment.change < 0 %}
+                    <span>Down {{ (-payment.change)|gbp }} on {{ payment.change_date.strftime('%d %b') }}</span>
+                    {% endif %}
+                </div>
+            </div>
+            {% if payment.last_seen > payment.booked_on %}
+            <p class="note">A later payment on {{ payment.last_seen.strftime('%d %b %Y') }} falls outside this matching sequence.</p>
+            {% endif %}
+            <details>
+                <summary>Payment history and review <span class="status {{ payment.status }}">{{ payment.status|capitalize }}</span></summary>
+                <ul class="evidence">
+                    {% for date, amount in [(payment.first_date, payment.first_amount), (payment.previous_date, payment.previous_amount), (payment.booked_on, payment.debit)] %}
+                    <li><time datetime="{{ date }}">{{ date.strftime('%d %b %Y') }}</time> <strong>{{ amount|gbp }}</strong></li>
+                    {% endfor %}
+                </ul>
+                <form class="review-form" method="post" action="{{ url_for('review_payment') }}">
+                    <input type="hidden" name="review_token" value="{{ review_token }}">
+                    <input type="hidden" name="dataset" value="{{ dataset_id }}">
+                    <input type="hidden" name="year" value="{{ year }}">
+                    <input type="hidden" name="transaction_number" value="{{ payment.transaction_number }}">
+                    <button name="status" value="confirmed">Confirm recurring</button>
+                    <button class="secondary" name="status" value="dismissed">Dismiss</button>
+                    {% if payment.status != 'pending' %}
+                    <button class="secondary" name="status" value="pending">Reset review</button>
+                    {% endif %}
+                </form>
+            </details>
+        </article>
+        {% endfor %}
+    </section>
+    {% endif %}
+</main>
+<footer class="wrap">
+    <a href="https://data.mendeley.com/datasets/dnxtg6n4rv/1">MoneyData source and licence</a>
+</footer>
+</body>
+</html>
