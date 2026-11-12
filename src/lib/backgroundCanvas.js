@@ -97,8 +97,8 @@ export function startBackground(canvas, motif) {
       }
       for (let v = 0; v < cV.length; v++) dot(P(cV[v][0], cV[v][1], cV[v][2]), C.node, al, sz + 0.2);
     }
-    cube(ts * 0.00026, 0.42, base * 0.24, 0.85, 6, 1.8);
-    cube(-ts * 0.0004 + 2.1, 0.8, base * 0.10, 0.45, 5, 1.4);
+    cube(ts * 0.00026, 0.42, base * 0.60, 0.85, 6, 1.8);
+    cube(-ts * 0.0004 + 2.1, 0.8, base * 0.30, 0.45, 5, 1.4);
   }
 
   // ---- MOTIF: graph traversal (edges grow node-to-node) ----------------
