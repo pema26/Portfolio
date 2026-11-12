@@ -3,8 +3,8 @@
 // ============================================================================
 //
 //  WHAT'S HERE: this single component shows the page for EVERY project. The
-//  route in src/App.jsx is "projects/:slug", so for /projects/tinyrenderer the
-//  useParams hook gives us  slug === "tinyrenderer". We look that id up in the
+//  route in src/App.jsx is "projects/:slug", so for /projects/wordle-assistant
+//  the useParams hook gives us  slug === "wordle-assistant". We look that id up in the
 //  projects list and show the matching entry.
 //
 //  You almost never edit this file — it's the template all projects share.
@@ -39,10 +39,10 @@ function ProjectDetail() {
   const category = CATEGORY_META[project.category];
   const status = STATUS_META[project.status];
 
-  // Guided builds get a progress bar + a dated devlog; finished mini projects
-  // get a "Completed" pill. (Flagship projects keep the status pill above.)
+  // Guided builds get a progress bar + a dated devlog; finished flagship and
+  // mini projects get a "Completed" pill.
   const isGuided = project.category === 'guided';
-  const isMiniComplete = project.category === 'mini-unique' && project.status === 'complete';
+  const isComplete = !isGuided && project.status === 'complete';
   const progress = project.progress;
 
   // Devlog newest-first for display (copied first, so the original is untouched).
@@ -66,7 +66,7 @@ function ProjectDetail() {
               {status.label}
             </span>
           )}
-          {isMiniComplete && (
+          {isComplete && (
             <span className={`inline-flex items-center gap-1 rounded-full px-2.5 py-0.5 text-xs font-medium ${TONES.emerald}`}>
               <svg className="h-3 w-3" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
                 <path fillRule="evenodd" d="M16.7 5.3a1 1 0 0 1 0 1.4l-7.5 7.5a1 1 0 0 1-1.4 0L3.3 9.7a1 1 0 1 1 1.4-1.4l3.1 3.1 6.8-6.8a1 1 0 0 1 1.4 0Z" clipRule="evenodd" />

@@ -17,7 +17,7 @@
 //  /projects and the page at /projects/<id>.
 // ============================================================================
 
-import Tinyrenderer, { meta as tinyrendererMeta } from './tinyrenderer';
+import PaymentReview, { meta as paymentReviewMeta } from './payment-review';
 import DataScienceWithR, { meta as dataScienceWithRMeta } from './data-science-with-r';
 import YoutubeClone, { meta as youtubeCloneMeta } from './youtube-clone';
 import ParcelBoard, { meta as parcelBoardMeta } from './parcel-board';
@@ -30,10 +30,9 @@ import FastaAnalyzer, { meta as fastaAnalyzerMeta } from './fasta-analyzer';
 import GeneExpressionPipeline, { meta as geneExpressionPipelineMeta } from './gene-expression-pipeline';
 import DigitalDetoxCli, { meta as digitalDetoxCliMeta } from './digital-detox-cli';
 import BiologicalDatabase, { meta as biologicalDatabaseMeta } from './biological-database';
-import FastaAnalyzerCpp, { meta as fastaAnalyzerCppMeta } from './fasta-analyzer-cpp';
 
 export const projects = [
-  { ...tinyrendererMeta, Content: Tinyrenderer },
+  { ...paymentReviewMeta, Content: PaymentReview },
   { ...dataScienceWithRMeta, Content: DataScienceWithR },
   { ...youtubeCloneMeta, Content: YoutubeClone },
   { ...parcelBoardMeta, Content: ParcelBoard },
@@ -46,5 +45,4 @@ export const projects = [
   { ...geneExpressionPipelineMeta, Content: GeneExpressionPipeline },
   { ...digitalDetoxCliMeta, Content: DigitalDetoxCli },
   { ...biologicalDatabaseMeta, Content: BiologicalDatabase },
-  { ...fastaAnalyzerCppMeta, Content: FastaAnalyzerCpp },
 ];

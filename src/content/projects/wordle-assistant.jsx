@@ -21,7 +21,7 @@ export const meta = {
   tags: ['Python', 'algorithms', 'command line'],
   // githubUrl: '[[GITHUB_URL]]', // optional — uncomment and set
   devlog: [],
-  featured: false, // show on the home page?
+  featured: true, // show on the home page?
 };
 
 // The heart of the Python program, shown on the page. It is kept in a

@@ -3,9 +3,9 @@
 // ============================================================================
 //
 //  WHAT IT IS: plain JavaScript (no React in here) that draws a small
-//  wireframe which morphs box -> DNA helix -> graph in a loop. It spins slowly
-//  on its own and also turns and tilts towards wherever the mouse is on the
-//  page. The React component src/components/HeaderMorph.jsx owns the <canvas>
+//  wireframe which morphs box -> DNA helix -> graph in a loop. It stays still
+//  until the mouse comes close to it; then it spins, morphs, and turns and
+//  tilts towards the mouse. Move away and it freezes where it is. The React component src/components/HeaderMorph.jsx owns the <canvas>
 //  and calls startMorph() from a useEffect.
 //
 //  HOW THE MORPH WORKS: all three shapes are described with the SAME number of
@@ -14,8 +14,7 @@
 //  the old shape's edges fade out and the new shape's edges fade in.
 //
 //  ACCESSIBILITY / PERFORMANCE:
-//    - pauses when the browser tab is hidden,
-//    - honours "prefers-reduced-motion" by drawing a single still frame,
+//    - honours "prefers-reduced-motion" by never animating,
 //    - re-colours live when the dark/light theme changes,
 //    - returns a cleanup function that removes every listener it added.
 // ============================================================================
@@ -54,6 +53,9 @@ const HOLD = 3600;  // milliseconds a shape stays still
 const MORPH = 2100; // milliseconds a morph takes
 const CYCLE = HOLD + MORPH;
 const N = 16;
+// EDIT HERE: how close (in pixels, measured from the middle of the shape) the
+// mouse has to be before the shape starts moving.
+const NEAR = 110;
 
 function smooth(t) { return t * t * (3 - 2 * t); }
 function lerp(a, b, t) { return a + (b - a) * t; }
@@ -70,9 +72,12 @@ export function startMorph(canvas) {
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let dpr = 1, w = 0, h = 0, raf = null, running = false;
-  // Where the mouse is (-0.5 … 0.5 across the window), and a smoothed copy
-  // that chases it so the shape glides rather than jumps.
+  // Where the mouse is relative to the shape (-1 … 1 across the NEAR circle),
+  // and a smoothed copy that chases it so the shape glides rather than jumps.
   let targetX = 0, targetY = 0, mx = 0, my = 0;
+  // The shape's own clock. It only ticks while the mouse is near, which is
+  // what makes the shape freeze (rather than jump) when the mouse leaves.
+  let clock = 0, last = null;
 
   function size() {
     dpr = window.devicePixelRatio || 1;
@@ -94,8 +99,8 @@ export function startMorph(canvas) {
 
     // Turn the 3D points: spin around the vertical axis (plus the mouse's
     // left/right), tilt with the mouse's up/down, then apply perspective.
-    const ang = ts * 0.0005 + mx * 2.4;
-    const tilt = 0.32 + my * 1.3;
+    const ang = ts * 0.0005 + mx * 0.9;
+    const tilt = 0.32 + my * 0.6;
     const scale = Math.min(w, h) * 1.15;
     const ca = Math.cos(ang), sa = Math.sin(ang), ct = Math.cos(tilt), st = Math.sin(tilt);
     function project(x, y, z) {
@@ -140,25 +145,40 @@ export function startMorph(canvas) {
     }
   }
 
-  function frame(ts) { if (!running) return; draw(ts); raf = requestAnimationFrame(frame); }
-  function play() { if (running || reduced) return; running = true; raf = requestAnimationFrame(frame); }
+  function frame(ts) {
+    if (!running) return;
+    if (last !== null) clock += ts - last; // add the time since the last frame
+    last = ts;
+    draw(clock);
+    raf = requestAnimationFrame(frame);
+  }
+  function play() { if (running || reduced) return; running = true; last = null; raf = requestAnimationFrame(frame); }
   function pause() { running = false; if (raf) cancelAnimationFrame(raf); raf = null; }
 
   size();
-  if (reduced) draw(0); else play();
+  draw(clock); // one still frame to start with
 
-  function onResize() { size(); if (reduced) draw(0); }
-  function onVis() { if (document.hidden) pause(); else play(); }
+  function onResize() { size(); draw(clock); }
+  function onVis() { if (document.hidden) pause(); }
   function onMove(e) {
-    targetX = e.clientX / window.innerWidth - 0.5;
-    targetY = e.clientY / window.innerHeight - 0.5;
+    // How far is the mouse from the middle of the shape?
+    const r = canvas.getBoundingClientRect();
+    const dx = e.clientX - (r.left + r.width / 2);
+    const dy = e.clientY - (r.top + r.height / 2);
+    if (Math.hypot(dx, dy) <= NEAR) {
+      targetX = dx / NEAR;
+      targetY = dy / NEAR;
+      play();
+    } else {
+      pause();
+    }
   }
   window.addEventListener('resize', onResize);
   document.addEventListener('visibilitychange', onVis);
   window.addEventListener('mousemove', onMove);
 
   // Re-colour the still frame when the theme toggle flips the .dark class.
-  const themeObs = new MutationObserver(function () { if (reduced) draw(0); });
+  const themeObs = new MutationObserver(function () { if (!running) draw(clock); });
   themeObs.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
 
   return function stopMorph() {

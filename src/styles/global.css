@@ -141,10 +141,10 @@
      - faster / slower              -> the 18s in the `animation` line,
      - colours                      -> the hex / rgba values.
    -------------------------------------------------------------------------- */
-@property --glow-x { syntax: "<percentage>"; inherits: false; initial-value: 14%; }
+@property --glow-x { syntax: "<percentage>"; inherits: false; initial-value: 10%; }
 @property --glow-y { syntax: "<percentage>"; inherits: false; initial-value: 30%; }
-@property --band-l { syntax: "<percentage>"; inherits: false; initial-value: 24%; }
-@property --band-r { syntax: "<percentage>"; inherits: false; initial-value: 78%; }
+@property --band-l { syntax: "<percentage>"; inherits: false; initial-value: 15%; }
+@property --band-r { syntax: "<percentage>"; inherits: false; initial-value: 85%; }
 
 #home-bg {
   position: fixed;
@@ -152,23 +152,25 @@
   z-index: -1;
   pointer-events: none;
   background:
-    radial-gradient(ellipse 34% 75% at var(--glow-x) var(--glow-y), rgba(220, 173, 255, 0.47), transparent 85%),
-    radial-gradient(ellipse 30% 80% at calc(100% - var(--glow-x)) 70%, rgba(190, 145, 255, 0.43), transparent 85%),
-    linear-gradient(90deg, #ebc9ff 0%, #fff var(--band-l), #fff var(--band-r), #cea8ff 100%);
+    radial-gradient(ellipse 24% 75% at var(--glow-x) var(--glow-y), rgba(220, 173, 255, 0.2), transparent 85%),
+    radial-gradient(ellipse 22% 80% at calc(100% - var(--glow-x)) 70%, rgba(190, 145, 255, 0.18), transparent 85%),
+    linear-gradient(90deg, #f3e1ff 0%, #fff var(--band-l), #fff var(--band-r), #e7d5ff 100%);
   animation: home-bg-drift 18s ease-in-out infinite;
 }
 .dark #home-bg {
   background:
-    radial-gradient(ellipse 34% 75% at var(--glow-x) var(--glow-y), rgba(124, 77, 168, 0.4), transparent 85%),
-    radial-gradient(ellipse 30% 80% at calc(100% - var(--glow-x)) 70%, rgba(104, 72, 160, 0.38), transparent 85%),
-    linear-gradient(90deg, #523469 0%, #000 var(--band-l), #000 var(--band-r), #4f376e 100%);
+    radial-gradient(ellipse 24% 75% at var(--glow-x) var(--glow-y), rgba(124, 77, 168, 0.16), transparent 85%),
+    radial-gradient(ellipse 22% 80% at calc(100% - var(--glow-x)) 70%, rgba(104, 72, 160, 0.15), transparent 85%),
+    linear-gradient(90deg, #2b1b38 0%, #000 var(--band-l), #000 var(--band-r), #2a1d3b 100%);
 }
+/* The middle band runs from about 15% to 85% of the width and sways by a
+   couple of percent either way. */
 @keyframes home-bg-drift {
-  0%   { --glow-x: 14%; --glow-y: 30%; --band-l: 24%; --band-r: 78%; }
-  25%  { --glow-x: 6%;  --glow-y: 62%; --band-l: 19%; --band-r: 74%; }
-  50%  { --glow-x: 18%; --glow-y: 78%; --band-l: 27%; --band-r: 82%; }
-  75%  { --glow-x: 10%; --glow-y: 18%; --band-l: 21%; --band-r: 72%; }
-  100% { --glow-x: 14%; --glow-y: 30%; --band-l: 24%; --band-r: 78%; }
+  0%   { --glow-x: 10%; --glow-y: 30%; --band-l: 15%; --band-r: 85%; }
+  25%  { --glow-x: 5%;  --glow-y: 62%; --band-l: 13%; --band-r: 83%; }
+  50%  { --glow-x: 13%; --glow-y: 78%; --band-l: 17%; --band-r: 87%; }
+  75%  { --glow-x: 7%;  --glow-y: 18%; --band-l: 14%; --band-r: 84%; }
+  100% { --glow-x: 10%; --glow-y: 30%; --band-l: 15%; --band-r: 85%; }
 }
 
 /* The small morphing wireframe next to the name in the header

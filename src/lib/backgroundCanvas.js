@@ -8,7 +8,7 @@
 //  <canvas> element and simply calls startBackground() from a useEffect.
 //
 //  MOTIFS (the component picks one per section of the site):
-//    "cubes"  -> rotating wireframe cubes  (a nod to tinyrenderer)
+//    "cubes"  -> rotating wireframe cubes
 //    "graph"  -> graph traversal (edges "grow" node-to-node, like BFS)
 //    "helix"  -> vertical DNA double helix
 //
@@ -139,10 +139,14 @@ export function startBackground(canvas, motif) {
   function egrow(t) { return t < 0 ? 0 : t > 1 ? 1 : t * t * (3 - 2 * t); }
   function drawGraph(ts, C) {
     ctx.clearRect(0, 0, w, h);
-    if (!G || G.w !== w || G.h !== h) { G = buildGraph(); G.t0 = ts; G.wave = bfs(G, G.start); }
+    // EDIT HERE: WAIT is how long (in milliseconds) the graph sits still before
+    // each traversal starts. 60000 = one minute. A wave's start time (t0) is
+    // set that far in the future, so until then nothing is "lit".
+    let WAIT = 60000;
+    if (!G || G.w !== w || G.h !== h) { G = buildGraph(); G.t0 = ts + WAIT; G.wave = bfs(G, G.start); }
     let STEP = 560, GROW = 460, HOLD = 1400;
     let elapsed = ts - G.t0;
-    if (elapsed > G.wave.max * STEP + GROW + HOLD + 700) { G.start = Math.floor(Math.random() * G.nodes.length); G.t0 = ts; G.wave = bfs(G, G.start); }
+    if (elapsed > G.wave.max * STEP + GROW + HOLD + 700) { G.start = Math.floor(Math.random() * G.nodes.length); G.t0 = ts + WAIT; G.wave = bfs(G, G.start); }
     for (let i = 0; i < G.nodes.length; i++) { let n = G.nodes[i]; n.x = n.bx + Math.sin(ts * 0.0006 + n.ph) * 6; n.y = n.by + Math.cos(ts * 0.0007 + n.ph) * 6; }
     for (let kk = 0; kk < G.edges.length; kk++) {
       let e = G.edges[kk], A = G.nodes[e[0]], B = G.nodes[e[1]];
