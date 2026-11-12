@@ -10,8 +10,8 @@
 import { usePageMeta } from '../hooks/usePageMeta';
 
 // EDIT HERE: your skills, grouped by category. Add/remove freely.
-// The first three groups and the certifications mirror my CV; the rest are
-// skills the projects on this site use.
+// The first three groups mirror my CV; the last one covers skills the
+// projects on this site use. (Certifications live in the CV itself.)
 const skillGroups = [
   { heading: 'Programming', items: ['Python', 'SQL', 'R', 'Bash'] },
   {
@@ -30,10 +30,6 @@ const skillGroups = [
       'Relational databases (PostgreSQL)',
       'Working with REST APIs',
     ],
-  },
-  {
-    heading: 'Certifications — freeCodeCamp (~600 hours)',
-    items: ['Python Programming', 'Relational Database', 'JavaScript', 'Responsive Web Design'],
   },
 ];
 

@@ -2,7 +2,7 @@
 //  Layout.jsx  —  the shared "frame" wrapped around every page
 // ============================================================================
 //
-//  PURPOSE: the animated background, the header navigation and the footer all
+//  PURPOSE: the page background, the header navigation and the footer all
 //  live here in ONE place. src/App.jsx wraps its routes in <Layout>, and the
 //  current page arrives through the special `children` prop:
 //
@@ -28,8 +28,9 @@ function Layout({ children }) {
 
   return (
     <>
-      {/* Site-wide animated wireframe background. It sits behind everything
-          (z-index:-1) and re-colours with the theme. */}
+      {/* The page background: a drifting gradient on Home, a wireframe
+          animation on Projects / Problems / Research, nothing elsewhere. It
+          sits behind everything (z-index:-1) and re-colours with the theme. */}
       <Background />
 
       {/* Skip link for keyboard / screen-reader users (accessibility). */}

@@ -41,10 +41,11 @@ function Home() {
           Pema Tsering
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-          I build with <strong className="font-semibold text-slate-800 dark:text-slate-100">Python</strong>, <strong className="font-semibold text-slate-800 dark:text-slate-100">R</strong>, and
-          low-level <strong className="font-semibold text-slate-800 dark:text-slate-100">graphics</strong>, with
-          a research background in molecular biology. This site is where my
-          coding projects and scientific work sit side by side.
+          I build data and bioinformatics tools in <strong className="font-semibold text-slate-800 dark:text-slate-100">Python</strong>, <strong className="font-semibold text-slate-800 dark:text-slate-100">SQL</strong> and <strong className="font-semibold text-slate-800 dark:text-slate-100">R</strong>,
+          web interfaces in <strong className="font-semibold text-slate-800 dark:text-slate-100">JavaScript</strong> and <strong className="font-semibold text-slate-800 dark:text-slate-100">React</strong>, and
+          I'm working down to the low level in <strong className="font-semibold text-slate-800 dark:text-slate-100">C++</strong>. I trained
+          in molecular biology, so I bring a researcher's habits to software:
+          test the assumption, measure the result, and write it up clearly.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Link

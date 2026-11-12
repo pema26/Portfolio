@@ -3,12 +3,11 @@
 // ============================================================================
 //
 //  WHAT IT IS: plain JavaScript (no React in here) that draws the faint, slow
-//  wireframe animation behind every page on a <canvas>, in the site's indigo
-//  accent. The React component src/components/Background.jsx owns the
+//  wireframe animation behind the Projects, Problems and Research sections on
+//  a <canvas>, in the site's indigo accent. The React component src/components/Background.jsx owns the
 //  <canvas> element and simply calls startBackground() from a useEffect.
 //
 //  MOTIFS (the component picks one per section of the site):
-//    "morph"  -> morphing wireframe (box -> DNA helix -> graph, in a loop)
 //    "cubes"  -> rotating wireframe cubes  (a nod to tinyrenderer)
 //    "graph"  -> graph traversal (edges "grow" node-to-node, like BFS)
 //    "helix"  -> vertical DNA double helix
@@ -80,66 +79,6 @@ export function startBackground(canvas, motif) {
     let s = sz * (0.7 + 0.6 * (p[2] + 1) / 2);
     ctx.fillStyle = 'rgba(' + rgb + ',' + (al * (0.5 + 0.45 * (p[2] + 1) / 2)) + ')';
     ctx.beginPath(); ctx.arc(p[0], p[1], s, 0, 6.283); ctx.fill();
-  }
-
-  // ---- MOTIF: morphing wireframe (box -> helix -> graph) ---------------
-  let box = [
-    [-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1],
-    [0,-1,-1],[1,0,-1],[0,1,-1],[-1,0,-1],[0,-1,1],[1,0,1],[0,1,1],[-1,0,1]
-  ];
-  let boxE = [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
-  let helix = [];
-  for (let k = 0; k < 8; k++) { let yy = -1.15 + 2.3 * k / 7, th = k * 0.7; helix[k] = [Math.cos(th) * 0.62, yy, Math.sin(th) * 0.62]; }
-  for (let k2 = 0; k2 < 8; k2++) { let y2 = -1.15 + 2.3 * k2 / 7, th2 = k2 * 0.7 + Math.PI; helix[8 + k2] = [Math.cos(th2) * 0.62, y2, Math.sin(th2) * 0.62]; }
-  let helixE = [];
-  for (let e1 = 0; e1 < 7; e1++) helixE.push([e1, e1 + 1]);
-  for (let e2 = 0; e2 < 7; e2++) helixE.push([8 + e2, 8 + e2 + 1]);
-  for (let e3 = 0; e3 < 8; e3++) helixE.push([e3, 8 + e3]);
-  let graph = [
-    [0,0.05,0.85],[0.85,0.4,0.15],[-0.8,0.55,0.25],[0.45,-0.75,0.4],[-0.5,-0.65,-0.35],
-    [0.7,0.7,-0.5],[-0.9,-0.15,0.5],[0.2,0.9,0.3],[-0.35,0.15,-0.9],[0.62,-0.35,-0.7],
-    [-0.65,0.8,-0.2],[0.35,0.35,0.75],[-0.15,-0.9,0.25],[0.9,-0.2,0.35],[-0.75,-0.4,-0.55],[0.15,0.6,-0.7]
-  ];
-  let graphE = [[0,1],[0,2],[0,11],[1,5],[1,13],[2,7],[2,10],[3,12],[3,9],[4,14],[4,8],[5,7],[6,15],[6,14],[8,15],[9,13],[11,7],[10,3],[12,4]];
-  let shapes = { box: box, helix: helix, graph: graph };
-  let edgeSets = { box: boxE, helix: helixE, graph: graphE };
-  let order = ['box', 'helix', 'graph'];
-  let mStars = null, mx = 0, my = 0;
-  function smooth(t) { return t * t * (3 - 2 * t); }
-  function lerp(a, b, t) { return a + (b - a) * t; }
-
-  function drawMorph(ts, C) {
-    let HOLD = 3600, MORPH = 2100, CYCLE = HOLD + MORPH, N = 16;
-    ctx.clearRect(0, 0, w, h);
-    if (!mStars) { mStars = []; for (let i = 0; i < 44; i++) mStars.push({ x: Math.random(), y: Math.random(), z: Math.random() }); }
-    for (let s = 0; s < mStars.length; s++) {
-      let p = mStars[s];
-      let y = (((p.y + ts * 0.000010 * (0.3 + p.z)) % 1) + 1) % 1 * h;
-      ctx.fillStyle = 'rgba(' + C.dim + ',' + (0.05 + p.z * 0.09) + ')';
-      ctx.beginPath(); ctx.arc(p.x * w, y, 0.6 + p.z * 1.4, 0, 6.283); ctx.fill();
-    }
-    let base = Math.min(w, h) * 0.34;
-    let ang = ts * 0.00022 + mx * 0.5;
-    let tilt = 0.32 + my * 0.22;
-    let P = makeProj(w / 2, h / 2, ang, tilt, base);
-    let total = CYCLE * order.length, tt = (((ts % total) + total) % total);
-    let idx = Math.floor(tt / CYCLE), loc = tt - idx * CYCLE, nxt = (idx + 1) % order.length;
-    let te = loc < HOLD ? 0 : smooth((loc - HOLD) / MORPH);
-    let A = shapes[order[idx]], B = shapes[order[nxt]];
-    let proj = [];
-    for (let i = 0; i < N; i++) proj[i] = P(lerp(A[i][0], B[i][0], te), lerp(A[i][1], B[i][1], te), lerp(A[i][2], B[i][2], te));
-    function drawSet(list, mul) {
-      if (mul <= 0.01) return;
-      for (let q = 0; q < list.length; q++) {
-        let pa = proj[list[q][0]], pb = proj[list[q][1]];
-        let dz = (pa[2] + pb[2]) / 2;
-        dotLine(pa[0], pa[1], pb[0], pb[1], C.line, mul * (0.3 + 0.5 * (dz + 1) / 2) * 0.9, 6, 1.9);
-      }
-    }
-    drawSet(edgeSets[order[idx]], 1 - te);
-    drawSet(edgeSets[order[nxt]], te);
-    let graphy = order[idx] === 'graph' || order[nxt] === 'graph';
-    for (let n = 0; n < N; n++) { let pulse = graphy ? 0.7 + 0.3 * Math.sin(ts * 0.002 + n) : 1; dot(proj[n], C.node, 0.9 * pulse, 2.1); }
   }
 
   // ---- MOTIF: rotating wireframe cubes ---------------------------------
@@ -261,8 +200,8 @@ export function startBackground(canvas, motif) {
   }
 
   // ---- pick the drawing function for the requested motif ---------------
-  const motifs = { cubes: drawCubes, graph: drawGraph, helix: drawHelix, morph: drawMorph };
-  const draw = motifs[motif] || drawMorph;
+  const motifs = { cubes: drawCubes, graph: drawGraph, helix: drawHelix };
+  const draw = motifs[motif] || drawCubes;
 
   // ---- loop + lifecycle -----------------------------------------------
   function frame(ts) { if (!running) return; draw(ts, colors()); raf = requestAnimationFrame(frame); }
@@ -272,12 +211,10 @@ export function startBackground(canvas, motif) {
   size();
   if (reduced) { draw(0, colors()); } else { play(); }
 
-  function onResize() { size(); G = null; mStars = null; if (reduced) draw(0, colors()); }
+  function onResize() { size(); G = null; if (reduced) draw(0, colors()); }
   function onVis() { if (document.hidden) pause(); else play(); }
-  function onMove(e) { mx = (e.clientX / window.innerWidth) - 0.5; my = (e.clientY / window.innerHeight) - 0.5; }
   window.addEventListener('resize', onResize);
   document.addEventListener('visibilitychange', onVis);
-  window.addEventListener('mousemove', onMove);
 
   // Re-colour immediately when the theme toggle flips the .dark class.
   let themeObs = new MutationObserver(function () { if (reduced) draw(0, colors()); });
@@ -289,7 +226,6 @@ export function startBackground(canvas, motif) {
     pause();
     window.removeEventListener('resize', onResize);
     document.removeEventListener('visibilitychange', onVis);
-    window.removeEventListener('mousemove', onMove);
     themeObs.disconnect();
   };
 }

@@ -13,6 +13,7 @@
 // ============================================================================
 
 import { Link, useLocation } from 'react-router';
+import HeaderMorph from './HeaderMorph';
 import ThemeToggle from './ThemeToggle';
 
 // EDIT HERE: the navigation menu. Add/remove items by editing this list.
@@ -34,8 +35,11 @@ function Header() {
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/80 backdrop-blur dark:border-slate-800 dark:bg-slate-950/80">
       <nav className="flex w-full items-center justify-between px-4 py-3 sm:px-6 lg:px-10" aria-label="Main navigation">
         {/* Name / wordmark links back home. EDIT HERE to change the wordmark. */}
-        <Link to="/" className="font-serif text-lg font-semibold tracking-tight text-slate-900 dark:text-white">
+        <Link to="/" className="flex items-center gap-2 font-serif text-lg font-semibold tracking-tight text-slate-900 dark:text-white">
           Pema Tsering
+          {/* The small morphing wireframe (box -> DNA helix -> graph) that
+              turns to follow the mouse. See src/components/HeaderMorph.jsx. */}
+          <HeaderMorph />
         </Link>
 
         <div className="flex items-center gap-1">
