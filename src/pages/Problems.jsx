@@ -106,18 +106,18 @@ function Problems() {
         <h2 className="font-serif text-2xl font-semibold text-slate-900 dark:text-white">
           Worked solutions
         </h2>
-        <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+        <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
           Each one shows the problem, my solution, an AI's solution in Python and
           C++, and a short note on time and space complexity.
         </p>
 
         {challenges.length === 0 ? (
-          <p className="mt-6 text-slate-500 dark:text-slate-400">No solutions yet.</p>
+          <p className="mt-6 text-slate-600 dark:text-slate-400">No solutions yet.</p>
         ) : (
           <>
             {/* ---------- Search box ---------- */}
             <div className="mt-6 max-w-md">
-              <label htmlFor="problem-search" className="sr-only">
+              <label htmlFor="problem-search" className="mb-2 block text-sm font-semibold text-slate-700 dark:text-slate-200">
                 Search problems
               </label>
               <input
@@ -127,14 +127,20 @@ function Problems() {
                 onChange={handleQueryChange}
                 placeholder="Search problems by name, tag, or source…"
                 autoComplete="off"
-                className="w-full rounded-lg border border-slate-300 bg-white/70 px-4 py-2 text-sm text-slate-800 shadow-sm transition placeholder:text-slate-400 focus:border-accent-400 focus:outline-none focus:ring-2 focus:ring-accent-400/40 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-100 dark:placeholder:text-slate-500"
+                aria-describedby="problem-search-count"
+                aria-controls="worked-solutions"
+                className="w-full rounded-lg border border-slate-300 bg-white/70 px-4 py-2 text-sm text-slate-800 shadow-sm transition placeholder:text-slate-600 focus:border-accent-400 focus:outline-none focus:ring-2 focus:ring-accent-400/40 dark:border-slate-700 dark:bg-slate-900/70 dark:text-slate-100 dark:placeholder:text-slate-400"
               />
+              <p id="problem-search-count" role="status" aria-atomic="true" className="mt-2 text-sm text-slate-600 dark:text-slate-400">
+                {visibleGroups.reduce((count, group) => count + group.items.length, 0)} worked solutions found.
+              </p>
             </div>
 
             {/* ---------- Grouped, numbered problems ---------- */}
+            <div id="worked-solutions">
             {visibleGroups.map((group) => (
               <div key={group.source} className="mt-8">
-                <h3 className="text-sm font-semibold uppercase tracking-wider text-accent-500">
+                <h3 className="text-sm font-semibold uppercase tracking-wider text-link">
                   {group.source}
                 </h3>
                 <div className="mt-4 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
@@ -157,10 +163,11 @@ function Problems() {
 
             {/* Shown only when the search matches nothing at all. */}
             {visibleGroups.length === 0 && (
-              <p className="mt-8 text-slate-500 dark:text-slate-400">
+              <p className="mt-8 text-slate-600 dark:text-slate-400">
                 No problems match your search.
               </p>
             )}
+            </div>
           </>
         )}
       </section>

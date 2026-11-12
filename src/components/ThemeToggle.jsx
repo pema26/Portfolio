@@ -18,7 +18,7 @@ function ThemeToggle() {
     <button
       type="button"
       onClick={toggleTheme}
-      className="inline-flex items-center justify-center rounded-lg p-2 text-slate-600 transition hover:bg-slate-200 dark:text-slate-300 dark:hover:bg-slate-800"
+      className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-lg p-2 text-slate-600 transition hover:bg-slate-200 dark:text-slate-300 dark:hover:bg-slate-800"
       aria-label="Toggle dark mode"
       aria-pressed={isDark}
     >

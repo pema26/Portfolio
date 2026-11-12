@@ -33,7 +33,7 @@ function ResearchDetail() {
 
   return (
     <>
-      <Link to="/research" className="text-sm font-medium text-accent-500 hover:underline">
+      <Link to="/research" className="text-sm font-medium text-link hover:underline">
         &larr; All research
       </Link>
 
@@ -42,7 +42,7 @@ function ResearchDetail() {
           <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${TONES.teal}`}>
             {entry.researchType || 'Research'}
           </span>
-          <time className="text-sm text-slate-500 dark:text-slate-400">{formatMonthYear(entry.date)}</time>
+          <time className="text-sm text-slate-600 dark:text-slate-400">{formatMonthYear(entry.date)}</time>
         </div>
 
         <h1 className="mt-3 font-serif text-3xl font-bold text-slate-900 dark:text-white">
@@ -64,7 +64,7 @@ function ResearchDetail() {
           {entry.demoUrl && (
             <a
               href={entry.demoUrl}
-              className="rounded-lg bg-accent-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-accent-500"
+              className="rounded-lg bg-accent-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-accent-700"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -74,7 +74,7 @@ function ResearchDetail() {
           {entry.githubUrl && (
             <a
               href={entry.githubUrl}
-              className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-accent-400 hover:text-accent-500 dark:border-slate-700 dark:text-slate-200"
+              className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-accent-400 hover:text-link dark:border-slate-700 dark:text-slate-200"
               target="_blank"
               rel="noopener noreferrer"
             >

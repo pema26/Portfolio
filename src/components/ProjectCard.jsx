@@ -11,7 +11,7 @@
 //    title, description, tags
 //    basePath    — the section this card links into: "/projects" (default) or
 //                  "/research".
-//    badge       — optional category label, e.g. { label: 'Flagship', tone: 'accent' }.
+//    badge       — optional category label, e.g. { label: 'Ambitious', tone: 'accent' }.
 //    status      — optional status pill, e.g. { label: 'In progress', tone: 'amber' }.
 //    completed   — when true, show a "Completed" pill (finished mini projects).
 //    progress    — 0–100; when set, shows a progress bar (guided builds).
@@ -33,11 +33,12 @@ function ProjectCard({
   status,
   completed = false,
   progress,
+  headingAs: Heading = 'h3',
 }) {
   const hasPills = badge || status || completed;
 
   return (
-    <article className="group relative flex h-full flex-col rounded-xl border border-slate-200 bg-white p-5 transition hover:border-accent-400 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-accent-500">
+    <article className="interactive-card group relative flex h-full flex-col rounded-xl border border-slate-200 bg-white p-5 transition hover:border-accent-400 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-accent-500">
       {/* Top row of pills (only rendered if there's something to show). */}
       {hasPills && (
         <div className="mb-3 flex flex-wrap items-center gap-2">
@@ -62,11 +63,11 @@ function ProjectCard({
         </div>
       )}
 
-      <h3 className="font-serif text-lg font-semibold text-slate-900 dark:text-white">
+      <Heading className="font-serif text-lg font-semibold text-slate-900 dark:text-white">
         <Link to={`${basePath}/${id}`} className="after:absolute after:inset-0">
           <span className="relative">{title}</span>
         </Link>
-      </h3>
+      </Heading>
 
       <p className="mt-2 flex-grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">
         {description}

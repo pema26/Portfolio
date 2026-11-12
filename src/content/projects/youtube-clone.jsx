@@ -1,52 +1,75 @@
 // ============================================================================
-//  A GUIDED build — following a tutorial. This one is a PLACEHOLDER: fill in
-//  the tutorial link and your own notes/devlog as you work through it.
+//  A completed GUIDED HTML/CSS build. Editable demo: html-css-course/.
 // ============================================================================
 
 export const meta = {
   id: 'youtube-clone', // becomes the URL: /projects/youtube-clone
-  title: 'YouTube interface clone (HTML, CSS & JavaScript)',
+  title: 'YouTube interface clone (HTML & CSS)',
   description:
-    'Rebuilding the YouTube interface from scratch to learn front-end fundamentals — semantic HTML, layout with CSS, and interactivity with vanilla JavaScript.',
+    'A completed YouTube-style homepage built with HTML and CSS, featuring a responsive video grid, navigation, and a native search form that opens YouTube results.',
   category: 'guided', // big-unique | guided | mini-unique
   status: 'complete', // planned | in-progress | complete
-  date: '2026-07-06', // YYYY-MM-DD
-  tags: ['HTML', 'CSS', 'JavaScript'],
-  progress: 10, // EDIT HERE: 0–100. Guided builds show this as a bar.
+  date: '2026-11-12', // completion date
+  tags: ['HTML', 'CSS'],
+  progress: 100,
   // githubUrl: '[[GITHUB_URL]]', // optional — uncomment and set
-  // demoUrl: '[[DEMO_URL]]',     // optional — uncomment and set
-  featured: false, // show on the home page?
-  // EDIT HERE: add a dated entry each day you work on it, for example:
-  //   { date: '2026-07-06', summary: 'Set up the page structure and the header bar.' },
-  // The devlog renders as a timeline at the bottom of this project's page.
-  devlog: [],
+  demoUrl: `${import.meta.env.BASE_URL}demos/youtube-clone/index.html`,
+  featured: true,
+  devlog: [
+    {
+      date: '2026-11-12',
+      summary: 'Completed the header and navigation, refined the responsive video grid, added keyboard and screen-reader support, and prepared the HTML/CSS demo for the portfolio.',
+    },
+  ],
 };
 
-// EDIT HERE: this is a placeholder for the guided build from issue #6.
-// Add the tutorial link and rewrite this once you've started.
 export default function YoutubeClone() {
   return (
     <>
-      <h2>The problem</h2>
+      <h2>Overview</h2>
       <p>
-        I wanted a solid grounding in front-end fundamentals — how a real, familiar
-        interface is actually put together — rather than only building from finished
-        component libraries.
+        I recreated a YouTube-style homepage to practise turning a familiar interface
+        into semantic HTML and CSS. This guided project brought together the layout,
+        spacing, typography, and responsive design techniques I learned through
+        SuperSimpleDev's HTML and CSS course.
       </p>
 
-      <h2>Approach</h2>
-      {/* EDIT HERE: paste the tutorial link. */}
+      <img
+        src={`${import.meta.env.BASE_URL}projects/youtube-clone-preview.png`}
+        alt="The completed YouTube-style homepage showing its search header, sidebar navigation, topic links, and six video cards with thumbnails and channel details."
+        width="1440"
+        height="1000"
+        loading="lazy"
+        className="my-6 w-full max-w-5xl rounded-lg border border-slate-200 dark:border-slate-800"
+      />
+
+      <h2>What I built</h2>
+      <ul>
+        <li>A header with a branded home link, labelled search field, and links back to my portfolio.</li>
+        <li>A responsive CSS Grid feed containing six video cards, channel pictures, titles, and example viewing statistics.</li>
+        <li>Sidebar and topic navigation, plus a compact menu using native HTML disclosure controls.</li>
+        <li>A native HTML search form and video links that open YouTube.</li>
+        <li>Layouts for phones, tablets, and desktop screens, with light and dark device-theme support.</li>
+      </ul>
+
+      <h2>Layout and accessibility</h2>
       <p>
-        I’m rebuilding the <strong>YouTube interface</strong> by following a video tutorial, writing
-        the HTML, CSS, and JavaScript by hand.
+        I used CSS Grid for the video feed, Flexbox for grouped controls, and media
+        queries to adapt the layout. The completed page includes a skip link,
+        semantic navigation, labelled controls, visible keyboard focus, and
+        descriptive video links. Thumbnail and avatar images use empty alt text
+        where the adjacent video title and channel name already provide the context.
       </p>
 
-      <h2>What I want to get out of it</h2>
+      <h2>Learning resources</h2>
       <p>
-        A confident feel for semantic HTML structure, laying out a responsive grid with
-        CSS, and adding interactivity with plain JavaScript — the groundwork under any
-        framework I pick up later.
+        The first course guided the HTML and CSS build. I have also included the
+        second course as an additional resource from my wider learning.
       </p>
+      <ul>
+        <li><a href="https://www.youtube.com/watch?v=G3e-cpL7ofc&t=15316s" target="_blank" rel="noopener noreferrer">SuperSimpleDev — HTML &amp; CSS course</a></li>
+        <li><a href="https://www.youtube.com/watch?v=EerdGm-ehJQ" target="_blank" rel="noopener noreferrer">SuperSimpleDev — additional learning resource</a></li>
+      </ul>
     </>
   );
 }

@@ -53,7 +53,7 @@ function StatTile({ value, label }) {
   return (
     <div className="rounded-lg border border-slate-200 p-4 dark:border-slate-800">
       <p className="text-2xl font-semibold text-slate-900 dark:text-white">{value}</p>
-      <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">{label}</p>
+      <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">{label}</p>
     </div>
   );
 }
@@ -89,8 +89,8 @@ function CodeforcesProfile({ writeUps }) {
       {/* ---------- always shown: who + link ---------- */}
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <p className="font-semibold text-slate-900 dark:text-white">Codeforces</p>
-          <p className="text-sm text-slate-500 dark:text-slate-400">
+          <h3 className="font-semibold text-slate-900 dark:text-white">Codeforces</h3>
+          <p className="text-sm text-slate-600 dark:text-slate-400">
             Handle <span className="font-medium text-slate-700 dark:text-slate-200">{HANDLE}</span>
             {data && data.user.rating !== undefined && (
               <>
@@ -103,35 +103,31 @@ function CodeforcesProfile({ writeUps }) {
         </div>
         <a
           href={PROFILE_URL}
-          className="shrink-0 rounded-lg bg-accent-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-accent-500"
+          className="shrink-0 rounded-lg bg-accent-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-accent-700"
           target="_blank"
           rel="noopener noreferrer"
         >
-          View profile &rarr;
+          View Codeforces profile &rarr;
         </a>
       </div>
 
       {/* ---------- loading / error ---------- */}
-      {loading && (
-        <p className="mt-4 text-sm text-slate-500 dark:text-slate-400">
-          Loading live data from Codeforces…
-        </p>
-      )}
-      {error && (
-        <p className="mt-4 text-sm text-slate-500 dark:text-slate-400">
-          Live stats couldn’t be loaded from Codeforces right now. The profile link above
-          always has the latest.
-        </p>
-      )}
+      <p role="status" aria-atomic="true" className="mt-4 text-sm text-slate-600 dark:text-slate-400">
+        {loading
+          ? 'Loading live data from Codeforces…'
+          : error
+            ? 'Live stats could not be loaded. Visit the Codeforces profile for the latest data.'
+            : data ? `Codeforces profile loaded: ${solved.length} problems solved.` : ''}
+      </p>
 
       {/* ---------- the live sections ---------- */}
       {data && (
         <>
           {data.ratingChanges.length > 0 && (
             <div className="mt-6">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-accent-500">
+              <h4 className="text-sm font-semibold uppercase tracking-wider text-link">
                 Rating after each contest
-              </h3>
+              </h4>
               <div className="mt-3">
                 <RatingChart ratingChanges={data.ratingChanges} />
               </div>
@@ -139,9 +135,9 @@ function CodeforcesProfile({ writeUps }) {
           )}
 
           <div className="mt-8">
-            <h3 className="text-sm font-semibold uppercase tracking-wider text-accent-500">
+            <h4 className="text-sm font-semibold uppercase tracking-wider text-link">
               Problems solved per day, last 12 months
-            </h3>
+            </h4>
             <div className="mt-3">
               <ActivityHeatmap weeks={weeks} />
             </div>
@@ -155,19 +151,19 @@ function CodeforcesProfile({ writeUps }) {
 
           {solved.length > 0 && (
             <div className="mt-8">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-accent-500">
+              <h4 className="text-sm font-semibold uppercase tracking-wider text-link">
                 Solved problems, newest first
-              </h3>
-              <ul className="mt-3 divide-y divide-slate-200 dark:divide-slate-800">
+              </h4>
+              <ul id="codeforces-solved-problems" className="mt-3 divide-y divide-slate-200 dark:divide-slate-800">
                 {visibleProblems.map((problem) => (
                   <li key={problem.id} className="flex flex-wrap items-center gap-x-3 gap-y-1 py-2 text-sm">
                     <a
                       href={problem.url}
-                      className="font-medium text-slate-800 transition hover:text-accent-500 dark:text-slate-100"
+                      className="font-medium text-slate-800 transition hover:text-link dark:text-slate-100"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      <span className="tabular-nums text-slate-500 dark:text-slate-400">{problem.id}</span>{' '}
+                      <span className="tabular-nums text-slate-600 dark:text-slate-400">{problem.id}</span>{' '}
                       {problem.name}
                     </a>
                     {problem.rating && (
@@ -183,14 +179,14 @@ function CodeforcesProfile({ writeUps }) {
                     {writeUps[problem.id] && (
                       <Link
                         to={`/problems/${writeUps[problem.id]}`}
-                        className="text-xs font-semibold text-accent-500 hover:underline"
+                        className="text-xs font-semibold text-link hover:underline"
                       >
                         Worked solution &rarr;
                       </Link>
                     )}
                     <time
                       dateTime={dayKey(problem.solvedAt)}
-                      className="ml-auto text-xs text-slate-500 dark:text-slate-400"
+                      className="ml-auto text-xs text-slate-600 dark:text-slate-400"
                     >
                       {formatShortDate(dayKey(problem.solvedAt))}
                     </time>
@@ -203,7 +199,8 @@ function CodeforcesProfile({ writeUps }) {
                   type="button"
                   onClick={() => setShowAll(!showAll)}
                   aria-expanded={showAll}
-                  className="mt-3 rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-accent-400 hover:text-accent-500 dark:border-slate-700 dark:text-slate-200"
+                  aria-controls="codeforces-solved-problems"
+                  className="mt-3 rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-accent-400 hover:text-link dark:border-slate-700 dark:text-slate-200"
                 >
                   {showAll ? 'Show fewer' : `Show all ${solved.length}`}
                 </button>
@@ -211,7 +208,7 @@ function CodeforcesProfile({ writeUps }) {
             </div>
           )}
 
-          <p className="mt-6 text-xs text-slate-500 dark:text-slate-400">
+          <p className="mt-6 text-xs text-slate-600 dark:text-slate-400">
             Loaded live from the Codeforces API when this page opened. Days are counted in UTC.
           </p>
         </>

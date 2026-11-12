@@ -25,8 +25,8 @@ const featuredResearch = research.filter((entry) => entry.featured).sort(newestF
 
 function Home() {
   usePageMeta(
-    'Pema Tsering — Developer & Researcher',
-    'London-based developer and researcher working across software engineering, low-level graphics, and molecular biology.',
+    'Pema Tsering — Software Developer',
+    'Software developer based near London, building Python and SQL applications, financial data tools, and interactive web projects.',
   );
 
   return (
@@ -34,30 +34,37 @@ function Home() {
       {/* ===================== HERO ===================== */}
       {/* EDIT HERE: your name and one-line positioning statement. */}
       <section className="py-8 sm:py-12">
-        <p className="mb-3 text-sm font-medium uppercase tracking-wider text-accent-500">
+        <p className="mb-3 text-sm font-medium uppercase tracking-wider text-link">
           Aspiring Software Engineer - Based near London, UK
         </p>
         <h1 className="font-serif text-4xl font-bold leading-tight text-slate-900 sm:text-5xl dark:text-white">
           Pema Tsering
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-          I build data tools in <strong className="font-semibold text-slate-800 dark:text-slate-100">Python</strong> and <strong className="font-semibold text-slate-800 dark:text-slate-100">SQL</strong>:
-          most recently a <strong className="font-semibold text-slate-800 dark:text-slate-100">Flask</strong> and <strong className="font-semibold text-slate-800 dark:text-slate-100">PostgreSQL</strong> dashboard
-          that finds recurring payments in seven years of bank transactions. I also
-          write bioinformatics scripts and web interfaces in <strong className="font-semibold text-slate-800 dark:text-slate-100">JavaScript</strong> and <strong className="font-semibold text-slate-800 dark:text-slate-100">React</strong>.
-          I trained in molecular biology, so I bring a researcher's habits to software:
-          test the assumption, measure the result, and write it up clearly.
+          I build applications for analysing data and solving practical problems.
+        </p>
+        <p className="mt-4 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
+          My latest project is a Flask and PostgreSQL dashboard that identifies
+          recurring payments across seven years of bank transactions. It combines
+          SQL-based analysis, a web interface, and a review workflow that saves
+          decisions to the database.
+        </p>
+        <p className="mt-4 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
+          My background in biochemistry introduced me to programming through
+          biological modelling and data analysis. I’m now looking for a junior
+          software development role, with projects spanning financial data,
+          bioinformatics, and interactive web tools.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
           <Link
             to="/projects"
-            className="rounded-lg bg-accent-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-accent-500"
+            className="rounded-lg bg-accent-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-accent-700"
           >
             View my work
           </Link>
           <Link
             to="/contact"
-            className="rounded-lg border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-accent-400 hover:text-accent-500 dark:border-slate-700 dark:text-slate-200"
+            className="rounded-lg border border-slate-300 px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:border-accent-400 hover:text-link dark:border-slate-700 dark:text-slate-200"
           >
             Get in touch
           </Link>
@@ -75,13 +82,13 @@ function Home() {
           <h2 className="font-serif text-2xl font-semibold text-slate-900 sm:col-start-2 dark:text-white">
             Featured work
           </h2>
-          <Link to="/projects" className="text-sm font-medium text-accent-500 hover:underline sm:col-start-3 sm:justify-self-end">
+          <Link to="/projects" className="text-sm font-medium text-link hover:underline sm:col-start-3 sm:justify-self-end">
             All projects &rarr;
           </Link>
         </div>
 
         {featured.length === 0 ? (
-          <p className="text-slate-500 dark:text-slate-400">
+          <p className="text-slate-600 dark:text-slate-400">
             No featured projects yet. Set <code>featured: true</code> in a
             project's <code>meta</code> to show it here.
           </p>
@@ -100,6 +107,7 @@ function Home() {
                 }}
                 status={STATUS_META[project.status]}
                 completed={project.status === 'complete'}
+                progress={project.category === 'guided' ? project.progress : undefined}
               />
             ))}
           </div>
@@ -113,7 +121,7 @@ function Home() {
             <h2 className="font-serif text-2xl font-semibold text-slate-900 sm:col-start-2 dark:text-white">
               Selected research
             </h2>
-            <Link to="/research" className="text-sm font-medium text-accent-500 hover:underline sm:col-start-3 sm:justify-self-end">
+            <Link to="/research" className="text-sm font-medium text-link hover:underline sm:col-start-3 sm:justify-self-end">
               All research &rarr;
             </Link>
           </div>
@@ -144,7 +152,7 @@ function Home() {
         </p>
         <Link
           to="/contact"
-          className="mt-5 inline-block rounded-lg bg-accent-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-accent-500"
+          className="mt-5 inline-block rounded-lg bg-accent-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-accent-700"
         >
           Contact me
         </Link>

@@ -4,11 +4,16 @@
   "version": "2.0.0",
   "type": "module",
   "scripts": {
+    "demo:youtube": "node scripts/copy-youtube-demo.js",
+    "predev": "npm run demo:youtube",
     "dev": "vite",
+    "prestart": "npm run demo:youtube",
     "start": "vite",
+    "prebuild": "npm run demo:youtube",
     "build": "vite build && node scripts/copy-404.js",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "test:a11y": "playwright test"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.3.5",
@@ -18,7 +23,9 @@
     "tailwindcss": "^4.3.5"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.14.0",
     "@eslint/js": "^10.0.1",
+    "@playwright/test": "^1.65.0",
     "@vitejs/plugin-react": "^6.3.0",
     "eslint": "^10.14.0",
     "eslint-plugin-react-hooks": "^7.1.1",

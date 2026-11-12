@@ -38,6 +38,9 @@
   --color-accent-800: #3730a3;
   --color-accent-900: #312e81;
 
+  /* Text and focus colours are separate from decorative brand accents. */
+  --color-link: #4338ca;
+
   /* Font families. A clean modern sans for everything, a serif for headings. */
   --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-serif: "Lora", Georgia, "Times New Roman", serif;
@@ -50,6 +53,7 @@
   html {
     /* Smooth in-page anchor scrolling, unless the visitor prefers no motion. */
     scroll-behavior: smooth;
+    scroll-padding-top: calc(var(--header-height, 8rem) + 1rem);
     /* The page background colour lives on <html> (and <body> stays
        transparent) so the animated background canvas, which sits behind the
        content at z-index:-1, shows through. White / slate-950. */
@@ -57,6 +61,8 @@
   }
   html.dark {
     background-color: #020617;
+    --color-link: #c7d2fe;
+    --control-border: #94a3b8;
   }
   body {
     background-color: transparent;
@@ -79,9 +85,8 @@
     *,
     *::before,
     *::after {
-      animation-duration: 0.001ms !important;
-      animation-iteration-count: 1 !important;
-      transition-duration: 0.001ms !important;
+      animation: none !important;
+      transition: none !important;
     }
   }
 
@@ -91,12 +96,60 @@
     font-family: var(--font-sans);
   }
 
-  /* Always show a clear focus ring for keyboard users (accessibility). */
-  :focus-visible {
-    outline: 2px solid var(--color-accent-400);
-    outline-offset: 2px;
-    border-radius: 2px;
-  }
+}
+
+/* Unlayered so input/chart utility classes cannot hide keyboard focus. */
+:focus-visible {
+  outline: 3px solid var(--focus-ring, var(--color-link));
+  outline-offset: 3px;
+}
+
+main { overflow-wrap: anywhere; }
+main:focus:not(:focus-visible) { outline: none; }
+
+a.text-link {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+nav a[aria-current="page"] {
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 0.35em;
+}
+
+button, input, select, textarea, summary {
+  scroll-margin-top: 1rem;
+}
+button:not(:disabled), input:not([type="file"]), select, summary {
+  min-height: 2.75rem;
+}
+
+:where(input:not([type="file"]), textarea, select) {
+  border-color: var(--control-border, #64748b);
+}
+
+.file-upload:focus-within {
+  outline: 3px solid var(--color-link);
+  outline-offset: 3px;
+}
+
+.interactive-card:focus-within {
+  outline: 3px solid var(--color-link);
+  outline-offset: 3px;
+}
+
+html[data-reduced-motion="true"] { scroll-behavior: auto; }
+html[data-reduced-motion="true"] *,
+html[data-reduced-motion="true"] *::before,
+html[data-reduced-motion="true"] *::after {
+  animation: none !important;
+  transition: none !important;
+}
+
+.terminal-window { --focus-ring: #c7d2fe; }
+
+@media (forced-colors: active) {
+  :focus-visible, .interactive-card:focus-within, .file-upload:focus-within { outline-color: Highlight; }
 }
 
 /* --------------------------------------------------------------------------
@@ -208,7 +261,7 @@
   margin-bottom: 0.35rem;
 }
 .prose-content :where(a) {
-  color: var(--color-accent-500);
+  color: var(--color-link);
   text-decoration: underline;
   text-underline-offset: 2px;
 }

@@ -31,33 +31,36 @@ import ProblemDetail from './pages/ProblemDetail';
 import Research from './pages/Research';
 import ResearchDetail from './pages/ResearchDetail';
 import NotFound from './pages/NotFound';
+import MotionProvider from './components/MotionProvider';
 
 function App() {
   return (
-    <Layout>
-      <Routes>
-        <Route index element={<Home />} />
-        <Route path="about" element={<About />} />
-        <Route path="contact" element={<Contact />} />
+    <MotionProvider>
+      <Layout>
+        <Routes>
+          <Route index element={<Home />} />
+          <Route path="about" element={<About />} />
+          <Route path="contact" element={<Contact />} />
 
-        <Route path="projects">
-          <Route index element={<Projects />} />
-          <Route path=":slug" element={<ProjectDetail />} />
-        </Route>
+          <Route path="projects">
+            <Route index element={<Projects />} />
+            <Route path=":slug" element={<ProjectDetail />} />
+          </Route>
 
-        <Route path="problems">
-          <Route index element={<Problems />} />
-          <Route path=":slug" element={<ProblemDetail />} />
-        </Route>
+          <Route path="problems">
+            <Route index element={<Problems />} />
+            <Route path=":slug" element={<ProblemDetail />} />
+          </Route>
 
-        <Route path="research">
-          <Route index element={<Research />} />
-          <Route path=":slug" element={<ResearchDetail />} />
-        </Route>
+          <Route path="research">
+            <Route index element={<Research />} />
+            <Route path=":slug" element={<ResearchDetail />} />
+          </Route>
 
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Layout>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </Layout>
+    </MotionProvider>
   );
 }
 

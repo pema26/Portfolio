@@ -3,7 +3,7 @@
 // ============================================================================
 //
 //  WHY THIS EXISTS: several pages (home, /projects, and each project page) need
-//  to turn a category like "big-unique" into a friendly label like "Flagship"
+//  to turn a category like "big-unique" into a friendly label like "Ambitious"
 //  with a matching colour. Keeping those definitions in ONE place means they
 //  always agree. Edit a label or colour here and it changes everywhere.
 //
@@ -26,11 +26,11 @@ export const TONES = {
 // `title` and `blurb` are the heading and one-liner shown above each section.
 export const CATEGORY_META = {
   'big-unique': {
-    label: 'Flagship',
+    label: 'Ambitious',
     tone: 'accent',
     order: 0,
-    title: 'Flagship projects',
-    blurb: 'Original, ambitious ideas I came up with myself and am building out.',
+    title: 'Ambitious projects',
+    blurb: 'Ambitious projects that bring together data, application logic, and user interfaces.',
   },
   guided: {
     label: 'Guided',

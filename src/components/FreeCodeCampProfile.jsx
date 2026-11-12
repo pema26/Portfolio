@@ -15,17 +15,17 @@ function FreeCodeCampProfile() {
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
           <h3 className="font-semibold text-slate-900 dark:text-white">freeCodeCamp</h3>
-          <p className="text-sm text-slate-500 dark:text-slate-400">
+          <p className="text-sm text-slate-600 dark:text-slate-400">
             Handle <span className="font-medium text-slate-700 dark:text-slate-200">{USERNAME}</span>
           </p>
         </div>
         <a
           href={PROFILE_URL}
-          className="shrink-0 rounded-lg bg-accent-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-accent-500"
+          className="shrink-0 rounded-lg bg-accent-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-accent-700"
           target="_blank"
           rel="noopener noreferrer"
         >
-          View profile &rarr;
+          View freeCodeCamp profile &rarr;
         </a>
       </div>
 
@@ -33,19 +33,19 @@ function FreeCodeCampProfile() {
         <p className="text-2xl font-semibold tabular-nums text-slate-900 dark:text-white">
           {DAILY_PROGRESS.solved}
         </p>
-        <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">daily coding challenges solved</p>
+        <p className="mt-1 text-xs text-slate-600 dark:text-slate-400">daily coding challenges solved</p>
       </div>
 
       <div className="mt-4 flex flex-wrap items-center justify-between gap-3">
         <a
           href={ARCHIVE_URL}
-          className="text-sm font-medium text-accent-500 hover:underline"
+          className="text-sm font-medium text-link hover:underline"
           target="_blank"
           rel="noopener noreferrer"
         >
           Daily challenge archive &rarr;
         </a>
-        <p className="text-xs text-slate-500 dark:text-slate-400">
+        <p className="text-xs text-slate-600 dark:text-slate-400">
           Updated <time dateTime={DAILY_PROGRESS.updatedAt}>{formatShortDate(DAILY_PROGRESS.updatedAt)}</time>
         </p>
       </div>

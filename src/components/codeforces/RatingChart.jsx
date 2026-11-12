@@ -49,6 +49,13 @@ function RatingChart({ ratingChanges }) {
   const [width, setWidth] = useState(640);
   const [activeIndex, setActiveIndex] = useState(null); // which contest is highlighted
 
+  useEffect(() => {
+    if (activeIndex === null) return;
+    const dismiss = event => { if (event.key === 'Escape') setActiveIndex(null); };
+    document.addEventListener('keydown', dismiss);
+    return () => document.removeEventListener('keydown', dismiss);
+  }, [activeIndex]);
+
   // Side effect: measure the container now, and again whenever the window
   // is resized. The cleanup removes the listener.
   useEffect(() => {
@@ -138,15 +145,19 @@ function RatingChart({ ratingChanges }) {
 
   return (
     <div>
-      <div ref={containerRef} className="relative">
+      <div
+        ref={containerRef} className="relative"
+        onPointerLeave={() => {
+          if (!containerRef.current.contains(document.activeElement)) handlePointerLeave();
+        }}
+      >
         <svg
           width={width}
           height={HEIGHT}
-          role="img"
+          role="group"
           aria-label={`Line chart of Codeforces rating after each of ${points.length} rated contests, from ${points[0].rating} to ${last.rating}.`}
           onPointerMove={handlePointerMove}
           onPointerDown={handlePointerMove}
-          onPointerLeave={handlePointerLeave}
           className="block touch-pan-y"
         >
           {/* Horizontal grid lines with the rating written at the left. */}
@@ -260,20 +271,20 @@ function RatingChart({ ratingChanges }) {
             off the edge. */}
         {active && (
           <div
-            className="pointer-events-none absolute z-10 w-56 rounded-lg border border-slate-200 bg-white p-3 text-xs shadow-lg dark:border-slate-700 dark:bg-slate-800"
+            className="absolute z-10 w-56 max-w-full rounded-lg border border-slate-200 bg-white p-3 text-xs shadow-lg dark:border-slate-700 dark:bg-slate-800"
             style={{
               top: MARGIN.top,
-              left: xOf(active.time) > width / 2 ? xOf(active.time) - 236 : xOf(active.time) + 12,
+              left: Math.max(0, Math.min(width - 224, xOf(active.time) > width / 2 ? xOf(active.time) - 236 : xOf(active.time) + 12)),
             }}
           >
             <p className="text-base font-semibold text-slate-900 dark:text-white">
               {active.rating}{' '}
-              <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
+              <span className="text-xs font-medium text-slate-600 dark:text-slate-400">
                 ({formatChange(active.change)})
               </span>
             </p>
             <p className="mt-1 text-slate-700 dark:text-slate-200">{active.contest}</p>
-            <p className="mt-1 text-slate-500 dark:text-slate-400">
+            <p className="mt-1 text-slate-600 dark:text-slate-400">
               {formatDay(active.time, true)} · rank {active.rank}
             </p>
           </div>
@@ -283,18 +294,19 @@ function RatingChart({ ratingChanges }) {
       {/* The same data as a table, for anyone who cannot or would rather not
           read it off a chart. <details> is a built-in show/hide element. */}
       <details className="mt-2 text-sm">
-        <summary className="cursor-pointer text-slate-500 hover:text-accent-500 dark:text-slate-400">
+        <summary className="cursor-pointer text-slate-600 hover:text-link dark:text-slate-400">
           Show contests as a table
         </summary>
-        <div className="mt-2 overflow-x-auto">
+        <div tabIndex={0} role="region" aria-label="Scrollable contest results" className="mt-2 overflow-x-auto">
           <table className="w-full text-left text-sm">
+            <caption className="mb-2 text-left font-semibold">Codeforces rated contest results</caption>
             <thead>
-              <tr className="border-b border-slate-200 text-xs uppercase tracking-wider text-slate-500 dark:border-slate-800 dark:text-slate-400">
-                <th className="py-2 pr-4 font-semibold">Contest</th>
-                <th className="py-2 pr-4 font-semibold">Date</th>
-                <th className="py-2 pr-4 text-right font-semibold">Rank</th>
-                <th className="py-2 pr-4 text-right font-semibold">Change</th>
-                <th className="py-2 text-right font-semibold">Rating</th>
+              <tr className="border-b border-slate-200 text-xs uppercase tracking-wider text-slate-600 dark:border-slate-800 dark:text-slate-400">
+                <th scope="col" className="py-2 pr-4 font-semibold">Contest</th>
+                <th scope="col" className="py-2 pr-4 font-semibold">Date</th>
+                <th scope="col" className="py-2 pr-4 text-right font-semibold">Rank</th>
+                <th scope="col" className="py-2 pr-4 text-right font-semibold">Change</th>
+                <th scope="col" className="py-2 text-right font-semibold">Rating</th>
               </tr>
             </thead>
             <tbody>

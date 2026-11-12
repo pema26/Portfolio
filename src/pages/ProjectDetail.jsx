@@ -39,7 +39,7 @@ function ProjectDetail() {
   const category = CATEGORY_META[project.category];
   const status = STATUS_META[project.status];
 
-  // Guided builds get a progress bar + a dated devlog; finished flagship and
+  // Guided builds get a progress bar + a dated devlog; finished ambitious and
   // mini projects get a "Completed" pill.
   const isGuided = project.category === 'guided';
   const isComplete = !isGuided && project.status === 'complete';
@@ -51,7 +51,7 @@ function ProjectDetail() {
   return (
     <>
       {/* Back link */}
-      <Link to="/projects" className="text-sm font-medium text-accent-500 hover:underline">
+      <Link to="/projects" className="text-sm font-medium text-link hover:underline">
         &larr; All projects
       </Link>
 
@@ -74,7 +74,7 @@ function ProjectDetail() {
               Completed
             </span>
           )}
-          <time className="text-sm text-slate-500 dark:text-slate-400">{formatMonthYear(project.date)}</time>
+          <time className="text-sm text-slate-600 dark:text-slate-400">{formatMonthYear(project.date)}</time>
         </div>
 
         {/* Guided builds show a progress bar under the header meta. */}
@@ -105,7 +105,7 @@ function ProjectDetail() {
           {project.demoUrl && (
             <a
               href={project.demoUrl}
-              className="rounded-lg bg-accent-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-accent-500"
+              className="rounded-lg bg-accent-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-accent-700"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -115,7 +115,7 @@ function ProjectDetail() {
           {project.githubUrl && (
             <a
               href={project.githubUrl}
-              className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-accent-400 hover:text-accent-500 dark:border-slate-700 dark:text-slate-200"
+              className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-accent-400 hover:text-link dark:border-slate-700 dark:text-slate-200"
               target="_blank"
               rel="noopener noreferrer"
             >
@@ -137,12 +137,12 @@ function ProjectDetail() {
       {isGuided && (
         <section className="mt-12 border-t border-slate-200 pt-8 dark:border-slate-800">
           <h2 className="font-serif text-2xl font-semibold text-slate-900 dark:text-white">Devlog</h2>
-          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">
             What I worked on, day by day.
           </p>
 
           {devlog.length === 0 ? (
-            <p className="mt-4 text-sm text-slate-500 dark:text-slate-400">
+            <p className="mt-4 text-sm text-slate-600 dark:text-slate-400">
               No entries yet — I'll add them as I work through this build.
             </p>
           ) : (
@@ -154,7 +154,7 @@ function ProjectDetail() {
                     <span className="text-sm font-semibold text-slate-900 dark:text-white">
                       Day {devlog.length - i}
                     </span>
-                    <time className="text-xs text-slate-500 dark:text-slate-400">{formatShortDate(entry.date)}</time>
+                    <time className="text-xs text-slate-600 dark:text-slate-400">{formatShortDate(entry.date)}</time>
                   </div>
                   <p className="mt-1 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                     {entry.summary}

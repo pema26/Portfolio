@@ -5,7 +5,7 @@ side by side as short case studies.
 
 The site is organised into these sections:
 
-- **Projects** — my build work in three tiers: Original Ideas, Guided builds following a tutorial/course, and small tools that solve a real, everyday annoyance.
+- **Projects** — my build work in three tiers: Ambitious projects, Guided builds following a tutorial/course, and small tools that solve a real, everyday annoyance.
 - **Problems** — my competitive-programming profile (in progress),
   plus worked coding-challenge solutions with complexity analysis.
 - **Research** — my scientific work, kept in its own section.
@@ -61,3 +61,24 @@ Research PDFs live in `public/documents/research/`. Each research entry's
 `meta.documents` array supplies its document titles, descriptions, paths relative
 to `public/`, and page counts. The research detail page adds open/download links
 and optional previews, which keep a white background in both site themes.
+
+## Accessibility
+
+The header's **Reduce motion** control stops decorative animation and follows
+device preferences. Run `npm run test:a11y` for the production-build accessibility
+and keyboard checks. See [the accessibility audit](docs/accessibility.md) for
+coverage, setup, and the remaining screen-reader and document checks.
+
+## YouTube interface demo
+
+The completed HTML/CSS source is in `html-css-course/youtube.html`,
+`youtube.css`, and `styles/`. Its six thumbnail/avatar pairs are bundled locally.
+The demo is linked from `/projects/youtube-clone` and served at
+`/demos/youtube-clone/index.html`. The explicit HTML filename also lets Vite's
+development server serve the demo without falling back to the portfolio app.
+
+`npm run dev`, `npm start`, and `npm run build` prepare the demo automatically.
+After editing the course files during a running dev session, run
+`npm run demo:youtube` to refresh the generated copy. The generated
+`public/demos/youtube-clone/` directory is ignored; edit the course source instead.
+Unrelated flexbox/grid exercises stay separate from the published demo.

@@ -16,7 +16,7 @@
 
 function CodeBlock({ code, language }) {
   return (
-    <pre tabIndex={0} data-language={language}>
+    <pre tabIndex={0} role="group" aria-label={language ? `${language} code sample` : 'Code sample'} data-language={language}>
       <code>{code}</code>
     </pre>
   );

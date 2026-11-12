@@ -20,7 +20,7 @@ import { formatShortDate } from '../lib/dates';
 
 function ChallengeCard({ id, title, description, source, label, date, difficulty, tags }) {
   return (
-    <article className="group relative flex h-full flex-col rounded-xl border border-slate-200 bg-white p-5 transition hover:border-accent-400 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-accent-500">
+    <article className="interactive-card group relative flex h-full flex-col rounded-xl border border-slate-200 bg-white p-5 transition hover:border-accent-400 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-accent-500">
       <div className="mb-2 flex flex-wrap items-center gap-2">
         <span className="rounded-full bg-accent-100 px-2.5 py-0.5 text-xs font-medium text-accent-700 dark:bg-accent-900/50 dark:text-accent-300">
           {source}
@@ -32,18 +32,18 @@ function ChallengeCard({ id, title, description, source, label, date, difficulty
         )}
       </div>
 
-      <div className="mb-2 flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+      <div className="mb-2 flex items-center gap-2 text-xs text-slate-600 dark:text-slate-400">
         <span className="font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-300">{label}</span>
         <span aria-hidden="true">&middot;</span>
         {/* A friendly date for people, plus a machine-readable one for <time>. */}
         <time dateTime={date}>{formatShortDate(date)}</time>
       </div>
 
-      <h3 className="font-serif text-lg font-semibold text-slate-900 dark:text-white">
+      <h4 className="font-serif text-lg font-semibold text-slate-900 dark:text-white">
         <Link to={`/problems/${id}`} className="after:absolute after:inset-0">
           <span className="relative">{title}</span>
         </Link>
-      </h3>
+      </h4>
 
       <p className="mt-2 flex-grow text-sm leading-relaxed text-slate-600 dark:text-slate-400">
         {description}

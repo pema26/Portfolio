@@ -17,7 +17,7 @@
 import { Link } from 'react-router';
 
 const portals = [
-  { href: '/projects', kicker: 'Software', title: 'Projects', blurb: 'Flagship ideas, guided builds, and small tools.' },
+  { href: '/projects', kicker: 'Software', title: 'Projects', blurb: 'Ambitious projects, guided builds, and small tools.' },
   { href: '/problems', kicker: 'Algorithms', title: 'Problems', blurb: 'Competitive programming and worked solutions.' },
   { href: '/research', kicker: 'Molecular biology', title: 'Research', blurb: 'Lab work, written up as short case studies.' },
 ];
@@ -35,10 +35,10 @@ function SectionPortals() {
             to={portal.href}
             className="min-h-[158px] rounded-xl border border-slate-200 bg-white p-5 transition hover:-translate-y-1 hover:border-accent-400 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-accent-500"
           >
-            <span className="block text-xs font-semibold uppercase tracking-wider text-accent-500">{portal.kicker}</span>
+            <span className="block text-xs font-semibold uppercase tracking-wider text-link">{portal.kicker}</span>
             <span className="mt-1.5 block font-serif text-2xl font-bold text-slate-900 dark:text-white">{portal.title}</span>
             <span className="mt-1 block text-sm leading-snug text-slate-600 dark:text-slate-400">{portal.blurb}</span>
-            <span className="mt-3 inline-block text-sm font-semibold text-accent-500">Open &rarr;</span>
+            <span className="mt-3 inline-block text-sm font-semibold text-link">Open &rarr;</span>
           </Link>
         ))}
       </div>

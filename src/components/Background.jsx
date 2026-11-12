@@ -28,6 +28,7 @@
 import { useEffect, useRef } from 'react';
 import { useLocation } from 'react-router';
 import { startBackground } from '../lib/backgroundCanvas';
+import { useMotion } from '../hooks/useMotion';
 
 // Pick the wireframe motif for the current route (or null for "no canvas").
 function motifFor(path) {
@@ -43,10 +44,11 @@ const OPACITY = { cubes: 1, graph: 0.50, helix: 0.75 };
 
 function WireframeCanvas({ motif }) {
   const canvasRef = useRef(null);
+  const { reducedMotion } = useMotion();
 
   useEffect(() => {
-    return startBackground(canvasRef.current, motif);
-  }, [motif]);
+    return startBackground(canvasRef.current, motif, { reducedMotion });
+  }, [motif, reducedMotion]);
 
   return <canvas id="site-bg" ref={canvasRef} style={{ opacity: OPACITY[motif] }} aria-hidden="true"></canvas>;
 }

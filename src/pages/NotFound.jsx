@@ -14,7 +14,7 @@ function NotFound() {
 
   return (
     <section className="py-16 text-center">
-      <p className="font-serif text-6xl font-bold text-accent-500">404</p>
+      <p className="font-serif text-6xl font-bold text-link">404</p>
       <h1 className="mt-4 font-serif text-4xl font-semibold text-slate-900 dark:text-white">
         Page not found
       </h1>
@@ -23,7 +23,7 @@ function NotFound() {
       </p>
       <Link
         to="/"
-        className="mt-6 inline-block rounded-lg bg-accent-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-accent-500"
+        className="mt-6 inline-block rounded-lg bg-accent-600 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-accent-700"
       >
         Back home
       </Link>

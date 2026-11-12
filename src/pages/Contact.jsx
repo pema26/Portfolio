@@ -12,7 +12,7 @@ import { usePageMeta } from '../hooks/usePageMeta';
 
 // EDIT HERE: your contact links.
 const links = [
-  { label: 'Email', value: '[[YOUR_EMAIL]]', href: 'mailto:[[YOUR_EMAIL]]' },
+  { label: 'Email', value: 'pematsering.jb@outlook.com', href: 'mailto:pematsering.jb@outlook.com' },
   { label: 'GitHub', value: 'github.com/pema26', href: 'https://github.com/pema26' },
   {
     label: 'LinkedIn',
@@ -37,21 +37,21 @@ function Contact() {
 
       <ul className="mt-8 max-w-3xl divide-y divide-slate-200 dark:divide-slate-800">
         {links.map((link) => (
-          <li key={link.label} className="flex items-center justify-between py-3">
-            <span className="text-sm font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+          <li key={link.label} className="flex flex-col items-start gap-1 py-3 sm:flex-row sm:items-center sm:justify-between">
+            <span className="text-sm font-semibold uppercase tracking-wider text-slate-600 dark:text-slate-400">
               {link.label}
             </span>
             {link.href ? (
               <a
                 href={link.href}
-                className="text-accent-500 transition hover:underline"
+                className="text-link transition hover:underline"
                 target={link.href.startsWith('mailto:') ? undefined : '_blank'}
                 rel="noopener noreferrer"
               >
                 {link.value}
               </a>
             ) : (
-              <span className="text-slate-500 dark:text-slate-400">{link.value}</span>
+              <span className="text-slate-600 dark:text-slate-400">{link.value}</span>
             )}
           </li>
         ))}
