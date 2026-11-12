@@ -1,8 +1,13 @@
 # build output
 dist/
 
+# Generated from the editable HTML/CSS course project.
+/public/demos/youtube-clone/
+
 # dependencies
 node_modules/
+playwright-report/
+test-results/
 
 # logs
 npm-debug.log*

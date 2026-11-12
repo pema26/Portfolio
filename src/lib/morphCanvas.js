@@ -65,13 +65,13 @@ function colors() {
   return { line: d ? '129,140,248' : '79,70,229', node: d ? '165,180,252' : '99,102,241' };
 }
 
-export function startMorph(canvas) {
+export function startMorph(canvas, options = {}) {
   if (!(canvas instanceof HTMLCanvasElement)) return undefined;
   const ctx = canvas.getContext('2d');
   if (!ctx) return undefined;
   const interactionArea = canvas.closest('header') || canvas;
 
-  const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const reduced = options.reducedMotion ?? window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let dpr = 1, w = 0, h = 0, raf = null, running = false;
   // Where the mouse is relative to the shape (-1 … 1 across the NEAR circle),
   // and a smoothed copy that chases it so the shape glides rather than jumps.

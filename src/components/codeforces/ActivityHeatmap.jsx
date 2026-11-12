@@ -86,7 +86,7 @@ function ActivityHeatmap({ weeks }) {
   const width = LEFT + weeks.length * STEP;
   const height = TOP + 7 * STEP;
 
-  let readout = 'Point at a square to see that day.';
+  let readout = 'Point at or tap a square to see that day.';
   if (activeDay) {
     const problems = activeDay.count === 1 ? 'problem' : 'problems';
     readout = `${activeDay.count} ${problems} solved on ${formatDate(activeDay.date)}`;
@@ -102,7 +102,12 @@ function ActivityHeatmap({ weeks }) {
         aria-label="Calendar of problems solved per day over the last year. Scrolls sideways."
         className="overflow-x-auto pb-1"
       >
-        <svg width={width} height={height} className="block" onPointerLeave={() => setActiveDay(null)}>
+        <svg
+          width={width} height={height} className="block"
+          role="img"
+          aria-label="Calendar of daily problems solved over the last year."
+          onPointerLeave={() => setActiveDay(null)}
+        >
           {monthLabels.map((label) => (
             <text
               key={`${label.text}-${label.column}`}
@@ -131,7 +136,7 @@ function ActivityHeatmap({ weeks }) {
               if (day.isFuture) {
                 return null;
               }
-              const isActive = activeDay !== null && activeDay.date === day.date;
+              const isActive = activeDay?.date === day.date;
               return (
                 <rect
                   key={day.date}
@@ -153,9 +158,9 @@ function ActivityHeatmap({ weeks }) {
         </svg>
       </div>
 
-      <div className="mt-2 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 text-xs text-slate-500 dark:text-slate-400">
+      <div className="mt-2 flex flex-wrap items-center justify-between gap-x-4 gap-y-2 text-xs text-slate-600 dark:text-slate-400">
         {/* aria-live makes screen readers announce the readout when it changes. */}
-        <p aria-live="polite">{readout}</p>
+        <p role="status" aria-atomic="true">{readout}</p>
 
         {/* The colour key. */}
         <div className="flex items-center gap-1.5">
@@ -168,6 +173,7 @@ function ActivityHeatmap({ weeks }) {
           <span>More</span>
         </div>
       </div>
+
     </div>
   );
 }

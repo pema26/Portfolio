@@ -31,7 +31,7 @@ function ProblemDetail() {
 
   return (
     <>
-      <Link to="/problems" className="text-sm font-medium text-accent-500 hover:underline">
+      <Link to="/problems" className="text-sm font-medium text-link hover:underline">
         &larr; All problems
       </Link>
 
@@ -45,7 +45,7 @@ function ProblemDetail() {
               Rating {challenge.difficulty}
             </span>
           )}
-          <time className="text-sm text-slate-500 dark:text-slate-400">{formatMonthYear(challenge.date)}</time>
+          <time className="text-sm text-slate-600 dark:text-slate-400">{formatMonthYear(challenge.date)}</time>
         </div>
 
         <h1 className="mt-3 font-serif text-3xl font-bold text-slate-900 dark:text-white">
@@ -67,7 +67,7 @@ function ProblemDetail() {
           <div className="mt-5">
             <a
               href={challenge.problemUrl}
-              className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-accent-400 hover:text-accent-500 dark:border-slate-700 dark:text-slate-200"
+              className="rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-accent-400 hover:text-link dark:border-slate-700 dark:text-slate-200"
               target="_blank"
               rel="noopener noreferrer"
             >

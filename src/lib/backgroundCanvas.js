@@ -19,14 +19,14 @@
 //    - returns a cleanup function that removes every listener it added.
 // ============================================================================
 
-export function startBackground(canvas, motif) {
+export function startBackground(canvas, motif, options = {}) {
   // Nothing to do if there is no canvas or the browser cannot draw on it.
   if (!(canvas instanceof HTMLCanvasElement)) return undefined;
   const ctx = canvas.getContext('2d');
   if (!ctx) return undefined;
 
   let dpr = 1, w = 0, h = 0, raf = null, running = false;
-  let reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let reduced = options.reducedMotion ?? window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
   function size() {
     dpr = window.devicePixelRatio || 1;

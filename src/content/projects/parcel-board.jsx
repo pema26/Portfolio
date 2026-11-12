@@ -1,5 +1,5 @@
 // ============================================================================
-//  A FLAGSHIP project — your own original, ambitious idea.
+//  An AMBITIOUS project — a larger application in progress.
 //  These can be "planned" or "in-progress" while you build them; set the
 //  `status` field accordingly so the right pill shows on the card.
 // ============================================================================

@@ -1,5 +1,5 @@
 // ============================================================================
-//  A FLAGSHIP project — your own original, ambitious idea (planned).
+//  An AMBITIOUS project — a larger application (planned).
 // ============================================================================
 
 export const meta = {

@@ -47,19 +47,42 @@ function About() {
       {/* EDIT HERE: rewrite this narrative in your own voice. */}
       <div className="prose-content mt-6 text-slate-700 dark:text-slate-300">
         <p>
-          I'm a London-based developer and researcher who enjoys working at the
-          meeting point of software and science. My coding journey started with the
-          fundamentals — working through <strong>freeCodeCamp</strong>, sharpening
-          problem-solving on <strong>Codeforces</strong>, and learning to think with
-          data through <em>R for Data Science</em>.
+          When I started studying biochemistry at King's College London, 
+          I thought I’d go into bioinformatics. I liked the idea of using code to answer questions about biology, 
+          and iGEM was where I first got to try that in a team. 
+          I worked with teammates to agree on page designs in Figma and then 
+          implement them on our project wiki. I also built a Python 
+          simulation to estimate how many gas vesicles bacteria might 
+          produce.
         </p>
         <p>
-          Alongside the code is a research background in molecular biology, including
-          site-directed mutagenesis of catechol 2,3-dioxygenase
-          from <em>Pseudomonas putida</em>, expressed in <em>E. coli</em>, and a library
-          dissertation on kinase inhibitors in targeted therapy. I like that both halves reward the same thing: careful,
-          methodical work and a willingness to dig until something actually makes
-          sense.
+          Long story short, I couldn't secure a bioinformatics placment in my second year 
+          but fortunately, I still managed to secure a different placement. 
+          During my placement at STFC’s ISIS Neutron and Muon Source, I looked 
+          for ways to bring programming into the training courses I was 
+          developing with instrument scientists. I used Manim, a 
+          Python animation library, to explain concepts such as isotopic 
+          contrast and Fourier transforms. I also built a simplified neutron 
+          reflectometry model based on Refl1D and checked its predictions 
+          against established theory. The model let me explore how properties 
+          such as layer thickness and surface roughness affect reflectivity.
+        </p>
+        <p>
+          That placement was also where I learned R in more depth. To 
+          prepare worked examples for how the basics of the Mantid software worked in 
+          my neutron reflectometry courses, I took raw time-of-flight data from the 
+          SURF reflectometer and used R to convert the measurements to wavelength and 
+          momentum transfer. I then subtracted the background and normalised the data to 
+          produce reflectivity curves that learners could check and understand.
+        </p>
+        <p>
+          When I returned to university for my final year, I kept using R in my 
+          bioinformatics modules, applying what I’d learned on placement to 
+          biological data. I also made a habit of tackling freeCodeCamp’s 
+          daily coding challenges. I had built some mini projects here and there but took 
+          programming more seriously after third year exams ended. Since then, I’ve 
+          practised solving unfamiliar problems on Codeforces and also built projects with databases, APIs and web 
+          interfaces. The more I built, the more I wanted to make software development my career.
         </p>
       </div>
 
@@ -70,7 +93,7 @@ function About() {
             not at a page of the app. */}
         <a
           href="/cv.pdf"
-          className="inline-flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-accent-400 hover:text-accent-500 dark:border-slate-700 dark:text-slate-200"
+          className="inline-flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-accent-400 hover:text-link dark:border-slate-700 dark:text-slate-200"
         >
           <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v12m0 0 4-4m-4 4-4-4m-3 9h14" />
@@ -85,7 +108,7 @@ function About() {
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
           {skillGroups.map((group) => (
             <div key={group.heading} className="rounded-xl border border-slate-200 p-4 dark:border-slate-800">
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-accent-500">
+              <h3 className="text-sm font-semibold uppercase tracking-wider text-link">
                 {group.heading}
               </h3>
               <ul className="mt-2 flex flex-wrap gap-1.5">

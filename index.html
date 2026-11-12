@@ -63,10 +63,18 @@
          paint, the useTheme hook (src/hooks/useTheme.js) takes over. -->
     <script>
       (function () {
-        const saved = localStorage.getItem('theme');
+        let saved;
+        let reducedMotion = false;
+        try {
+          saved = localStorage.getItem('theme');
+          reducedMotion = localStorage.getItem('reduced-motion') === 'true';
+        } catch { /* Browser storage can be unavailable in private sessions. */ }
         const osPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         const dark = saved ? saved === 'dark' : osPrefersDark;
         document.documentElement.classList.toggle('dark', dark);
+        document.documentElement.dataset.reducedMotion = String(
+          reducedMotion || window.matchMedia('(prefers-reduced-motion: reduce)').matches,
+        );
       })();
     </script>
   </head>

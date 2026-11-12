@@ -53,6 +53,7 @@ options:
 
 // The text shown before the input box in each mode.
 const PROMPTS = { shell: '$ ', guess: 'Guess: ', feedback: 'Feedback: ' };
+const INPUT_LABELS = { shell: 'Terminal command', guess: 'Wordle guess', feedback: 'Wordle feedback' };
 
 // One-click commands shown above the terminal.
 const QUICK_COMMANDS = [
@@ -130,6 +131,7 @@ function WordleTerminal() {
   const [mode, setMode] = useState('loading');
   const [input, setInput] = useState('');
   const [progress, setProgress] = useState('');
+  const [loadError, setLoadError] = useState(false);
 
   // ---- word lists ----------------------------------------------------------
   const [bundledText, setBundledText] = useState(null); // text of words.txt
@@ -142,6 +144,20 @@ function WordleTerminal() {
   const nextIdRef = useRef(2); // gives every printed line a unique key
   const outputRef = useRef(null); // the scrolling output area
   const inputRef = useRef(null); // the text box
+  const demoRef = useRef(null);
+  const stopRef = useRef(null);
+  const restoreFocusRef = useRef(false);
+
+  useEffect(() => {
+    if (!restoreFocusRef.current) return;
+    // Return focus after a command/benchmark, unless the visitor moved away.
+    const focusInsideDemo = demoRef.current?.contains(document.activeElement);
+    if (focusInsideDemo || document.activeElement === document.body) {
+      if (mode === 'busy') stopRef.current?.focus();
+      else if (PROMPTS[mode]) inputRef.current?.focus();
+    }
+    if (mode !== 'busy') restoreFocusRef.current = false;
+  }, [mode]);
 
   // Add text to the terminal. Text containing "\n" becomes several lines.
   const print = (text, kind = 'out') => {
@@ -170,6 +186,7 @@ function WordleTerminal() {
         }
       } catch (err) {
         if (!ignore) {
+          setLoadError(true);
           setLines((prevLines) => [
             ...prevLines,
             { id: -1, kind: 'note', text: `Could not load the word list (${err.message}). Reload the page to try again.` },
@@ -386,6 +403,7 @@ function WordleTerminal() {
     if (!PROMPTS[mode]) {
       return; // loading or busy: nothing is waiting for input
     }
+    restoreFocusRef.current = true;
     submitLine(input);
     setInput('');
   };
@@ -394,6 +412,7 @@ function WordleTerminal() {
   // "Session ended."
   const handleInterrupt = () => {
     if (mode === 'guess' || mode === 'feedback' || mode === 'busy') {
+      restoreFocusRef.current = true;
       cancelRef.current = true;
       setProgress('');
       setInput('');
@@ -415,8 +434,9 @@ function WordleTerminal() {
   };
 
   const handleQuickCommand = (commandText) => {
+    restoreFocusRef.current = true;
     submitLine(commandText);
-    inputRef.current.focus();
+    inputRef.current?.focus();
   };
 
   // "Load a word list": read the chosen file so --words can refer to it.
@@ -444,7 +464,7 @@ function WordleTerminal() {
   const sessionRunning = mode === 'guess' || mode === 'feedback' || mode === 'busy';
 
   return (
-    <div className="my-6">
+    <div ref={demoRef} className="my-6">
       {/* ---------- one-click commands ---------- */}
       <div className="mb-3 flex flex-wrap items-center gap-2">
         {QUICK_COMMANDS.map((commandText) => (
@@ -453,40 +473,50 @@ function WordleTerminal() {
             type="button"
             onClick={() => handleQuickCommand(commandText)}
             disabled={mode !== 'shell'}
-            className="rounded-lg border border-slate-300 px-3 py-1.5 font-mono text-xs text-slate-700 transition hover:border-accent-400 hover:text-accent-500 disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-200"
+            className="rounded-lg border border-slate-300 px-3 py-1.5 font-mono text-xs text-slate-700 transition hover:border-accent-400 hover:text-link disabled:cursor-not-allowed disabled:opacity-50 dark:border-slate-700 dark:text-slate-200"
           >
             {commandText}
           </button>
         ))}
 
-        <label className="cursor-pointer rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-accent-400 hover:text-accent-500 focus-within:border-accent-400 dark:border-slate-700 dark:text-slate-200">
+        <label className="file-upload inline-flex min-h-11 cursor-pointer items-center rounded-lg border border-slate-300 px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-accent-400 hover:text-link focus-within:border-accent-400 dark:border-slate-700 dark:text-slate-200">
           Load a word list (.txt)
           <input type="file" accept=".txt,text/plain" onChange={handleFileChange} className="sr-only" />
         </label>
 
         {sessionRunning && (
           <button
+            ref={stopRef}
             type="button"
             onClick={handleInterrupt}
-            className="rounded-lg bg-accent-600 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-accent-500"
+            className="rounded-lg bg-accent-600 px-3 py-1.5 text-xs font-semibold text-white transition hover:bg-accent-700"
           >
             Stop
           </button>
         )}
       </div>
 
+      <p role="status" aria-atomic="true" className="sr-only">
+        {loadError ? 'The word list could not be loaded. Reload the word list to try again.'
+          : mode === 'loading' ? 'Loading the Wordle word list.'
+          : mode === 'busy' ? 'Benchmark running. Use Stop to cancel.'
+            : mode === 'shell' ? 'Terminal ready for commands.'
+              : mode === 'guess' ? 'Enter your Wordle guess.' : 'Enter your Wordle feedback.'}
+      </p>
+      {loadError && <button type="button" onClick={() => window.location.reload()} className="mb-3 rounded-lg border border-slate-500 px-3 py-2 text-sm text-link">Reload the word list</button>}
+
       {/* ---------- the terminal window ---------- */}
       <div
         onClick={handleTerminalClick}
-        className="overflow-hidden rounded-lg bg-[#24292e] font-mono text-sm leading-relaxed shadow-lg focus-within:ring-2 focus-within:ring-accent-400"
+        className="terminal-window overflow-hidden rounded-lg bg-[#24292e] font-mono text-sm leading-relaxed shadow-lg focus-within:ring-2 focus-within:ring-accent-400"
       >
         <div className="border-b border-white/10 px-4 py-2 text-xs text-slate-400">
           wordle — python-projects
         </div>
 
-        <div ref={outputRef} className="h-96 overflow-y-auto px-4 py-3">
+        <div ref={outputRef} tabIndex={0} role="region" aria-label="Scrollable Wordle terminal" className="h-96 overflow-y-auto px-4 py-3">
           {/* role="log" asks screen readers to announce new lines as they appear. */}
-          <div role="log" aria-live="polite">
+          <div role="log" aria-label="Wordle terminal output" aria-live="polite" aria-relevant="additions text">
             {lines.map((line) => (
               <div key={line.id} className={`min-h-[1.5em] whitespace-pre-wrap break-words ${LINE_STYLES[line.kind]}`}>
                 {line.text}
@@ -500,9 +530,10 @@ function WordleTerminal() {
           {/* The input line. It is hidden while nothing is waiting for input. */}
           {prompt && (
             <form onSubmit={handleSubmit} className="flex items-center">
-              <label htmlFor="wordle-input" className="whitespace-pre text-accent-300">
+              <span aria-hidden="true" className="whitespace-pre text-accent-300">
                 {prompt}
-              </label>
+              </span>
+              <label htmlFor="wordle-input" className="sr-only">{INPUT_LABELS[mode]}</label>
               <input
                 id="wordle-input"
                 ref={inputRef}
@@ -515,14 +546,15 @@ function WordleTerminal() {
                 autoCorrect="off"
                 spellCheck={false}
                 aria-describedby="wordle-input-hint"
-                className="min-w-0 flex-1 bg-transparent text-white caret-accent-300 outline-none"
+                className="min-w-0 flex-1 rounded border border-slate-400 bg-transparent px-2 py-1 text-white caret-accent-300 outline-none"
               />
+              <button type="submit" className="ml-2 rounded border border-slate-400 px-3 text-slate-100">Send</button>
             </form>
           )}
         </div>
       </div>
 
-      <div id="wordle-input-hint" className="mt-2 text-xs text-slate-500 dark:text-slate-400">
+      <div id="wordle-input-hint" className="mt-2 text-xs text-slate-600 dark:text-slate-400">
         Feedback letters: g = green, y = yellow, b = grey. At the Guess prompt, type undo to
         take back a round or quit to exit.
       </div>

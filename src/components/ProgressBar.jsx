@@ -18,8 +18,8 @@ function ProgressBar({ value, large = false }) {
   return (
     <div className="w-full">
       <div className="mb-1 flex items-center justify-between text-xs">
-        <span className="font-semibold uppercase tracking-wider text-accent-500">In&nbsp;progress</span>
-        <span className="font-medium text-slate-500 tabular-nums dark:text-slate-400">{pct}%</span>
+        <span className="font-semibold uppercase tracking-wider text-link">In&nbsp;progress</span>
+        <span className="font-medium text-slate-600 tabular-nums dark:text-slate-400">{pct}%</span>
       </div>
       <div
         className={`w-full overflow-hidden rounded-full bg-slate-200 dark:bg-slate-800 ${large ? 'h-2.5' : 'h-1.5'}`}

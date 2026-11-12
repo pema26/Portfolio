@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Pema Tsering's guided HTML and CSS recreation of a YouTube-style homepage.">
+    <title>YouTube interface clone — Pema Tsering</title>
+    <link rel="stylesheet" href="youtube.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </head>
+  <body>
+    <a class="skip-link" href="#video-feed">Skip to videos</a>
+    <header class="header">
+      <div class="left-section">
+        <details class="browse-menu">
+          <summary class="icon-button" role="button" aria-label="Browse sections" title="Browse sections">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+          </summary>
+          <nav class="quick-links" aria-label="Quick navigation">
+            <a href="#video-feed">Recommended videos</a>
+            <a href="#learning-resources">Learning resources</a>
+            <a href="../../projects/youtube-clone">Back to portfolio</a>
+          </nav>
+        </details>
+        <a class="brand" href="https://www.youtube.com/" aria-label="YouTube home">
+          <svg viewBox="0 0 32 24" aria-hidden="true"><rect x="0" y="2" width="32" height="20" rx="6" fill="#f00"/><path d="m13 7 9 5-9 5Z" fill="#fff"/></svg>
+          <span>YouTube</span>
+        </a>
+      </div>
+      <form class="middle-section" action="https://www.youtube.com/results" method="get" role="search" aria-label="Search YouTube">
+        <label class="sr-only" for="search-query">Search YouTube</label>
+        <input id="search-query" class="search-bar" name="search_query" type="search" placeholder="Search" required>
+        <button class="search-button" type="submit" aria-label="Search YouTube">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg>
+        </button>
+      </form>
+      <div class="right-section">
+        <a class="portfolio-link" href="../../projects/youtube-clone">Back to portfolio</a>
+        <a class="profile-link" href="../../about" aria-label="PT - About Pema Tsering">PT</a>
+      </div>
+    </header>
+    <div class="page-layout">
+      <nav class="sidebar" aria-label="Video sections">
+        <a href="#video-feed" aria-current="page">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m3 10 9-7 9 7v11h-6v-7H9v7H3Z"/></svg><span>Home</span>
+        </a>
+        <a href="https://www.youtube.com/results?search_query=technology">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="m16 8-3 5-5 3 3-5Z"/></svg><span>Explore</span>
+        </a>
+        <a href="https://www.youtube.com/results?search_query=music">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 18V5l11-2v13M9 8l11-2"/><ellipse cx="6" cy="18" rx="3" ry="2"/><ellipse cx="17" cy="16" rx="3" ry="2"/></svg><span>Music</span>
+        </a>
+        <a href="https://www.youtube.com/results?search_query=gaming">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 7h10c3 0 5 10 3 12-1 1-4-3-5-3H9c-1 0-4 4-5 3C2 17 4 7 7 7ZM7 10v5m-2-2h4m6-2h1m2 3h1"/></svg><span>Gaming</span>
+        </a>
+        <a href="#learning-resources">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 4h7l2 2 2-2h7v16h-7l-2 2-2-2H3Zm9 2v16"/></svg><span>Learning</span>
+        </a>
+        <a href="../../projects">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="7" width="18" height="14" rx="2"/><path d="M8 7V3h8v4M3 12h18m-10 0v3h2v-3"/></svg><span>Portfolio</span>
+        </a>
+      </nav>
+      <main id="video-feed" tabindex="-1">
+        <nav class="topic-list" aria-label="Video topics">
+          <a href="#video-feed" aria-current="page">All</a>
+          <a href="https://www.youtube.com/results?search_query=technology">Technology</a>
+          <a href="https://www.youtube.com/results?search_query=science">Science</a>
+          <a href="https://www.youtube.com/results?search_query=programming">Programming</a>
+          <a href="https://www.youtube.com/results?search_query=entertainment">Entertainment</a>
+        </nav>
+        <h1>Recommended</h1>
+        <p class="demo-note">An HTML &amp; CSS interface study by Pema Tsering. Search and video links open YouTube.</p>
+        <div class="video-grid">
+          <article class="video-preview">
+            <a class="video-link" href="https://www.youtube.com/watch?v=n2RNcPRtAiY">
+              <div class="thumbnail-row">
+                <img class="thumbnail" src="thumbnails/thumbnail-1.webp" alt="" width="720" height="404">
+                <span class="video-duration" aria-hidden="true">14:20</span>
+              </div>
+              <div class="video-info-grid">
+                <img class="channel-picture" src="channel-pictures/channel-1.jpeg" alt="" width="36" height="36">
+                <div class="video-info">
+                  <h2 id="video-1-title" class="video-title">Talking Tech and AI with Google CEO Sundar Pichai!</h2>
+                  <p class="video-author">Marques Brownlee</p>
+                  <p class="video-stats">3.4M views &middot; 6 months ago</p>
+                </div>
+              </div>
+            </a>
+          </article>
+          <article class="video-preview">
+            <a class="video-link" href="https://www.youtube.com/watch?v=mP0RAo9SKZk">
+              <div class="thumbnail-row">
+                <img class="thumbnail" src="thumbnails/thumbnail-2.webp" alt="" width="720" height="404" loading="lazy">
+                <span class="video-duration" aria-hidden="true">8:22</span>
+              </div>
+              <div class="video-info-grid">
+                <img class="channel-picture" src="channel-pictures/channel-2.jpeg" alt="" width="36" height="36" loading="lazy">
+                <div class="video-info">
+                  <h2 id="video-2-title" class="video-title">Try Not To Laugh Challenge #9</h2>
+                  <p class="video-author">Markiplier</p>
+                  <p class="video-stats">19M views &middot; 4 years ago</p>
+                </div>
+              </div>
+            </a>
+          </article>
+          <article class="video-preview">
+            <a class="video-link" href="https://www.youtube.com/watch?v=FgjPQQeTh1w">
+              <div class="thumbnail-row">
+                <img class="thumbnail" src="thumbnails/thumbnail-3.webp" alt="" width="720" height="404" loading="lazy">
+                <span class="video-duration" aria-hidden="true">9:13</span>
+              </div>
+              <div class="video-info-grid">
+                <img class="channel-picture" src="channel-pictures/channel-3.jpeg" alt="" width="36" height="36" loading="lazy">
+                <div class="video-info">
+                  <h2 id="video-3-title" class="video-title">Crazy Tik Toks Taken Moments Before DISASTER</h2>
+                  <p class="video-author">SSSniperWolf</p>
+                  <p class="video-stats">12M views &middot; 1 year ago</p>
+                </div>
+              </div>
+            </a>
+          </article>
+          <article class="video-preview">
+            <a class="video-link" href="https://www.youtube.com/watch?v=094y1Z2wpJg">
+              <div class="thumbnail-row">
+                <img class="thumbnail" src="thumbnails/thumbnail-4.webp" alt="" width="720" height="404" loading="lazy">
+                <span class="video-duration" aria-hidden="true">22:09</span>
+              </div>
+              <div class="video-info-grid">
+                <img class="channel-picture" src="channel-pictures/channel-4.jpeg" alt="" width="36" height="36" loading="lazy">
+                <div class="video-info">
+                  <h2 id="video-4-title" class="video-title">The Simplest Math Problem No One Can Solve — Collatz Conjecture</h2>
+                  <p class="video-author">Veritasium</p>
+                  <p class="video-stats">18M views &middot; 4 months ago</p>
+                </div>
+              </div>
+            </a>
+          </article>
+          <article class="video-preview">
+            <a class="video-link" href="https://www.youtube.com/watch?v=86CQq3pKSUw">
+              <div class="thumbnail-row">
+                <img class="thumbnail" src="thumbnails/thumbnail-5.webp" alt="" width="720" height="404" loading="lazy">
+                <span class="video-duration" aria-hidden="true">11:17</span>
+              </div>
+              <div class="video-info-grid">
+                <img class="channel-picture" src="channel-pictures/channel-5.jpeg" alt="" width="36" height="36" loading="lazy">
+                <div class="video-info">
+                  <h2 id="video-5-title" class="video-title">Kadane's Algorithm to Maximum Sum Subarray Problem</h2>
+                  <p class="video-author">CS Dojo</p>
+                  <p class="video-stats">519K views &middot; 5 years ago</p>
+                </div>
+              </div>
+            </a>
+          </article>
+          <article class="video-preview">
+            <a class="video-link" href="https://www.youtube.com/watch?v=yXWw0_UfSFg">
+              <div class="thumbnail-row">
+                <img class="thumbnail" src="thumbnails/thumbnail-6.webp" alt="" width="720" height="404" loading="lazy">
+                <span class="video-duration" aria-hidden="true">19:59</span>
+              </div>
+              <div class="video-info-grid">
+                <img class="channel-picture" src="channel-pictures/channel-6.jpeg" alt="" width="36" height="36" loading="lazy">
+                <div class="video-info">
+                  <h2 id="video-6-title" class="video-title">Anything You Can Fit In The Circle I'll Pay For</h2>
+                  <p class="video-author">MrBeast</p>
+                  <p class="video-stats">141M views &middot; 1 year ago</p>
+                </div>
+              </div>
+            </a>
+          </article>
+        </div>
+        <footer id="learning-resources" class="demo-footer">
+          <h2>Learning resources</h2>
+          <p>A guided interface recreation using the sample imagery and content from SuperSimpleDev's course. Video statistics are example content.</p>
+          <ul>
+            <li><a href="https://www.youtube.com/watch?v=G3e-cpL7ofc&amp;t=15316s">SuperSimpleDev — HTML &amp; CSS course</a></li>
+            <li><a href="https://www.youtube.com/watch?v=EerdGm-ehJQ">SuperSimpleDev — additional learning resource</a></li>
+          </ul>
+          <a href="../../projects/youtube-clone">Read the project case study &rarr;</a>
+        </footer>
+      </main>
+    </div>
+  </body>
+</html>

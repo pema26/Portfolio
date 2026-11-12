@@ -8,22 +8,23 @@
 //
 //  HOW IT WORKS IN REACT: same pattern as Background.jsx. A ref reaches the
 //  real <canvas>, and useEffect starts the drawing code (plain JavaScript in
-//  src/lib/morphCanvas.js) once, when the header first appears. The empty
-//  dependency array [] means "run once"; the function startMorph() hands back
-//  is the cleanup React runs if the header is ever removed.
+//  src/lib/morphCanvas.js). It restarts as a still frame when reduced motion
+//  is enabled. startMorph() returns cleanup for restarts and unmounting.
 //
 //  Its size is set by the .header-morph rule in src/styles/global.css.
 // ============================================================================
 
 import { useEffect, useRef } from 'react';
 import { startMorph } from '../lib/morphCanvas';
+import { useMotion } from '../hooks/useMotion';
 
 function HeaderMorph() {
   const canvasRef = useRef(null);
+  const { reducedMotion } = useMotion();
 
   useEffect(() => {
-    return startMorph(canvasRef.current);
-  }, []);
+    return startMorph(canvasRef.current, { reducedMotion });
+  }, [reducedMotion]);
 
   return <canvas ref={canvasRef} className="header-morph" aria-hidden="true"></canvas>;
 }

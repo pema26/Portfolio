@@ -23,13 +23,15 @@ const osDarkQuery = '(prefers-color-scheme: dark)';
 
 // Work out which theme should be showing right now.
 function getPreferredDark() {
-  const saved = localStorage.getItem('theme');
+  let saved;
+  try { saved = localStorage.getItem('theme'); }
+  catch { /* Use the device theme when browser storage is blocked. */ }
   // A saved manual choice wins; otherwise follow the OS setting.
-  return saved ? saved === 'dark' : window.matchMedia(osDarkQuery).matches;
+  return saved ? saved === 'dark' : typeof window !== 'undefined' && window.matchMedia(osDarkQuery).matches;
 }
 
 export function useTheme() {
-  const [isDark, setIsDark] = useState(getPreferredDark());
+  const [isDark, setIsDark] = useState(getPreferredDark);
 
   // Side effect 1: whenever the state changes, add/remove the "dark" class on
   // the <html> tag so the Tailwind dark styles switch on or off.
@@ -65,7 +67,8 @@ export function useTheme() {
   const toggleTheme = () => {
     const nextIsDark = !isDark;
     setIsDark(nextIsDark);
-    localStorage.setItem('theme', nextIsDark ? 'dark' : 'light');
+    try { localStorage.setItem('theme', nextIsDark ? 'dark' : 'light'); }
+    catch { /* The toggle remains usable without persistent storage. */ }
   };
 
   return { isDark, toggleTheme };

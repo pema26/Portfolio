@@ -3,7 +3,7 @@
 // ============================================================================
 //
 //  WHAT'S HERE: every entry in src/content/projects/, grouped into three
-//  labelled sections — Flagship, Guided builds, and Mini projects — based on
+//  labelled sections — Ambitious projects, Guided builds, and Mini projects — based on
 //  each project's `category`. You never edit this page to add a project: add a
 //  new file in src/content/projects/ with the right category (and list it in
 //  that folder's index.js) and it appears under the matching heading.
@@ -40,7 +40,7 @@ const sections = Object.keys(CATEGORY_META)
 
 // Each tier shows something different in the card's corner:
 //   guided builds  -> a progress bar
-//   mini projects and flagship -> a "Completed" pill once finished,
+//   mini and ambitious projects -> a "Completed" pill once finished,
 //                                 otherwise a status pill (Planned / In progress)
 function extraCardProps(category, project) {
   if (category === 'guided') {
@@ -55,15 +55,15 @@ function extraCardProps(category, project) {
 function Projects() {
   usePageMeta(
     'Projects — Pema Tsering',
-    'Software projects in three tiers: flagship original ideas, guided tutorial builds, and small tools that solve real problems.',
+    'Software projects in three tiers: ambitious projects, guided tutorial builds, and small tools that solve real problems.',
   );
 
   return (
     <>
       <h1 className="font-serif text-3xl font-bold text-slate-900 dark:text-white">Projects</h1>
       <p className="mt-2 text-slate-600 dark:text-slate-400">
-        My build work, grouped by kind — from original, ambitious ideas to small
-        tools that scratch a real itch.
+        My build work, grouped by kind — ambitious applications, guided builds,
+        and small tools that solve practical problems.
       </p>
 
       {sections.map((section) => (
@@ -71,10 +71,10 @@ function Projects() {
           <h2 className="font-serif text-2xl font-semibold text-slate-900 dark:text-white">
             {section.meta.title}
           </h2>
-          <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">{section.meta.blurb}</p>
+          <p className="mt-1 text-sm text-slate-600 dark:text-slate-400">{section.meta.blurb}</p>
 
           {section.items.length === 0 ? (
-            <p className="mt-4 text-sm text-slate-500 dark:text-slate-400">
+            <p className="mt-4 text-sm text-slate-600 dark:text-slate-400">
               Nothing here yet — watch this space.
             </p>
           ) : (

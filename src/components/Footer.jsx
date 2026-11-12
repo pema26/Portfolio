@@ -18,7 +18,7 @@ function Footer() {
 
   return (
     <footer className="shrink-0 border-t border-slate-200 bg-white/80 backdrop-blur dark:border-slate-800 dark:bg-slate-950/80">
-      <div className="flex w-full flex-col items-center justify-between gap-3 px-4 py-6 text-sm text-slate-500 sm:flex-row sm:px-6 lg:px-10 dark:text-slate-400">
+      <div className="flex w-full flex-col items-center justify-between gap-3 px-4 py-6 text-sm text-slate-600 sm:flex-row sm:px-6 lg:px-10 dark:text-slate-400">
         <p>&copy; {year} Pema Tsering</p>
         <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
           {socials.map((social) => (
@@ -26,7 +26,7 @@ function Footer() {
               {social.href ? (
                 <a
                   href={social.href}
-                  className="transition hover:text-accent-500"
+                  className="underline underline-offset-4 transition hover:text-link"
                   target="_blank"
                   rel="me noopener noreferrer"
                 >

@@ -1,5 +1,5 @@
 // ============================================================================
-//  A FLAGSHIP project — Payment Review (the banking transactions dashboard).
+//  An AMBITIOUS project — Payment Review (the banking transactions dashboard).
 //
 //  The project itself is a Python + PostgreSQL app that lives in the
 //  bank-payment-review/ folder at the top of this repository. It needs a

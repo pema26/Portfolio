@@ -31,7 +31,7 @@ function Research() {
       </p>
 
       {sortedResearch.length === 0 ? (
-        <p className="mt-8 text-slate-500 dark:text-slate-400">No research entries yet.</p>
+        <p className="mt-8 text-slate-600 dark:text-slate-400">No research entries yet.</p>
       ) : (
         <div className="mt-8 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">
           {sortedResearch.map((entry) => (
@@ -42,6 +42,7 @@ function Research() {
               description={entry.description}
               tags={entry.tags}
               basePath="/research"
+              headingAs="h2"
               badge={{ label: entry.researchType || 'Research', tone: 'teal' }}
             />
           ))}
