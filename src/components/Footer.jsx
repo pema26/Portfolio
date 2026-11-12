@@ -11,7 +11,6 @@
 const socials = [
   { href: 'https://github.com/pema26', label: 'GitHub' },
   { href: 'https://www.linkedin.com/in/pema-tsering-kcl/', label: 'LinkedIn' },
-  { label: 'Google Scholar (pending)' }, // add an href once the profile exists
 ];
 
 function Footer() {

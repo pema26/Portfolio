@@ -112,8 +112,9 @@
 }
 
 /* --------------------------------------------------------------------------
-   The site-wide animated background canvas (src/components/Background.jsx).
-   It is pinned to the viewport and sits behind all the content.
+   The wireframe background canvas shown on Projects, Problems and Research
+   (src/components/Background.jsx). It is pinned to the viewport and sits
+   behind all the content.
    -------------------------------------------------------------------------- */
 #site-bg {
   position: fixed;
@@ -122,6 +123,60 @@
   height: 100%;
   z-index: -1;
   pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
+   The HOME page background: a soft purple gradient with a wide calm band in
+   the middle (white in light mode, black in dark mode) that drifts gently.
+
+   HOW THE MOTION WORKS: the gradient is built from four numbers held in CSS
+   variables. @property tells the browser those variables are percentages, so
+   it can animate them smoothly; the keyframes below then slide them around.
+     --glow-x / --glow-y : centre of the two soft colour glows
+     --band-l / --band-r : where the calm middle band starts and ends
+
+   EDIT HERE:
+     - wider / narrower middle band -> the --band-l and --band-r numbers
+       (further apart = more white/black),
+     - faster / slower              -> the 18s in the `animation` line,
+     - colours                      -> the hex / rgba values.
+   -------------------------------------------------------------------------- */
+@property --glow-x { syntax: "<percentage>"; inherits: false; initial-value: 14%; }
+@property --glow-y { syntax: "<percentage>"; inherits: false; initial-value: 30%; }
+@property --band-l { syntax: "<percentage>"; inherits: false; initial-value: 24%; }
+@property --band-r { syntax: "<percentage>"; inherits: false; initial-value: 78%; }
+
+#home-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse 34% 75% at var(--glow-x) var(--glow-y), rgba(220, 173, 255, 0.47), transparent 85%),
+    radial-gradient(ellipse 30% 80% at calc(100% - var(--glow-x)) 70%, rgba(190, 145, 255, 0.43), transparent 85%),
+    linear-gradient(90deg, #ebc9ff 0%, #fff var(--band-l), #fff var(--band-r), #cea8ff 100%);
+  animation: home-bg-drift 18s ease-in-out infinite;
+}
+.dark #home-bg {
+  background:
+    radial-gradient(ellipse 34% 75% at var(--glow-x) var(--glow-y), rgba(124, 77, 168, 0.4), transparent 85%),
+    radial-gradient(ellipse 30% 80% at calc(100% - var(--glow-x)) 70%, rgba(104, 72, 160, 0.38), transparent 85%),
+    linear-gradient(90deg, #523469 0%, #000 var(--band-l), #000 var(--band-r), #4f376e 100%);
+}
+@keyframes home-bg-drift {
+  0%   { --glow-x: 14%; --glow-y: 30%; --band-l: 24%; --band-r: 78%; }
+  25%  { --glow-x: 6%;  --glow-y: 62%; --band-l: 19%; --band-r: 74%; }
+  50%  { --glow-x: 18%; --glow-y: 78%; --band-l: 27%; --band-r: 82%; }
+  75%  { --glow-x: 10%; --glow-y: 18%; --band-l: 21%; --band-r: 72%; }
+  100% { --glow-x: 14%; --glow-y: 30%; --band-l: 24%; --band-r: 78%; }
+}
+
+/* The small morphing wireframe next to the name in the header
+   (src/components/HeaderMorph.jsx). EDIT HERE to resize it. */
+.header-morph {
+  width: 2.5rem;
+  height: 2.5rem;
+  flex: none;
 }
 
 /* --------------------------------------------------------------------------
