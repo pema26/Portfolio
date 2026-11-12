@@ -40,17 +40,14 @@ const sections = Object.keys(CATEGORY_META)
 
 // Each tier shows something different in the card's corner:
 //   guided builds  -> a progress bar
-//   mini projects  -> a "Completed" pill once finished, otherwise a status pill
-//   flagship       -> a status pill (Planned / In progress)
+//   mini projects and flagship -> a "Completed" pill once finished,
+//                                 otherwise a status pill (Planned / In progress)
 function extraCardProps(category, project) {
   if (category === 'guided') {
     return { progress: project.progress };
   }
-  if (category === 'mini-unique') {
-    if (project.status === 'complete') {
-      return { completed: true };
-    }
-    return { status: STATUS_META[project.status] };
+  if (project.status === 'complete') {
+    return { completed: true };
   }
   return { status: STATUS_META[project.status] };
 }

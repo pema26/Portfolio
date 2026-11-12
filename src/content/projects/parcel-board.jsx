@@ -15,7 +15,7 @@ export const meta = {
   tags: ['Python', 'automation', 'product idea'],
   // githubUrl: '[[GITHUB_URL]]', // optional — uncomment and set
   devlog: [],
-  featured: true, // show on the home page?
+  featured: false, // show on the home page?
 };
 
 // EDIT HERE: this is your own project. The notes below are a starting

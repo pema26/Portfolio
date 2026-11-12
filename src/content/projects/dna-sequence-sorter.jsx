@@ -16,7 +16,7 @@ export const meta = {
   tags: ['Python', 'bioinformatics', 'automation'],
   // githubUrl: '[[GITHUB_URL]]', // optional — uncomment and set
   devlog: [],
-  featured: true, // show on the home page?
+  featured: false, // show on the home page?
 };
 
 // The code shown at the bottom of the page. It is kept in a template literal

@@ -4,12 +4,13 @@
 // ============================================================================
 
 import CodeBlock from '../../components/CodeBlock';
+import FastaAnalyzerDemo from '../../components/FastaAnalyzerDemo';
 
 export const meta = {
   id: 'fasta-analyzer', // becomes the URL: /projects/fasta-analyzer
   title: 'FASTA analyzer: sequence length, GC content and motif search',
   description:
-    'Scientific sequence analysis and scripting in Python: parses FASTA records and reports each sequence’s length, GC content and where a motif such as ATG occurs — written with plain Python, no libraries.',
+    'Scientific sequence analysis and scripting in Python: parses FASTA records and reports each sequence’s length, GC content and where a motif such as ATG occurs — written with plain Python, no libraries, with a box on this page to try it.',
   category: 'mini-unique', // big-unique | guided | mini-unique
   status: 'complete', // planned | in-progress | complete
   date: '2026-04-15', // YYYY-MM-DD — EDIT HERE: set to when you actually wrote it
@@ -161,6 +162,17 @@ else:
 export default function FastaAnalyzer() {
   return (
     <>
+      <h2>Try it</h2>
+
+      <p>
+        Paste one or more FASTA records below (or use the sample) and
+        press <strong>Analyze</strong>. Sequences need to be in capital letters. The original
+        is a Python program; a web page cannot run Python, so this box runs the same functions
+        translated line by line into JavaScript. The Python itself is at the bottom of the page.
+      </p>
+
+      <FastaAnalyzerDemo />
+
       <h2>The idea</h2>
 
       <p>

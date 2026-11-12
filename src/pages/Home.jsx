@@ -41,10 +41,11 @@ function Home() {
           Pema Tsering
         </h1>
         <p className="mt-4 text-lg leading-relaxed text-slate-600 dark:text-slate-300">
-          I build data and bioinformatics tools in <strong className="font-semibold text-slate-800 dark:text-slate-100">Python</strong>, <strong className="font-semibold text-slate-800 dark:text-slate-100">SQL</strong> and <strong className="font-semibold text-slate-800 dark:text-slate-100">R</strong>,
-          web interfaces in <strong className="font-semibold text-slate-800 dark:text-slate-100">JavaScript</strong> and <strong className="font-semibold text-slate-800 dark:text-slate-100">React</strong>, and
-          I'm working down to the low level in <strong className="font-semibold text-slate-800 dark:text-slate-100">C++</strong>. I trained
-          in molecular biology, so I bring a researcher's habits to software:
+          I build data tools in <strong className="font-semibold text-slate-800 dark:text-slate-100">Python</strong> and <strong className="font-semibold text-slate-800 dark:text-slate-100">SQL</strong>:
+          most recently a <strong className="font-semibold text-slate-800 dark:text-slate-100">Flask</strong> and <strong className="font-semibold text-slate-800 dark:text-slate-100">PostgreSQL</strong> dashboard
+          that finds recurring payments in seven years of bank transactions. I also
+          write bioinformatics scripts and web interfaces in <strong className="font-semibold text-slate-800 dark:text-slate-100">JavaScript</strong> and <strong className="font-semibold text-slate-800 dark:text-slate-100">React</strong>.
+          I trained in molecular biology, so I bring a researcher's habits to software:
           test the assumption, measure the result, and write it up clearly.
         </p>
         <div className="mt-6 flex flex-wrap gap-3">
@@ -64,8 +65,8 @@ function Home() {
       </section>
 
       {/* ===================== SECTION PORTALS ===================== */}
-      {/* Three cards that preview each section's background motif on hover and
-          link to it. See src/components/SectionPortals.jsx. */}
+      {/* Three cards that link to the main sections.
+          See src/components/SectionPortals.jsx. */}
       <SectionPortals />
 
       {/* ===================== FEATURED PROJECTS ===================== */}
@@ -98,6 +99,7 @@ function Home() {
                   tone: CATEGORY_META[project.category].tone,
                 }}
                 status={STATUS_META[project.status]}
+                completed={project.status === 'complete'}
               />
             ))}
           </div>

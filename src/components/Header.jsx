@@ -38,7 +38,7 @@ function Header() {
         <Link to="/" className="flex items-center gap-2 font-serif text-lg font-semibold tracking-tight text-slate-900 dark:text-white">
           Pema Tsering
           {/* The small morphing wireframe (box -> DNA helix -> graph) that
-              turns to follow the mouse. See src/components/HeaderMorph.jsx. */}
+              moves when the mouse is close to it. See src/components/HeaderMorph.jsx. */}
           <HeaderMorph />
         </Link>
 

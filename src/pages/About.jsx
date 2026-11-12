@@ -54,13 +54,6 @@ function About() {
           data through <em>R for Data Science</em>.
         </p>
         <p>
-          That curiosity pulled me toward the low level, too: I've been building a
-          software rasterizer from scratch (following
-          the <em>tinyrenderer</em> tutorial) to really understand how a computer
-          turns geometry into pixels — line drawing, wireframes, and triangle
-          rasterization with no graphics library doing the work for me.
-        </p>
-        <p>
           Alongside the code is a research background in molecular biology, including
           site-directed mutagenesis of catechol 2,3-dioxygenase
           in <em>Pseudomonas aeruginosa</em> and a presentation on kinase inhibitors in
