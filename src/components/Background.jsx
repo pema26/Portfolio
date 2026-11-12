@@ -5,11 +5,11 @@
 //  WHAT IT IS: the thing drawn BEHIND the page content. Which one you get
 //  depends on the section of the site you are in:
 //
-//    /            -> a soft purple gradient that drifts slowly (Home only).
+//    /            -> an animated pink/white or purple gradient (Home only).
 //                    Pure CSS: see the #home-bg rule in src/styles/global.css.
 //    /projects    -> rotating wireframe cubes
 //    /problems    -> graph traversal (edges "grow" node-to-node, like BFS),
-//                    starting a minute after the page opens
+//                    starting on entry, then staying connected for a minute
 //    /research    -> vertical DNA double helix
 //    everything else (About, Contact, 404) -> nothing: a clean plain page.
 //
@@ -39,7 +39,7 @@ function motifFor(path) {
 
 // EDIT HERE: how solid each wireframe is. 1 = fully visible, 0 = invisible.
 // 0.25 means "75% transparent", which keeps the text on top easy to read.
-const OPACITY = { cubes: 1, graph: 0.25, helix: 0.25 };
+const OPACITY = { cubes: 1, graph: 0.50, helix: 0.75 };
 
 function WireframeCanvas({ motif }) {
   const canvasRef = useRef(null);

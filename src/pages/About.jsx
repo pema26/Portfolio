@@ -13,22 +13,22 @@ import { usePageMeta } from '../hooks/usePageMeta';
 // The first three groups mirror my CV; the last one covers skills the
 // projects on this site use. (Certifications live in the CV itself.)
 const skillGroups = [
-  { heading: 'Programming', items: ['Python', 'SQL', 'R', 'Bash'] },
+  { heading: 'Programming', items: ['Python', 'R', 'SQL', 'Bash', 'JavaScript'] },
   {
-    heading: 'Web development',
-    items: ['JavaScript', 'HTML', 'CSS', 'Vue.js', 'React', 'Tailwind CSS'],
+    heading: 'Frontend Development',
+    items: ['HTML', 'CSS', 'Vue.js', 'React', 'Tailwind CSS'],
   },
   {
-    heading: 'Tools',
-    items: ['Git & GitHub', 'Command line', 'Figma', 'Microsoft Office (Word, Excel, PowerPoint)'],
+    heading: 'Tools & Technologies',
+    items: ['Git & GitHub', 'PostgreSQL', 'Figma', 'Microsoft Office (Word, Excel, PowerPoint)'],
   },
   {
-    heading: 'Engineering practice',
+    heading: 'Software Engineering',
     items: [
-      'Algorithms & data structures (Codeforces & FreeCodeCamp Coding Challenges)',
-      'Automated testing (Python unit test)',
-      'Relational databases (PostgreSQL)',
-      'Working with REST APIs',
+      'Data Structures & Algorithms',
+      'Unit testing (Python unittest)',
+      'Relational database Design',
+      'Rest API Integration',
     ],
   },
 ];
@@ -56,8 +56,8 @@ function About() {
         <p>
           Alongside the code is a research background in molecular biology, including
           site-directed mutagenesis of catechol 2,3-dioxygenase
-          in <em>Pseudomonas aeruginosa</em> and a presentation on kinase inhibitors in
-          targeted therapy. I like that both halves reward the same thing: careful,
+          from <em>Pseudomonas putida</em>, expressed in <em>E. coli</em>, and a library
+          dissertation on kinase inhibitors in targeted therapy. I like that both halves reward the same thing: careful,
           methodical work and a willingness to dig until something actually makes
           sense.
         </p>
@@ -90,8 +90,10 @@ function About() {
               </h3>
               <ul className="mt-2 flex flex-wrap gap-1.5">
                 {group.items.map((item) => (
-                  <li key={item} className="rounded bg-slate-100 px-2.5 py-1 text-sm text-slate-700 dark:bg-slate-800 dark:text-slate-300">
-                    {item}
+                  <li key={item} className={item === 'Rest API Integration' ? 'basis-full' : undefined}>
+                    <span className="block w-fit rounded bg-slate-100 px-2.5 py-1 text-sm text-slate-700 dark:bg-slate-800 dark:text-slate-300">
+                      {item}
+                    </span>
                   </li>
                 ))}
               </ul>

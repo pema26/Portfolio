@@ -51,3 +51,13 @@ Each entry is one `.jsx` file in the matching `src/content/` folder
 1. Copy an existing file in the folder and rename it.
 2. Edit its `meta` (the `id` becomes the URL) and the write-up.
 3. Import it in that folder's `index.js` and add one line to the list.
+
+The freeCodeCamp daily challenge total on the Problems page is updated manually.
+Change `DAILY_PROGRESS.solved` and `DAILY_PROGRESS.updatedAt` in
+`src/components/FreeCodeCampProfile.jsx` together. Daily completions are separate
+from curriculum exercises and are not included in freeCodeCamp's public profile API.
+
+Research PDFs live in `public/documents/research/`. Each research entry's
+`meta.documents` array supplies its document titles, descriptions, paths relative
+to `public/`, and page counts. The research detail page adds open/download links
+and optional previews, which keep a white background in both site themes.

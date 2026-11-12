@@ -19,7 +19,6 @@ const links = [
     value: 'linkedin.com/in/pema-tsering-kcl',
     href: 'https://www.linkedin.com/in/pema-tsering-kcl/',
   },
-  { label: 'Google Scholar', value: 'Pending' }, // add an href once the profile exists
 ];
 
 function Contact() {

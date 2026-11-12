@@ -17,9 +17,9 @@ function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-slate-200 dark:border-slate-800">
+    <footer className="shrink-0 border-t border-slate-200 bg-white/80 backdrop-blur dark:border-slate-800 dark:bg-slate-950/80">
       <div className="flex w-full flex-col items-center justify-between gap-3 px-4 py-6 text-sm text-slate-500 sm:flex-row sm:px-6 lg:px-10 dark:text-slate-400">
-        <p>&copy; {year} Pema Tsering. Built with React and Vite.</p>
+        <p>&copy; {year} Pema Tsering</p>
         <ul className="flex flex-wrap items-center justify-center gap-x-4 gap-y-1">
           {socials.map((social) => (
             <li key={social.label}>

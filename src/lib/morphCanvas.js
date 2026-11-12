@@ -3,9 +3,9 @@
 // ============================================================================
 //
 //  WHAT IT IS: plain JavaScript (no React in here) that draws a small
-//  wireframe which morphs box -> DNA helix -> graph in a loop. It stays still
-//  until the mouse comes close to it; then it spins, morphs, and turns and
-//  tilts towards the mouse. Move away and it freezes where it is. The React component src/components/HeaderMorph.jsx owns the <canvas>
+//  wireframe which continuously spins and morphs box -> DNA helix -> graph.
+//  When the mouse comes close within the header, it also turns and tilts towards it.
+//  The React component src/components/HeaderMorph.jsx owns the <canvas>
 //  and calls startMorph() from a useEffect.
 //
 //  HOW THE MORPH WORKS: all three shapes are described with the SAME number of
@@ -49,12 +49,12 @@ const shapes = [
   { points: graph, edges: graphE },
 ];
 
-const HOLD = 3600;  // milliseconds a shape stays still
+const HOLD = 3600;  // milliseconds a shape keeps its form while rotating
 const MORPH = 2100; // milliseconds a morph takes
 const CYCLE = HOLD + MORPH;
 const N = 16;
 // EDIT HERE: how close (in pixels, measured from the middle of the shape) the
-// mouse has to be before the shape starts moving.
+// mouse has to be before the shape follows it.
 const NEAR = 110;
 
 function smooth(t) { return t * t * (3 - 2 * t); }
@@ -69,14 +69,14 @@ export function startMorph(canvas) {
   if (!(canvas instanceof HTMLCanvasElement)) return undefined;
   const ctx = canvas.getContext('2d');
   if (!ctx) return undefined;
+  const interactionArea = canvas.closest('header') || canvas;
 
   const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let dpr = 1, w = 0, h = 0, raf = null, running = false;
   // Where the mouse is relative to the shape (-1 … 1 across the NEAR circle),
   // and a smoothed copy that chases it so the shape glides rather than jumps.
   let targetX = 0, targetY = 0, mx = 0, my = 0;
-  // The shape's own clock. It only ticks while the mouse is near, which is
-  // what makes the shape freeze (rather than jump) when the mouse leaves.
+  // Keep animation time across pauses, so returning to the tab resumes smoothly.
   let clock = 0, last = null;
 
   function size() {
@@ -156,10 +156,11 @@ export function startMorph(canvas) {
   function pause() { running = false; if (raf) cancelAnimationFrame(raf); raf = null; }
 
   size();
-  draw(clock); // one still frame to start with
+  draw(clock);
+  if (!document.hidden) play();
 
   function onResize() { size(); draw(clock); }
-  function onVis() { if (document.hidden) pause(); }
+  function onVis() { if (document.hidden) pause(); else play(); }
   function onMove(e) {
     // How far is the mouse from the middle of the shape?
     const r = canvas.getBoundingClientRect();
@@ -168,14 +169,17 @@ export function startMorph(canvas) {
     if (Math.hypot(dx, dy) <= NEAR) {
       targetX = dx / NEAR;
       targetY = dy / NEAR;
-      play();
     } else {
-      pause();
+      targetX = 0;
+      targetY = 0;
     }
   }
+  function onLeave() { targetX = 0; targetY = 0; }
   window.addEventListener('resize', onResize);
   document.addEventListener('visibilitychange', onVis);
-  window.addEventListener('mousemove', onMove);
+  // Keep pointer interaction inside the header, including its vertical bounds.
+  interactionArea.addEventListener('mousemove', onMove);
+  interactionArea.addEventListener('mouseleave', onLeave);
 
   // Re-colour the still frame when the theme toggle flips the .dark class.
   const themeObs = new MutationObserver(function () { if (!running) draw(clock); });
@@ -185,7 +189,8 @@ export function startMorph(canvas) {
     pause();
     window.removeEventListener('resize', onResize);
     document.removeEventListener('visibilitychange', onVis);
-    window.removeEventListener('mousemove', onMove);
+    interactionArea.removeEventListener('mousemove', onMove);
+    interactionArea.removeEventListener('mouseleave', onLeave);
     themeObs.disconnect();
   };
 }

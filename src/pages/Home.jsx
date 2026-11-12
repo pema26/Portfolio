@@ -35,7 +35,7 @@ function Home() {
       {/* EDIT HERE: your name and one-line positioning statement. */}
       <section className="py-8 sm:py-12">
         <p className="mb-3 text-sm font-medium uppercase tracking-wider text-accent-500">
-          London-based developer &amp; researcher
+          Aspiring Software Engineer - Based near London, UK
         </p>
         <h1 className="font-serif text-4xl font-bold leading-tight text-slate-900 sm:text-5xl dark:text-white">
           Pema Tsering
@@ -71,11 +71,11 @@ function Home() {
 
       {/* ===================== FEATURED PROJECTS ===================== */}
       <section className="py-8">
-        <div className="mb-6 flex items-baseline justify-between">
-          <h2 className="font-serif text-2xl font-semibold text-slate-900 dark:text-white">
+        <div className="mb-6 grid gap-2 text-center sm:grid-cols-[1fr_auto_1fr] sm:items-baseline">
+          <h2 className="font-serif text-2xl font-semibold text-slate-900 sm:col-start-2 dark:text-white">
             Featured work
           </h2>
-          <Link to="/projects" className="text-sm font-medium text-accent-500 hover:underline">
+          <Link to="/projects" className="text-sm font-medium text-accent-500 hover:underline sm:col-start-3 sm:justify-self-end">
             All projects &rarr;
           </Link>
         </div>
@@ -109,11 +109,11 @@ function Home() {
       {/* ===================== SELECTED RESEARCH ===================== */}
       {featuredResearch.length > 0 && (
         <section className="py-8">
-          <div className="mb-6 flex items-baseline justify-between">
-            <h2 className="font-serif text-2xl font-semibold text-slate-900 dark:text-white">
+          <div className="mb-6 grid gap-2 text-center sm:grid-cols-[1fr_auto_1fr] sm:items-baseline">
+            <h2 className="font-serif text-2xl font-semibold text-slate-900 sm:col-start-2 dark:text-white">
               Selected research
             </h2>
-            <Link to="/research" className="text-sm font-medium text-accent-500 hover:underline">
+            <Link to="/research" className="text-sm font-medium text-accent-500 hover:underline sm:col-start-3 sm:justify-self-end">
               All research &rarr;
             </Link>
           </div>
@@ -126,7 +126,7 @@ function Home() {
                 description={entry.description}
                 tags={entry.tags}
                 basePath="/research"
-                badge={{ label: 'Research', tone: 'teal' }}
+                badge={{ label: entry.researchType || 'Research', tone: 'teal' }}
               />
             ))}
           </div>
@@ -134,7 +134,7 @@ function Home() {
       )}
 
       {/* ===================== CONTACT CTA ===================== */}
-      <section className="my-8 rounded-2xl border border-slate-200 bg-slate-50 p-8 text-center dark:border-slate-800 dark:bg-slate-900">
+      <section className="my-8 rounded-2xl border border-slate-200 bg-white p-8 text-center dark:border-slate-800 dark:bg-slate-900">
         <h2 className="font-serif text-2xl font-semibold text-slate-900 dark:text-white">
           Let's talk
         </h2>

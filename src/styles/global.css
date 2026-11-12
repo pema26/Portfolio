@@ -62,6 +62,14 @@
     background-color: transparent;
   }
 
+  /* Let short pages fill the viewport and push the footer to the bottom. */
+  #root {
+    display: flex;
+    min-height: 100vh;
+    min-height: 100dvh;
+    flex-direction: column;
+  }
+
   /* Respect visitors who have asked their device to reduce animation. This is
      an accessibility must-have — the canvas demo also checks this setting. */
   @media (prefers-reduced-motion: reduce) {
@@ -126,51 +134,25 @@
 }
 
 /* --------------------------------------------------------------------------
-   The HOME page background: a soft purple gradient with a wide calm band in
-   the middle (white in light mode, black in dark mode) that drifts gently.
-
-   HOW THE MOTION WORKS: the gradient is built from four numbers held in CSS
-   variables. @property tells the browser those variables are percentages, so
-   it can animate them smoothly; the keyframes below then slide them around.
-     --glow-x / --glow-y : centre of the two soft colour glows
-     --band-l / --band-r : where the calm middle band starts and ends
-
-   EDIT HERE:
-     - wider / narrower middle band -> the --band-l and --band-r numbers
-       (further apart = more white/black),
-     - faster / slower              -> the 18s in the `animation` line,
-     - colours                      -> the hex / rgba values.
+   HOME only: the supplied pink/white light palette and purple dark palette.
+   A 400% gradient moves horizontally and returns over a 10-second loop.
    -------------------------------------------------------------------------- */
-@property --glow-x { syntax: "<percentage>"; inherits: false; initial-value: 10%; }
-@property --glow-y { syntax: "<percentage>"; inherits: false; initial-value: 30%; }
-@property --band-l { syntax: "<percentage>"; inherits: false; initial-value: 15%; }
-@property --band-r { syntax: "<percentage>"; inherits: false; initial-value: 85%; }
-
 #home-bg {
   position: fixed;
   inset: 0;
   z-index: -1;
   pointer-events: none;
-  background:
-    radial-gradient(ellipse 24% 75% at var(--glow-x) var(--glow-y), rgba(220, 173, 255, 0.2), transparent 85%),
-    radial-gradient(ellipse 22% 80% at calc(100% - var(--glow-x)) 70%, rgba(190, 145, 255, 0.18), transparent 85%),
-    linear-gradient(90deg, #f3e1ff 0%, #fff var(--band-l), #fff var(--band-r), #e7d5ff 100%);
-  animation: home-bg-drift 18s ease-in-out infinite;
+  background-image: linear-gradient(-45deg, #FDF7F7, #FFFDFD, #FEFEFE, #FDF0F2);
+  background-size: 400% 400%;
+  background-position: 0% 50%;
+  animation: home-gradient 10s ease infinite;
 }
 .dark #home-bg {
-  background:
-    radial-gradient(ellipse 24% 75% at var(--glow-x) var(--glow-y), rgba(124, 77, 168, 0.16), transparent 85%),
-    radial-gradient(ellipse 22% 80% at calc(100% - var(--glow-x)) 70%, rgba(104, 72, 160, 0.15), transparent 85%),
-    linear-gradient(90deg, #2b1b38 0%, #000 var(--band-l), #000 var(--band-r), #2a1d3b 100%);
+  background-image: linear-gradient(-45deg, #2B0A30, #0C0611, #170C21, #311A46);
 }
-/* The middle band runs from about 15% to 85% of the width and sways by a
-   couple of percent either way. */
-@keyframes home-bg-drift {
-  0%   { --glow-x: 10%; --glow-y: 30%; --band-l: 15%; --band-r: 85%; }
-  25%  { --glow-x: 5%;  --glow-y: 62%; --band-l: 13%; --band-r: 83%; }
-  50%  { --glow-x: 13%; --glow-y: 78%; --band-l: 17%; --band-r: 87%; }
-  75%  { --glow-x: 7%;  --glow-y: 18%; --band-l: 14%; --band-r: 84%; }
-  100% { --glow-x: 10%; --glow-y: 30%; --band-l: 15%; --band-r: 85%; }
+@keyframes home-gradient {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 /* The small morphing wireframe next to the name in the header
@@ -179,6 +161,15 @@
   width: 2.5rem;
   height: 2.5rem;
   flex: none;
+}
+
+/* Keep document previews on white paper, including when the site is dark. */
+.research-document-preview,
+.research-document-preview iframe {
+  background-color: #ffffff;
+  color: #0f172a;
+  color-scheme: only light;
+  filter: none;
 }
 
 /* --------------------------------------------------------------------------

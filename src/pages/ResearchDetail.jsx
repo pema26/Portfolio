@@ -14,6 +14,7 @@ import { usePageMeta } from '../hooks/usePageMeta';
 import { research } from '../content/research';
 import { TONES } from '../lib/projectMeta';
 import { formatMonthYear } from '../lib/dates';
+import ResearchDocuments from '../components/ResearchDocuments';
 
 function ResearchDetail() {
   const { slug } = useParams();
@@ -39,7 +40,7 @@ function ResearchDetail() {
       <header className="mt-4">
         <div className="flex flex-wrap items-center gap-3">
           <span className={`rounded-full px-2.5 py-0.5 text-xs font-medium ${TONES.teal}`}>
-            Research
+            {entry.researchType || 'Research'}
           </span>
           <time className="text-sm text-slate-500 dark:text-slate-400">{formatMonthYear(entry.date)}</time>
         </div>
@@ -86,6 +87,8 @@ function ResearchDetail() {
       <article className="prose-content mt-8 text-slate-700 dark:text-slate-300">
         <Content />
       </article>
+
+      <ResearchDocuments documents={entry.documents} />
     </>
   );
 }

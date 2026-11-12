@@ -5,7 +5,7 @@
 //  WHAT'S HERE: three parts —
 //    1. My live Codeforces profile: rating, a rating chart, an activity
 //       calendar and the problems I've solved, fetched from the Codeforces API
-//       each time the page opens.
+//       each time the page opens, plus my freeCodeCamp daily challenge total.
 //    2. A search box that filters the worked solutions live (handy as the list
 //       grows).
 //    3. A showcase of individual solved problems from src/content/challenges/,
@@ -21,6 +21,7 @@
 import { useState } from 'react';
 import ChallengeCard from '../components/ChallengeCard';
 import CodeforcesProfile from '../components/codeforces/CodeforcesProfile';
+import FreeCodeCampProfile from '../components/FreeCodeCampProfile';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { challenges } from '../content/challenges';
 import { oldestFirst } from '../lib/dates';
@@ -97,6 +98,7 @@ function Problems() {
         {/* Live rating, chart, calendar and solved problems, straight from
             the Codeforces API. See src/components/codeforces/. */}
         <CodeforcesProfile writeUps={writeUps} />
+        <FreeCodeCampProfile />
       </section>
 
       {/* ===================== WORKED SOLUTIONS ===================== */}

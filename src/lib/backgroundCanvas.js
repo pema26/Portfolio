@@ -139,14 +139,19 @@ export function startBackground(canvas, motif) {
   function egrow(t) { return t < 0 ? 0 : t > 1 ? 1 : t * t * (3 - 2 * t); }
   function drawGraph(ts, C) {
     ctx.clearRect(0, 0, w, h);
-    // EDIT HERE: WAIT is how long (in milliseconds) the graph sits still before
-    // each traversal starts. 60000 = one minute. A wave's start time (t0) is
-    // set that far in the future, so until then nothing is "lit".
-    let WAIT = 60000;
-    if (!G || G.w !== w || G.h !== h) { G = buildGraph(); G.t0 = ts + WAIT; G.wave = bfs(G, G.start); }
-    let STEP = 560, GROW = 460, HOLD = 1400;
+    // Start connecting on entry, then keep the completed purple graph for a
+    // minute before starting the next traversal. All durations are milliseconds.
+    let STEP = 560, GROW = 460, HOLD = 60000;
+    if (!G || G.w !== w || G.h !== h) { G = buildGraph(); G.t0 = ts; G.wave = bfs(G, G.start); }
     let elapsed = ts - G.t0;
-    if (elapsed > G.wave.max * STEP + GROW + HOLD + 700) { G.start = Math.floor(Math.random() * G.nodes.length); G.t0 = ts + WAIT; G.wave = bfs(G, G.start); }
+    if (!reduced && elapsed >= G.wave.max * STEP + GROW + HOLD) {
+      G.start = Math.floor(Math.random() * G.nodes.length);
+      G.t0 = ts;
+      G.wave = bfs(G, G.start);
+      elapsed = 0;
+    }
+    // Reduced motion gets a fully connected still frame, including highlights.
+    if (reduced) elapsed = G.wave.max * STEP + GROW;
     for (let i = 0; i < G.nodes.length; i++) { let n = G.nodes[i]; n.x = n.bx + Math.sin(ts * 0.0006 + n.ph) * 6; n.y = n.by + Math.cos(ts * 0.0007 + n.ph) * 6; }
     for (let kk = 0; kk < G.edges.length; kk++) {
       let e = G.edges[kk], A = G.nodes[e[0]], B = G.nodes[e[1]];
@@ -165,7 +170,12 @@ export function startBackground(canvas, motif) {
       let nn = G.nodes[m];
       let pr = egrow((elapsed - G.wave.dist[m] * STEP) / GROW);
       let rad = 2.2 + 2.8 * pr;
-      if (pr > 0 && pr < 1) { ctx.fillStyle = 'rgba(' + C.glow + ',' + (0.22 * pr) + ')'; ctx.beginPath(); ctx.arc(nn.x, nn.y, rad + 8, 0, 6.283); ctx.fill(); }
+      if (pr > 0) {
+        ctx.fillStyle = 'rgba(' + C.glow + ',' + (0.18 * pr) + ')';
+        ctx.beginPath(); ctx.arc(nn.x, nn.y, rad + 8, 0, 6.283); ctx.fill();
+        ctx.strokeStyle = 'rgba(' + C.glow + ',' + (0.65 * pr) + ')'; ctx.lineWidth = 1.2;
+        ctx.beginPath(); ctx.arc(nn.x, nn.y, rad + 3, 0, 6.283); ctx.stroke();
+      }
       ctx.fillStyle = 'rgba(' + C.node + ',' + (0.4 + 0.55 * pr) + ')';
       ctx.beginPath(); ctx.arc(nn.x, nn.y, rad, 0, 6.283); ctx.fill();
     }

@@ -3,8 +3,8 @@
 // ============================================================================
 //
 //  WHAT IT IS: a tiny <canvas> in the header showing a wireframe that morphs
-//  box -> DNA helix -> graph in a loop. It only moves while the mouse is close
-//  to it, and then turns to follow the mouse.
+//  box -> DNA helix -> graph continuously, and turns to follow the mouse
+//  when it is close by and inside the header bar.
 //
 //  HOW IT WORKS IN REACT: same pattern as Background.jsx. A ref reaches the
 //  real <canvas>, and useEffect starts the drawing code (plain JavaScript in

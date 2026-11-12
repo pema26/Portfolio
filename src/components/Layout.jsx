@@ -47,7 +47,7 @@ function Layout({ children }) {
           Full-width content with a little breathing room at the edges.
           key={pathname} makes React create a fresh <main> for each page, which
           replays the gentle fade-in animation on every navigation. */}
-      <main id="main" key={pathname} className="w-full px-4 py-10 sm:px-6 lg:px-10 animate-fade-in">
+      <main id="main" key={pathname} className="w-full flex-1 px-4 py-10 sm:px-6 lg:px-10 animate-fade-in">
         {children}
       </main>
 

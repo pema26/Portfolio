@@ -3,13 +3,20 @@
 
 export const meta = {
   id: 'kinase-inhibitors', // becomes the URL: /research/kinase-inhibitors
-  title: 'Kinase inhibitors in targeted therapy',
+  title: 'Kinases as drug targets: a history of failures and successes',
   description:
-    'A presentation on how small-molecule kinase inhibitors are used in cancer and inflammatory disease — imatinib, gefitinib, and JAK/p38 inhibitors.',
+    'A library dissertation comparing imatinib, gefitinib, and p38 MAPK inhibitors to explore how genetic context, signalling networks, and acquired resistance shape targeted therapy.',
   date: '2025-10-15', // YYYY-MM-DD
-  tags: ['pharmacology', 'oncology'],
-  // githubUrl: '[[GITHUB_URL]]', // optional — uncomment and set
-  // demoUrl: '[[DEMO_URL]]',     // optional — uncomment and set
+  researchType: 'Library dissertation',
+  tags: ['kinase inhibitors', 'targeted therapy', 'precision medicine', 'drug resistance', 'literature review'],
+  documents: [
+    {
+      title: 'Library dissertation',
+      description: 'Kinases as Drug Targets: A History of Failures and Successes — the full literature-based dissertation, including figures, comparative analysis, and references.',
+      path: 'documents/research/kinase-inhibitors-dissertation.pdf',
+      pages: 16,
+    },
+  ],
   featured: false, // show on the home page?
 };
 
@@ -18,36 +25,45 @@ export default function KinaseInhibitors() {
     <>
       <h2>Overview</h2>
       <p>
-        Kinases are enzymes that drive many of the signalling pathways a cell uses to grow
-        and divide. When those pathways are stuck “on,” the result can be cancer or chronic
-        inflammation. This presentation explored how
-        small-molecule <strong>kinase inhibitors</strong> exploit that biology to treat disease.
+        This library project examined why some <strong>kinase-targeted therapies</strong> succeed
+        while others fail. I compared evidence from cancer and inflammatory
+        disease to explore how a drug's effects depend on the genetic context of the
+        disease and the signalling network around its target.
       </p>
 
       <h2>Cases covered</h2>
       <ul>
         <li>
-          <strong>Imatinib in chronic myeloid leukaemia (CML).</strong> A landmark targeted therapy:
-          imatinib blocks the BCR-ABL fusion kinase that drives CML, turning a once-fatal
-          disease into a manageable condition for many patients.
+          <strong>Imatinib in chronic myeloid leukaemia (CML).</strong>{' '}
+          The dissertation examines how targeting the BCR-ABL fusion kinase established
+          an influential model of treatment directed at a dominant oncogenic driver.
         </li>
         <li>
           <strong>Gefitinib in non-small-cell lung cancer (NSCLC).</strong> An inhibitor of the EGFR
-          kinase, most effective in tumours carrying specific activating EGFR mutations —
-          a clear example of matching the drug to the molecular profile of the tumour.
+          kinase. Its contrasting outcomes in unselected and EGFR-mutant patient groups
+          illustrate the importance of biomarker-driven patient selection.
         </li>
         <li>
-          <strong>JAK and p38 inhibitors in rheumatoid arthritis.</strong> Moving beyond oncology:
-          targeting the kinases that drive inflammatory signalling to dampen the immune
-          over-activity seen in rheumatoid arthritis.
+          <strong>p38 MAPK inhibitors in rheumatoid arthritis.</strong> The dissertation contrasts
+          their clinical failures with JAK inhibition to consider how pathway redundancy
+          and a target's position in a signalling network affect therapeutic outcomes.
         </li>
       </ul>
 
-      <h2>Themes</h2>
+      <h2>Resistance and emerging strategies</h2>
       <p>
-        The through-line is <strong>selectivity</strong>: the therapeutic value of these drugs comes
-        from hitting the right kinase hard while sparing the rest, and much of the clinical
-        story is about resistance, mutation, and choosing the right patient for each agent.
+        I also reviewed acquired resistance, including the BCR-ABL T315I and EGFR T790M
+        gatekeeper mutations, and discussed next-generation, covalent, and allosteric
+        inhibitors. The central argument is that potency alone cannot explain success:
+        patient selection, network biology, and the evolution of resistance must be
+        considered together.
+      </p>
+
+      <h2>Research skills</h2>
+      <p>
+        The project brought together critical reading of primary literature, comparison
+        of clinical and mechanistic evidence, scientific writing, and visual explanation
+        of signalling pathways and resistance mechanisms.
       </p>
     </>
   );

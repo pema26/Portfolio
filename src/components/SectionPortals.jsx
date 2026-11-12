@@ -25,15 +25,15 @@ const portals = [
 function SectionPortals() {
   return (
     <section className="py-8" aria-label="Explore sections">
-      <p className="mb-4 text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+      <h2 className="mb-6 text-center font-serif text-2xl font-semibold text-slate-900 dark:text-white">
         Explore
-      </p>
+      </h2>
       <div className="grid gap-4 sm:grid-cols-3">
         {portals.map((portal) => (
           <Link
             key={portal.href}
             to={portal.href}
-            className="min-h-[158px] rounded-xl border border-slate-200 bg-slate-50/50 p-5 transition hover:-translate-y-1 hover:border-accent-400 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900/50 dark:hover:border-accent-500"
+            className="min-h-[158px] rounded-xl border border-slate-200 bg-white p-5 transition hover:-translate-y-1 hover:border-accent-400 hover:shadow-lg dark:border-slate-800 dark:bg-slate-900 dark:hover:border-accent-500"
           >
             <span className="block text-xs font-semibold uppercase tracking-wider text-accent-500">{portal.kicker}</span>
             <span className="mt-1.5 block font-serif text-2xl font-bold text-slate-900 dark:text-white">{portal.title}</span>

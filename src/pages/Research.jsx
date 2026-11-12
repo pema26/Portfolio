@@ -19,15 +19,15 @@ const sortedResearch = [...research].sort(newestFirst);
 function Research() {
   usePageMeta(
     'Research — Pema Tsering',
-    'Scientific and research work in molecular biology, presented as short write-ups.',
+    'Molecular biology practical research, a COMT research proposal, and a library dissertation on kinase-targeted therapies, with full PDF documents.',
   );
 
   return (
     <>
       <h1 className="font-serif text-3xl font-bold text-slate-900 dark:text-white">Research</h1>
       <p className="mt-2 text-slate-600 dark:text-slate-400">
-        Scientific work from my molecular-biology background, written up as short
-        case studies.
+        Molecular biology practicals and literature-based research, with summaries,
+        a research proposal, and the full reports to read or download.
       </p>
 
       {sortedResearch.length === 0 ? (
@@ -42,7 +42,7 @@ function Research() {
               description={entry.description}
               tags={entry.tags}
               basePath="/research"
-              badge={{ label: 'Research', tone: 'teal' }}
+              badge={{ label: entry.researchType || 'Research', tone: 'teal' }}
             />
           ))}
         </div>
