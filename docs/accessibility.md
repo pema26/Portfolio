@@ -104,9 +104,6 @@ the report green.
   equations, or table associations. The HTML research summaries are not full-text
   equivalents of the PDFs. Native PDF viewers and linked third-party sites are
   outside axe's portfolio-page scan.
-- Replace `public/cv.pdf`: it currently contains only “Placeholder CV - replace
-  public/cv.pdf”, has no structure tags, and declares no language. A real CV should
-  have proper document tags; an HTML version would provide another reading option.
 - Include feedback from people using assistive technology before describing the
   site as fully accessible. There is currently no audio/video content; provide
   appropriate captions, transcripts, and descriptions if it is added.

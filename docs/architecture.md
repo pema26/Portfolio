@@ -68,7 +68,7 @@ slugs make the two easy to find together.
 
 | Location | Ownership |
 | --- | --- |
-| `public/cv.pdf`, `favicon.svg`, `og-image.png`, `robots.txt` | Maintained site assets |
+| `public/favicon.svg`, `og-image.png`, `robots.txt` | Maintained site assets |
 | `public/documents/research/` | Original research PDFs |
 | `public/projects_images/` | Project screenshots |
 | `public/wordle_words_texts/words.txt` | Shared browser/Python vocabulary |
@@ -81,6 +81,9 @@ the YouTube source and its assets into `public/demos/youtube-clone/`. Vite copie
 `public/` into the production build. `scripts/create-spa-fallback.js` then writes
 `dist/404.html` from the portfolio entry page for hosts that use that SPA fallback.
 Playwright's setup uses the same preparation and fallback scripts.
+
+`vercel.json` supplies Vercel's React Router fallback for direct page links.
+The portfolio does not publish a CV; the About page contains the biography and skills.
 
 Public URLs are independent of internal React file locations. Moving a component
 must not change a project slug or a document URL. Keep the YouTube link explicit:

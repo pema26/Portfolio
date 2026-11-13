@@ -3,7 +3,7 @@
 // ============================================================================
 //
 //  WHAT'S HERE: a narrative bio tying together your coding journey and your
-//  research background, a grouped skills list, and a CV download link.
+//  research background and a grouped skills list.
 //  Everything marked EDIT HERE is yours to rewrite.
 // ============================================================================
 
@@ -84,22 +84,6 @@ function About() {
           practised solving unfamiliar problems on Codeforces and also built projects with databases, APIs and web 
           interfaces. The more I built, the more I wanted to make software development my career.
         </p>
-      </div>
-
-      {/* ===================== CV DOWNLOAD ===================== */}
-      <div className="mt-8">
-        {/* EDIT HERE: drop your real CV at public/cv.pdf and this just works.
-            This is a plain <a> (not a <Link>) because it points at a file,
-            not at a page of the app. */}
-        <a
-          href="/cv.pdf"
-          className="inline-flex items-center gap-2 rounded-lg border border-slate-300 px-4 py-2 text-sm font-semibold text-slate-700 transition hover:border-accent-400 hover:text-link dark:border-slate-700 dark:text-slate-200"
-        >
-          <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth="2" aria-hidden="true">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v12m0 0 4-4m-4 4-4-4m-3 9h14" />
-          </svg>
-          Download CV (PDF)
-        </a>
       </div>
 
       {/* ===================== SKILLS ===================== */}

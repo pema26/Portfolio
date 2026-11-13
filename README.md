@@ -62,7 +62,7 @@ Portfolio_test/
 | FASTA browser demo and analysis | [`src/features/fasta/`](src/features/fasta/) |
 | Research document previews | [`src/features/research/`](src/features/research/) |
 | Project descriptions | [`src/content/projects/`](src/content/projects/) |
-| CV, research PDFs, and screenshots | [`public/`](public/) |
+| Research PDFs and screenshots | [`public/`](public/) |
 
 Read [the architecture guide](docs/architecture.md) for folder responsibilities
 and [the development guide](docs/development.md) for content editing and checks.
@@ -82,3 +82,13 @@ session, use `npm run assets:prepare` after editing its source. Treat
 
 Accessibility coverage and manual verification limits are documented in
 [the accessibility audit](docs/accessibility.md).
+
+## Publishing on Vercel
+
+Import the `pema26/Portfolio` GitHub repository with the Vite preset, repository
+root directory, `npm run build` build command, and `dist` output directory.
+Use `main` as the production branch. `vercel.json` supplies the React Router
+fallback for direct page links. Commit and push local changes before deploying.
+
+The portfolio does not publish a CV or provide a CV download button. Research
+PDFs remain available under `public/documents/research/`.
