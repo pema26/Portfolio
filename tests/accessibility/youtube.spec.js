@@ -12,8 +12,8 @@ test('YouTube clone is showcased as a completed HTML and CSS project', async ({ 
   const demo = await popupPromise;
   await expect(demo.getByRole('heading', { level: 1, name: 'Recommended', exact: true })).toBeVisible();
   await demo.close();
-  await expect(page.getByRole('link', { name: 'SuperSimpleDev — HTML & CSS course' })).toHaveAttribute('href', 'https://www.youtube.com/watch?v=G3e-cpL7ofc&t=15316s');
-  await expect(page.getByRole('link', { name: 'SuperSimpleDev — additional learning resource' })).toHaveAttribute('href', 'https://www.youtube.com/watch?v=EerdGm-ehJQ');
+  await expect(page.getByRole('link', { name: 'SuperSimpleDev: HTML & CSS course' })).toHaveAttribute('href', 'https://www.youtube.com/watch?v=G3e-cpL7ofc&t=15316s');
+  await expect(page.getByRole('link', { name: 'SuperSimpleDev: additional learning resource' })).toHaveAttribute('href', 'https://www.youtube.com/watch?v=EerdGm-ehJQ');
   const preview = page.getByRole('img', { name: /completed YouTube-style homepage/ });
   await expect(preview).toBeVisible();
   await expect.poll(() => preview.evaluate(image => image.complete && image.naturalWidth > 0)).toBe(true);

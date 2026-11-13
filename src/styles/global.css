@@ -1,5 +1,5 @@
 /* ==========================================================================
-   global.css  —  site-wide styling and design "tokens"
+   global.css: site-wide styling and design "tokens"
    --------------------------------------------------------------------------
    This is where the look-and-feel of the whole site is defined: colours,
    fonts, and a few small reusable styles. It is loaded once in the base
@@ -21,7 +21,7 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* --------------------------------------------------------------------------
-   DESIGN TOKENS — EDIT HERE to re-skin the whole site.
+   DESIGN TOKENS: EDIT HERE to re-skin the whole site.
    These are the brand colours. Change the accent here and it updates
    everywhere. Colours are written as CSS variables so they are easy to find.
    -------------------------------------------------------------------------- */
@@ -77,7 +77,7 @@
   }
 
   /* Respect visitors who have asked their device to reduce animation. This is
-     an accessibility must-have — the canvas demo also checks this setting. */
+     an accessibility must-have: the canvas demo also checks this setting. */
   @media (prefers-reduced-motion: reduce) {
     html {
       scroll-behavior: auto;
@@ -272,7 +272,7 @@ html[data-reduced-motion="true"] *::after {
   text-decoration: underline;
   text-underline-offset: 2px;
 }
-/* Inline code, e.g. `dplyr` — but NOT code inside a fenced block (that gets
+/* Inline code, e.g. `dplyr`: but NOT code inside a fenced block (that gets
    the styling below instead). */
 .prose-content :where(:not(pre) > code) {
   font-family: ui-monospace, "SF Mono", Menlo, monospace;

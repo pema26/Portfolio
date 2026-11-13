@@ -1,5 +1,5 @@
 // ============================================================================
-//  A MINI project that is PLANNED — not started yet. When you begin, change
+//  A MINI project that is PLANNED: not started yet. When you begin, change
 //  `status` to 'in-progress', and to 'complete' when it is done.
 // ============================================================================
 

@@ -1,9 +1,9 @@
 // ============================================================================
-//  CodeforcesProfile.jsx  —  my live Codeforces profile on the Problems page
+//  CodeforcesProfile.jsx: my live Codeforces profile on the Problems page
 // ============================================================================
 //
-//  WHAT IT SHOWS: my handle and a link to the profile (always), and — once
-//  the data has arrived from the Codeforces API — my rating, a rating chart,
+//  WHAT IT SHOWS: my handle and a link to the profile (always), and: once
+//  the data has arrived from the Codeforces API: my rating, a rating chart,
 //  an activity calendar, a few headline numbers, and the problems I've solved.
 //
 //  It is LIVE: the visitor's browser asks Codeforces each time this page
@@ -11,12 +11,12 @@
 //  problems appear here on their own.
 //
 //  THE THREE STATES (conditional rendering):
-//    loading — a short "Loading…" line
-//    error   — a message pointing at the profile link instead
-//    data    — everything
+//    loading: a short "Loading…" line
+//    error: a message pointing at the profile link instead
+//    data: everything
 //
 //  PROPS:
-//    writeUps — a lookup of the problems that have a worked solution on this
+//    writeUps: a lookup of the problems that have a worked solution on this
 //               site: { '339A': 'codeforces-helpful-maths', ... }. Solved
 //               problems found in it get a link to that page.
 //

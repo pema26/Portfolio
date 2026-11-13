@@ -1,5 +1,5 @@
 // ============================================================================
-//  src/features/preferences/useTheme.js  —  custom hook: dark / light mode
+//  src/features/preferences/useTheme.js: custom hook: dark / light mode
 // ============================================================================
 //
 //  PURPOSE: holds "is the site in dark mode?" in React state and keeps the

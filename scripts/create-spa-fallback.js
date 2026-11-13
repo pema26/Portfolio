@@ -1,5 +1,5 @@
 // ============================================================================
-//  scripts/create-spa-fallback.js — runs at the end of `npm run build`
+//  scripts/create-spa-fallback.js: runs at the end of `npm run build`
 // ============================================================================
 //
 //  WHY THIS EXISTS: this site is a single-page application (SPA). There is

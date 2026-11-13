@@ -1,5 +1,5 @@
 // ============================================================================
-//  CodeBlock.jsx  —  a block of source code inside a write-up
+//  CodeBlock.jsx: a block of source code inside a write-up
 // ============================================================================
 //
 //  PURPOSE: shows code exactly as typed (spaces and line breaks kept) in a
@@ -8,8 +8,8 @@
 //  rules in src/styles/global.css.
 //
 //  PROPS:
-//    code     — the source code, as a string.
-//    language — e.g. "python" or "cpp". Stored on the element as data-language.
+//    code: the source code, as a string.
+//    language: e.g. "python" or "cpp". Stored on the element as data-language.
 //
 //  tabIndex={0} lets keyboard users focus the block and scroll long lines.
 // ============================================================================

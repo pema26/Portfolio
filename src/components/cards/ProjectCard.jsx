@@ -1,5 +1,5 @@
 // ============================================================================
-//  ProjectCard.jsx  —  one clickable card for a project or research entry
+//  ProjectCard.jsx: one clickable card for a project or research entry
 // ============================================================================
 //
 //  PURPOSE: shows a single entry's title, description, tags, and (optionally) a
@@ -7,16 +7,16 @@
 //  bar. Used on the home page, the /projects page, and the /research page.
 //
 //  PROPS:
-//    id          — the URL id of the entry (the last part of its address).
+//    id: the URL id of the entry (the last part of its address).
 //    title, description, tags
-//    basePath    — the section this card links into: "/projects" (default) or
+//    basePath: the section this card links into: "/projects" (default) or
 //                  "/research".
-//    badge       — optional category label, e.g. { label: 'Ambitious', tone: 'accent' }.
-//    status      — optional status pill, e.g. { label: 'In progress', tone: 'amber' }.
-//    completed   — when true, show a "Completed" pill (finished mini projects).
-//    progress    — 0–100; when set, shows a progress bar (guided builds).
+//    badge: optional category label, e.g. { label: 'Ambitious', tone: 'accent' }.
+//    status: optional status pill, e.g. { label: 'In progress', tone: 'amber' }.
+//    completed: when true, show a "Completed" pill (finished mini projects).
+//    progress: 0–100; when set, shows a progress bar (guided builds).
 //
-//  You normally don't edit this — it just displays what the page hands it.
+//  You normally don't edit this: it just displays what the page hands it.
 // ============================================================================
 
 import { Link } from 'react-router';

@@ -1,5 +1,5 @@
 // ============================================================================
-//  A MINI project that is PLANNED — not started yet. When you begin, change
+//  A MINI project that is PLANNED: not started yet. When you begin, change
 //  `status` to 'in-progress', and to 'complete' when it is done.
 // ============================================================================
 
@@ -7,7 +7,7 @@ export const meta = {
   id: 'biological-database', // becomes the URL: /projects/biological-database
   title: 'Biological database query system (SQL + Python)',
   description:
-    'A small relational database of genes, sequences and expression values, queried with SQL from Python — letting the database do the heavy lifting instead of loops.',
+    'A small relational database of genes, sequences and expression values, queried with SQL from Python to handle data processing through queries instead of loops.',
   category: 'mini-unique', // big-unique | guided | mini-unique
   status: 'planned', // planned | in-progress | complete
   date: '2026-11-11', // YYYY-MM-DD
@@ -45,7 +45,7 @@ export default function BiologicalDatabase() {
       <h2>What I want to practise</h2>
 
       <p>
-        <strong>Relational thinking</strong> — a sensible schema, and joins that are correct —
+        <strong>Relational thinking:</strong> designing a sensible schema, writing correct joins,
         and keeping storage separate from program logic. For example, the average expression of
         each gene should be one <code>GROUP BY</code> query, not a Python loop.
       </p>

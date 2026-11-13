@@ -12,7 +12,7 @@ export const meta = {
   documents: [
     {
       title: 'Library dissertation',
-      description: 'Kinases as Drug Targets: A History of Failures and Successes — the full literature-based dissertation, including figures, comparative analysis, and references.',
+      description: 'Kinases as Drug Targets: A History of Failures and Successes. The full literature-based dissertation, including figures, comparative analysis, and references.',
       path: 'documents/research/kinase-inhibitors-dissertation.pdf',
       pages: 16,
     },

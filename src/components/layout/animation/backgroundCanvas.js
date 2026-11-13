@@ -1,5 +1,5 @@
 // ============================================================================
-//  src/components/layout/animation/backgroundCanvas.js  —  the drawing code for the site background
+//  src/components/layout/animation/backgroundCanvas.js: the drawing code for the site background
 // ============================================================================
 //
 //  WHAT IT IS: plain JavaScript (no React in here) that draws the faint, slow

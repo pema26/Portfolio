@@ -97,7 +97,7 @@ export default function Codeforces15k4jr3bHard() {
 
       <blockquote>
         <p>
-          <strong>2284A2 — 15K4JR3B (Hard Version).</strong> As in the easy version, three points
+          <strong>2284A2: 15K4JR3B (Hard Version).</strong> As in the easy version, three points
           start at the origin and you make exactly <em>n</em> moves. This time move <em>i</em> shifts
           a point by 2<sup>a<sub>i</sub></sup> along one axis, for a given list of exponents (n is
           at most 100 and each exponent is between 0 and 24). Print the largest possible value of
@@ -136,7 +136,7 @@ export default function Codeforces15k4jr3bHard() {
       </p>
 
       <p>
-        With ordinary numbers that greedy can fail — splitting a list into two equal halves is a
+        With ordinary numbers that greedy can fail; splitting a list into two equal halves is a
         famously hard problem in general. It is the powers of two that make it exact.
       </p>
 

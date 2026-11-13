@@ -1,5 +1,5 @@
 // ============================================================================
-//  HeaderMorph.jsx  —  the small morphing wireframe next to the name
+//  HeaderMorph.jsx: the small morphing wireframe next to the name
 // ============================================================================
 //
 //  WHAT IT IS: a tiny <canvas> in the header showing a wireframe that morphs

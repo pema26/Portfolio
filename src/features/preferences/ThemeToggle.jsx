@@ -1,5 +1,5 @@
 // ============================================================================
-//  ThemeToggle.jsx  —  the dark / light mode switch button
+//  ThemeToggle.jsx: the dark / light mode switch button
 // ============================================================================
 //
 //  PURPOSE: a single button that flips the site between dark and light mode

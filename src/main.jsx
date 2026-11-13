@@ -1,5 +1,5 @@
 // ============================================================================
-//  src/main.jsx  —  the entry point: where React starts
+//  src/main.jsx: the entry point: where React starts
 // ============================================================================
 //
 //  index.html loads this file. It finds <div id="root"> and tells React to

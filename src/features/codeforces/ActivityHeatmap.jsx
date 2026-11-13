@@ -1,5 +1,5 @@
 // ============================================================================
-//  ActivityHeatmap.jsx  —  a year of solved problems, one square per day
+//  ActivityHeatmap.jsx: a year of solved problems, one square per day
 // ============================================================================
 //
 //  PURPOSE: the "calendar" view from a Codeforces profile. Each column is a
@@ -7,7 +7,7 @@
 //  more problems were solved that day.
 //
 //  PROPS:
-//    weeks — from buildCalendar() in src/features/codeforces/codeforces.js: a list of 53
+//    weeks: from buildCalendar() in src/features/codeforces/codeforces.js: a list of 53
 //            weeks, each a list of 7 { date, count, isFuture } days.
 //
 //  COLOUR: one hue (the site's indigo) in four steps. In light mode more

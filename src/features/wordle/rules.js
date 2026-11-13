@@ -1,5 +1,5 @@
 // ============================================================================
-//  src/features/wordle/rules.js  —  Wordle feedback, including repeated letters
+//  src/features/wordle/rules.js: Wordle feedback, including repeated letters
 // ============================================================================
 //
 //  This is a line-by-line JavaScript port of  projects/wordle-assistant/wordle/rules.py

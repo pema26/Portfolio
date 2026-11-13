@@ -132,7 +132,7 @@ export default function CodeforcesNicheInternet() {
 
       <blockquote>
         <p>
-          <strong>2284B — Introduction to the Niche Internet.</strong> A streamer receives <em>n</em> donations
+          <strong>2284B: Introduction to the Niche Internet.</strong> A streamer receives <em>n</em> donations
           (some may be negative). A donation is “very pleasant” if it is at least the average of
           all the donations before it; the first one always is. Arrange the donations so that
           exactly <em>k</em> are very pleasant, or say that it cannot be done. The total of <em>n</em> over
@@ -172,8 +172,8 @@ export default function CodeforcesNicheInternet() {
       <h2>AI’s solution (Python)</h2>
 
       <p>
-        This is a <strong>constructive</strong> problem — build one arrangement rather than
-        search through them — and my construction is already the efficient one, so the version
+        This is a <strong>constructive</strong> problem: build one arrangement rather than
+        search through them. My construction is already efficient, so the version
         below keeps it. The differences are small: the whole input is read at once, and the <code>j
         == 0</code> special case is gone because for the first donation the test reads 0 ≥ 0,
         which is true anyway.
@@ -204,7 +204,7 @@ export default function CodeforcesNicheInternet() {
       <p>
         Both are <strong>O(n log n)</strong> time, from the sort, and <strong>O(n)</strong> extra
         space for the new order. At the limit of 2·10<sup>5</sup> donations the sort is about
-        3.5 million comparisons and the checking pass another 2·10<sup>5</sup> steps — well
+        3.5 million comparisons and the checking pass another 2·10<sup>5</sup> steps, well
         inside the 1.5 second limit. Same algorithm, same complexity class; I am not claiming a
         speed-up.
       </p>

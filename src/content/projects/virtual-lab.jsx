@@ -1,12 +1,12 @@
 // ============================================================================
-//  An AMBITIOUS project — a larger application (planned).
+//  An AMBITIOUS project: a larger application (planned).
 // ============================================================================
 
 export const meta = {
   id: 'virtual-lab', // becomes the URL: /projects/virtual-lab
   title: 'Virtual lab: VR training for first-year lab skills',
   description:
-    'A 3D/VR environment where new students rehearse real lab equipment — starting with a centrifuge — including the small mistakes people actually make, so practical sessions feel familiar before they begin.',
+    'A 3D/VR environment where new students rehearse real lab equipment, starting with a centrifuge and including the small mistakes people actually make, so practical sessions feel familiar before they begin.',
   category: 'big-unique', // big-unique | guided | mini-unique
   status: 'planned', // planned | in-progress | complete
   date: '2026-06-05', // YYYY-MM-DD
@@ -16,7 +16,7 @@ export const meta = {
 };
 
 // EDIT HERE: this is your own, more ambitious idea. The notes below are a
-// starting point — rewrite and expand as the concept develops.
+// starting point: rewrite and expand as the concept develops.
 export default function VirtualLab() {
   return (
     <>
@@ -30,8 +30,8 @@ export default function VirtualLab() {
 
       <h2>Why it could matter</h2>
       <p>
-        The point isn’t just to show the ideal procedure — it’s to capture
-        the <strong>small, human mistakes</strong> that actually happen, so students learn what to
+        The simulation would cover the ideal procedure and the
+        <strong>small, human mistakes</strong> that actually happen, so students learn what to
         watch for:
       </p>
       <ul>
@@ -46,8 +46,8 @@ export default function VirtualLab() {
 
       <h2>Scope</h2>
       <p>
-        The <strong>minimum viable product</strong> is a single, well-modelled piece of equipment —
-        a <strong>centrifuge</strong> — done properly, including those failure cases. If that proves
+        The <strong>minimum viable product</strong> is a single, well-modelled <strong>centrifuge</strong>
+        that includes those failure cases. If that proves
         valuable, later stages could grow toward more advanced techniques for second- and
         third-year (or higher) students, such as using a spectrophotometer or running a
         western blot.

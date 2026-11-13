@@ -1,5 +1,5 @@
 // ============================================================================
-//  src/features/codeforces/codeforces.js  —  talking to Codeforces + turning its data into
+//  src/features/codeforces/codeforces.js: talking to Codeforces + turning its data into
 //                            the numbers the Problems page shows
 // ============================================================================
 //

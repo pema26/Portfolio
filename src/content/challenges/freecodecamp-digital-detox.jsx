@@ -7,7 +7,7 @@ export const meta = {
   id: 'freecodecamp-digital-detox', // becomes the URL: /problems/freecodecamp-digital-detox
   title: 'Digital Detox',
   description:
-    'Given a log of timestamps, decide whether a screen-time goal was met. I used it to practise writing a class — including doing the calendar arithmetic by hand.',
+    'Given a log of timestamps, decide whether a screen-time goal was met. I used it to practise writing a class, including doing the calendar arithmetic by hand.',
   source: 'freeCodeCamp', // where the problem came from
   date: '2026-02-01', // YYYY-MM-DD
   tags: ['classes', 'dates', 'sorting'],
@@ -168,7 +168,7 @@ bool isLeapYear(int year) {
 // Seconds from 0001-01-01 00:00:00 to a "YYYY-MM-DD HH:MM:SS" timestamp.
 // long long on purpose: year 2026 is about 6.4 * 10^10 seconds, past int's limit.
 long long toSeconds(const string& log) {
-    // substr(start, length) — note: a LENGTH, not an end index like Python's slice.
+    // substr(start, length): note: a LENGTH, not an end index like Python's slice.
     int year = stoi(log.substr(0, 4)), month = stoi(log.substr(5, 2)), day = stoi(log.substr(8, 2));
     int hour = stoi(log.substr(11, 2)), minute = stoi(log.substr(14, 2)), second = stoi(log.substr(17, 2));
 
@@ -233,7 +233,7 @@ export default function FreecodecampDigitalDetox() {
         purpose: the logs are stored on the object in <code>__init__</code>, the small helper
         methods start with an underscore to mark them as internal, and <code>meets_goal()</code> is
         the one public method. I also avoided the <code>datetime</code> module so that I had to
-        work out the calendar myself — leap years included.
+        work out the calendar myself, including leap years.
       </p>
 
       <p>
@@ -244,8 +244,8 @@ export default function FreecodecampDigitalDetox() {
       <CodeBlock language="python" code={mySolutionPython} />
 
       <p>
-        Checked against Python’s own <code>datetime</code> on 3,000 random sets of logs —
-        including the leap years 2000 and 2024 and the non-leap year 2100 — it gave the same
+        I checked it against Python’s own <code>datetime</code> on 3,000 random sets of logs,
+        including the leap years 2000 and 2024 and the non-leap year 2100. It gave the same
         answer every time.
       </p>
 
@@ -265,15 +265,15 @@ export default function FreecodecampDigitalDetox() {
         Worked example for <code>2026-02-01 08:00:00</code>. There are 2025 whole years before
         2026. That is 2025 × 365 = 739,125 days, plus 506 − 20 + 5 = 491 leap days, making
         739,616. January adds 31 and the day of the month adds 0, so 739,647 days, plus 8 hours.
-        The second log, <code>12:30:00</code> on the same day, is 4.5 hours later — 16,200
+        The second log, <code>12:30:00</code> on the same day, is 4.5 hours later, or 16,200
         seconds, which is at least the 14,400 required. Two sessions that day, far enough apart:
         the goal is met.
       </p>
 
       <p>
         Sorting matters for the second rule. Once the times are in order, the two closest
-        sessions are always next to each other, so checking each neighbouring pair is enough —
-        there is no need to compare every session with every other one.
+        sessions are always next to each other, so checking each neighbouring pair is enough.
+        There is no need to compare every session with every other one.
       </p>
 
       <CodeBlock language="python" code={aiSolutionPython} />
@@ -296,7 +296,7 @@ export default function FreecodecampDigitalDetox() {
         In numbers: for 1,000 logs my version does about 2 million loop steps before sorting,
         the formula version about 1,000 conversions, and the sort itself is around 10,000
         comparisons either way. That is a real difference in work, but for a challenge-sized
-        input both answer instantly — the loop is slower, not wrong.
+        input both answer instantly. The loop is slower but still correct.
       </p>
 
       <p>

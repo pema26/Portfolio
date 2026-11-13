@@ -1,17 +1,17 @@
 // ============================================================================
-//  An AMBITIOUS project — a larger application (planned).
+//  An AMBITIOUS project: a larger application (planned).
 // ============================================================================
 
 export const meta = {
   id: 'fridge-tracker', // becomes the URL: /projects/fridge-tracker
   title: 'Fridge tracker: use food before it expires',
   description:
-    'A tool that keeps a list of what is in my fridge and sorts it by date — what has expired, what must be eaten today, and what is coming up — so food gets used instead of thrown away.',
+    'A tool that keeps a list of what is in my fridge and sorts it by date, what has expired, what must be eaten today, and what is coming up so food gets used instead of thrown away.',
   category: 'big-unique', // big-unique | guided | mini-unique
   status: 'planned', // planned | in-progress | complete
   date: '2026-11-11', // YYYY-MM-DD
   tags: ['JavaScript', 'React', 'SQL', 'product idea'],
-  // githubUrl: '[[GITHUB_URL]]', // optional — uncomment and set
+  // githubUrl: '[[GITHUB_URL]]', // optional: uncomment and set
   devlog: [],
   featured: false, // show on the home page?
 };
@@ -23,7 +23,7 @@ export default function FridgeTracker() {
 
       <p>
         Food gets pushed to the back of the fridge and forgotten. By the time I find it again it
-        is past its date and goes in the bin — money wasted, and food wasted. The information I
+        is past its date and goes in the bin, wasting both food and money. The information I
         need is printed on every packet; the trouble is that nobody reads thirty labels each
         time they open the fridge. The simple question I actually care about is: <em>what do I
         need to eat first?</em>
@@ -38,19 +38,19 @@ export default function FridgeTracker() {
 
       <ul>
         <li>
-          <strong>Expired</strong> — past its date; check it or bin it.
+          <strong>Expired:</strong> past its date; check it or bin it.
         </li>
         <li>
-          <strong>Today</strong> — last day (most important).
+          <strong>Today:</strong> last day (most important).
         </li>
         <li>
-          <strong>Next 3 days</strong> — plan a meal around these.
+          <strong>Next 3 days:</strong> plan a meal around these.
         </li>
         <li>
-          <strong>This week</strong> — fine for now.
+          <strong>This week:</strong> fine for now.
         </li>
         <li>
-          <strong>Later</strong> — nothing to do yet.
+          <strong>Later:</strong> nothing to do yet.
         </li>
       </ul>
 
@@ -81,8 +81,8 @@ export default function FridgeTracker() {
           label (for example, a few days for leftovers).
         </li>
         <li>
-          <strong>Shared between people.</strong> Move the data into a small back end — an Express
-          API with a PostgreSQL table of items — so everyone in the house sees the same list from
+          <strong>Shared between people.</strong> Move the data into a small back end using an Express
+          API with a PostgreSQL table of items so everyone in the house sees the same list from
           their own phone.
         </li>
         <li>
@@ -105,7 +105,7 @@ export default function FridgeTracker() {
 
       <p>
         If the core idea holds up, the natural next steps are suggesting meals from whatever
-        expires soonest, and a small always-on screen on the fridge door — the same idea as my
+        expires soonest, and a small always-on screen on the fridge door with the same idea as my
         parcel board, but for food.
       </p>
 

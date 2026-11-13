@@ -11,7 +11,7 @@ export const meta = {
   id: 'codeforces-helpful-maths', // becomes the URL: /problems/codeforces-helpful-maths
   title: 'Helpful Maths',
   description:
-    'Rearrange a sum of 1s, 2s and 3s into non-decreasing order — a warm-up in counting and stable output.',
+    'Rearrange a sum of 1s, 2s and 3s into non-decreasing order as a warm-up in counting and stable output.',
   source: 'Codeforces', // where the problem came from
   codeforcesId: '339A', // contest number + problem letter; links it to my live profile
   problemUrl: 'https://codeforces.com/problemset/problem/339/A', // optional
@@ -63,7 +63,7 @@ export default function CodeforcesHelpfulMaths() {
       <h2>The problem</h2>
       <blockquote>
         <p>
-          <strong>339A — Helpful Maths.</strong> You are given a sum (a string of the
+          <strong>339A: Helpful Maths.</strong> You are given a sum (a string of the
           digits <code>1</code>, <code>2</code>, <code>3</code> joined by <code>+</code>). Rearrange the summands so they
           appear in <strong>non-decreasing</strong> order, and print the new sum. For
           example, <code>3+2+1</code> becomes <code>1+2+3</code>.
@@ -90,7 +90,7 @@ export default function CodeforcesHelpfulMaths() {
       <p>
         Both approaches are <strong>O(n)</strong> time, where <em>n</em> is the length of the input string:
         the counting versions make a constant number of passes over it. Extra space
-        is <strong>O(1)</strong> beyond the output itself — the Python version keeps only a fixed array
+        is <strong>O(1)</strong> beyond the output itself; the Python version keeps only a fixed array
         of three counts, and the C++ version a few characters of state. (The output
         string is unavoidably O(n).)
       </p>

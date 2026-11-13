@@ -1,5 +1,5 @@
 // ============================================================================
-//  src/content/research/index.js  —  the list of every RESEARCH write-up
+//  src/content/research/index.js: the list of every RESEARCH write-up
 // ============================================================================
 //
 //  Same pattern as src/content/projects/index.js: each entry is a .jsx file

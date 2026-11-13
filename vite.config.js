@@ -1,10 +1,10 @@
 // ============================================================================
-//  vite.config.js  —  the configuration file for Vite (the build tool)
+//  vite.config.js: the configuration file for Vite (the build tool)
 // ============================================================================
 //
 //  WHAT THIS FILE DOES: tells Vite which plugins to use. You rarely touch it.
-//    • react()       — lets Vite understand JSX and React components.
-//    • tailwindcss() — wires in Tailwind CSS v4. Your design tokens (colours,
+//    • react(): lets Vite understand JSX and React components.
+//    • tailwindcss(): wires in Tailwind CSS v4. Your design tokens (colours,
 //                      fonts) live in src/styles/global.css, not here.
 //
 //  GITHUB PAGES NOTE (only if you deploy to  username.github.io/repo-name ):

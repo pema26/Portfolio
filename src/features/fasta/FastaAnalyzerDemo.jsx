@@ -1,5 +1,5 @@
 // ============================================================================
-//  FastaAnalyzerDemo.jsx  —  try the FASTA analyzer in the browser
+//  FastaAnalyzerDemo.jsx: try the FASTA analyzer in the browser
 // ============================================================================
 //
 //  WHAT IT IS: a text box, an "Analyze" button and an output panel. It is the

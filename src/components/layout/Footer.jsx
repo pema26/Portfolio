@@ -1,5 +1,5 @@
 // ============================================================================
-//  Footer.jsx  —  the bottom bar shown on every page
+//  Footer.jsx: the bottom bar shown on every page
 // ============================================================================
 //
 //  PURPOSE: copyright line and a few quick social links.

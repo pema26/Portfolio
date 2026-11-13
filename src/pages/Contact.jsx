@@ -1,5 +1,5 @@
 // ============================================================================
-//  src/pages/Contact.jsx  —  the CONTACT page  ("/contact" route)
+//  src/pages/Contact.jsx: the CONTACT page  ("/contact" route)
 // ============================================================================
 //
 //  WHAT'S HERE: your email and the important profile links.
@@ -23,8 +23,8 @@ const links = [
 
 function Contact() {
   usePageMeta(
-    'Contact — Pema Tsering',
-    'Get in touch — email, GitHub and LinkedIn.',
+    'Contact | Pema Tsering',
+    'Get in touch by email, GitHub or LinkedIn.',
   );
 
   return (

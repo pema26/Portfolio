@@ -1,5 +1,5 @@
 // ============================================================================
-//  Background.jsx  —  the page background, chosen per section
+//  Background.jsx: the page background, chosen per section
 // ============================================================================
 //
 //  WHAT IT IS: the thing drawn BEHIND the page content. Which one you get

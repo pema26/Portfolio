@@ -1,5 +1,5 @@
 // ============================================================================
-//  A MINI project — a small tool you wrote to solve a real annoyance.
+//  A MINI project: a small tool you wrote to solve a real annoyance.
 //  Copy this file to add another, then add it to src/content/projects/index.js.
 // ============================================================================
 
@@ -9,12 +9,12 @@ export const meta = {
   id: 'dna-sequence-sorter', // becomes the URL: /projects/dna-sequence-sorter
   title: 'DNA sequence sorter: finding a species across many files',
   description:
-    'A small Python tool to pull text out of dozens of Sanger sequencing result files at once and search them for a specific species — turning a one-by-one chore into a single run.',
+    'A small Python tool to pull text out of dozens of Sanger sequencing result files at once and search them for a specific species, turning a one-by-one chore into a single run.',
   category: 'mini-unique', // big-unique | guided | mini-unique
   status: 'complete', // planned | in-progress | complete
   date: '2026-03-30', // YYYY-MM-DD
   tags: ['Python', 'bioinformatics', 'automation'],
-  // githubUrl: '[[GITHUB_URL]]', // optional — uncomment and set
+  // githubUrl: '[[GITHUB_URL]]', // optional: uncomment and set
   devlog: [],
   featured: false, // show on the home page?
 };
@@ -70,7 +70,7 @@ export default function DnaSequenceSorter() {
       <h2>The annoyance</h2>
       <p>
         After a batch of Sanger sequencing, the results come back as a pile of separate
-        files inside a single download — one folder per sample. I needed to check which
+        files inside a single download, with one folder per sample. I needed to check which
         of them contained a <strong>specific species</strong>, and I was opening and reading
         them <strong>one at a time</strong>. For a handful of files that’s fine; for dozens it’s a
         slow, error-prone chore.
@@ -81,7 +81,7 @@ export default function DnaSequenceSorter() {
         Rather than reach for a heavyweight tool, I wrote a short Python script to do the
         boring part for me. It opens the results archive, reads each sequencing file’s
         text <strong>without unzipping the whole thing to disk</strong>, and pulls the contents into
-        one place — optionally tagging each block with its accession number and the
+        one place, optionally tagging each block with its accession number and the
         source filename so I can trace any hit back to the exact file it came from.
       </p>
       <p>
@@ -91,8 +91,7 @@ export default function DnaSequenceSorter() {
 
       <h2>Result and what I learned</h2>
       <p>
-        It collapsed a tedious manual pass into a single command, and — just as usefully —
-        it removed the mistakes that creep in when you do the same fiddly thing many times
+        It collapsed a tedious manual pass into a single command. It also removed the mistakes that creep in when you do the same fiddly thing many times
         by hand. It’s a small program, but it’s a genuine real-world problem of my own,
         and writing it sharpened my comfort with file handling, archives, and text
         processing in Python.
@@ -112,7 +111,7 @@ export default function DnaSequenceSorter() {
       <p>
         With that in place, the rest of the tool loops over the sequencing files in the
         archive, pulls each one’s text, and searches the combined result for the species
-        I’m after — no more opening them one by one.
+        I’m after, without opening them one by one.
       </p>
     </>
   );

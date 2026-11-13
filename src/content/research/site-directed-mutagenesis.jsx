@@ -12,13 +12,13 @@ export const meta = {
   documents: [
     {
       title: 'Practical research report',
-      description: 'Expression, Purification, and Functional Analysis of a Y255A Mutant of Catechol 2,3-Dioxygenase — experimental results, figures, discussion, and raw data.',
+      description: 'Expression, Purification, and Functional Analysis of a Y255A Mutant of Catechol 2,3-Dioxygenase. Includes experimental results, figures, discussion, and raw data.',
       path: 'documents/research/molecular-biology-research-report.pdf',
       pages: 37,
     },
     {
       title: 'Molecular biology research proposal',
-      description: 'Cloning, Expression, and Functional Analysis of the Destabilised L135P Missense Variant of Catechol-O-Methyltransferase (COMT) in Escherichia coli — a separate proposed study.',
+      description: 'Cloning, Expression, and Functional Analysis of the Destabilised L135P Missense Variant of Catechol-O-Methyltransferase (COMT) in Escherichia coli. A separate proposed study.',
       path: 'documents/research/molecular-biology-research-proposal.pdf',
       pages: 10,
     },

@@ -1,5 +1,5 @@
 // ============================================================================
-//  A MINI project — a small tool you wrote to solve a real annoyance.
+//  A MINI project: a small tool you wrote to solve a real annoyance.
 //  Copy this file to add another, then add it to src/content/projects/index.js.
 // ============================================================================
 
@@ -10,12 +10,12 @@ export const meta = {
   id: 'fasta-analyzer', // becomes the URL: /projects/fasta-analyzer
   title: 'FASTA analyzer: sequence length, GC content and motif search',
   description:
-    'Scientific sequence analysis and scripting in Python: parses FASTA records and reports each sequence’s length, GC content and where a motif such as ATG occurs — written with plain Python, no libraries, with a box on this page to try it.',
+    'Scientific sequence analysis and scripting in Python: parses FASTA records and reports each sequence’s length, GC content and where a motif such as ATG occurs. Written in plain Python without external libraries, with an interactive demo on this page.',
   category: 'mini-unique', // big-unique | guided | mini-unique
   status: 'complete', // planned | in-progress | complete
-  date: '2026-04-15', // YYYY-MM-DD — EDIT HERE: set to when you actually wrote it
+  date: '2026-04-15', // YYYY-MM-DD: EDIT HERE: set to when you actually wrote it
   tags: ['Python', 'bioinformatics', 'string processing'],
-  // githubUrl: '[[GITHUB_URL]]', // optional — uncomment and set
+  // githubUrl: '[[GITHUB_URL]]', // optional: uncomment and set
   devlog: [],
   featured: false, // show on the home page?
 };

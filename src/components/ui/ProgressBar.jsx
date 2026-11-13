@@ -1,5 +1,5 @@
 // ============================================================================
-//  ProgressBar.jsx  —  a thin "how far along" bar for guided builds
+//  ProgressBar.jsx: a thin "how far along" bar for guided builds
 // ============================================================================
 //
 //  PURPOSE: shows a percent-complete bar (with an accessible label) for a
@@ -7,8 +7,8 @@
 //  project page. Set the number via the `progress` field of a project.
 //
 //  PROPS:
-//    value — 0 to 100.
-//    large — slightly taller bar when true (used on the project page).
+//    value: 0 to 100.
+//    large: slightly taller bar when true (used on the project page).
 // ============================================================================
 
 function ProgressBar({ value, large = false }) {

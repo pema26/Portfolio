@@ -121,9 +121,9 @@ export default function CodeforcesMaximizeOneMex() {
 
       <blockquote>
         <p>
-          <strong>2272A — Maximize One MEX.</strong> You get a permutation of 0, 1, …, n − 1 and
-          may swap two of its elements at most once. Let f<sub>i</sub> be the MEX of the first <em>i</em> elements
-          — the smallest non-negative whole number that is not among them. Choose the swap that
+          <strong>2272A: Maximize One MEX.</strong> You get a permutation of 0, 1, …, n − 1 and
+          may swap two of its elements at most once. Let f<sub>i</sub> be the MEX of the first <em>i</em> elements.
+          The MEX is the smallest non-negative whole number that is not among them. Choose the swap that
           makes the <em>k</em>-th largest of f<sub>1</sub>, …, f<sub>n</sub> as large as possible,
           or print −1 if no swap is needed. Here n is at most 100.
         </p>
@@ -141,7 +141,7 @@ export default function CodeforcesMaximizeOneMex() {
 
       <p>
         So: find the MEX of that prefix. If it already equals the prefix length, print −1.
-        Otherwise the missing value sits somewhere after the prefix — swap it in, and swap the
+        Otherwise the missing value sits somewhere after the prefix. Swap it in, and swap the
         prefix’s largest value out.
       </p>
 
@@ -158,7 +158,7 @@ export default function CodeforcesMaximizeOneMex() {
       <h2>AI’s solution (Python)</h2>
 
       <p>
-        This is a <strong>greedy</strong> argument, and my solution already is the optimal one —
+        This is a <strong>greedy</strong> argument, and my solution is already optimal because
         only one new value can enter the prefix, and it has to be the missing one. The version
         below keeps the idea and changes one detail: it first records where every value sits,
         which answers both “is this value inside the prefix?” and “where is the missing value?”
@@ -167,8 +167,8 @@ export default function CodeforcesMaximizeOneMex() {
 
       <p>
         Worked example: n = 5, k = 2, array 0 2 1 4 3. The prefix that matters has length 5 − 2
-        + 1 = 4, so it is 0 2 1 4. Values 0, 1 and 2 are inside it and 3 is not, so its MEX is 3
-        — less than 4, so a swap helps. The largest value in the prefix is 4, at position 4; the
+        + 1 = 4, so it is 0 2 1 4. Values 0, 1 and 2 are inside it and 3 is not, so its MEX is 3.
+        That is less than 4, so a swap helps. The largest value in the prefix is 4, at position 4; the
         missing 3 is at position 5. Swapping positions 4 and 5 gives 0 2 1 3, whose MEX is 4.
         Answer: <code>4 5</code>.
       </p>

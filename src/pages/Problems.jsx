@@ -1,8 +1,8 @@
 // ============================================================================
-//  src/pages/Problems.jsx  —  the PROBLEMS SOLVED page  ("/problems")
+//  src/pages/Problems.jsx: the PROBLEMS SOLVED page  ("/problems")
 // ============================================================================
 //
-//  WHAT'S HERE: three parts —
+//  WHAT'S HERE: three parts:
 //    1. My live Codeforces profile: rating, a rating chart, an activity
 //       calendar and the problems I've solved, fetched from the Codeforces API
 //       each time the page opens, plus my freeCodeCamp daily challenge total.
@@ -60,8 +60,8 @@ for (const challenge of challenges) {
 
 function Problems() {
   usePageMeta(
-    'Problems solved — Pema Tsering',
-    'Competitive programming and coding challenges — my Codeforces profile, plus worked solutions with complexity analysis.',
+    'Problems solved | Pema Tsering',
+    'My Codeforces profile and worked solutions to competitive programming and coding challenges, with complexity analysis.',
   );
 
   // What is currently typed in the search box.
@@ -86,8 +86,8 @@ function Problems() {
     <>
       <h1 className="font-serif text-3xl font-bold text-slate-900 dark:text-white">Problems solved</h1>
       <p className="mt-2 text-slate-600 dark:text-slate-400">
-        Where I sharpen algorithms and data-structures skills — my competitive
-        profile, and worked solutions comparing my approach with an AI's.
+        I practise algorithms and data structures through competitive programming. Here you can
+        find my profile and worked solutions comparing my approach with an AI's.
       </p>
 
       {/* ===================== COMPETITIVE PROFILES ===================== */}

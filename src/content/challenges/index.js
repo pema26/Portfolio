@@ -1,5 +1,5 @@
 // ============================================================================
-//  src/content/challenges/index.js  —  the list of every solved PROBLEM
+//  src/content/challenges/index.js: the list of every solved PROBLEM
 // ============================================================================
 //
 //  Same pattern as src/content/projects/index.js: each challenge is a .jsx

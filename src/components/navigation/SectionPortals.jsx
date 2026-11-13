@@ -1,5 +1,5 @@
 // ============================================================================
-//  SectionPortals.jsx  —  Home-page navigation cards
+//  SectionPortals.jsx: Home-page navigation cards
 // ============================================================================
 //
 //  WHAT IT IS: three cards (Projects / Problems / Research) for the Home page.

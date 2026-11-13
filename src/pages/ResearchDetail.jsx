@@ -1,5 +1,5 @@
 // ============================================================================
-//  src/pages/ResearchDetail.jsx  —  ONE research entry's page
+//  src/pages/ResearchDetail.jsx: ONE research entry's page
 // ============================================================================
 //
 //  Same pattern as ProjectDetail.jsx: the route is "research/:slug", and this
@@ -21,7 +21,7 @@ function ResearchDetail() {
   const entry = research.find((item) => item.id === slug);
 
   usePageMeta(
-    entry ? `${entry.title} — Pema Tsering` : 'Page not found — Pema Tsering',
+    entry ? `${entry.title} | Pema Tsering` : 'Page not found | Pema Tsering',
     entry ? entry.description : 'That page could not be found.',
   );
 

@@ -69,7 +69,7 @@ export default function CodeforcesFrogsJump() {
 
       <blockquote>
         <p>
-          <strong>2272B — Frogs Jump.</strong> A grid has 2 rows and <em>n</em> columns; every
+          <strong>2272B: Frogs Jump.</strong> A grid has 2 rows and <em>n</em> columns; every
           cell is empty or holds one frog, and every column has at least one frog. You remove <em>k</em> frogs.
           Then every remaining frog jumps exactly one cell up, down, left or right, all at once
           (frogs may share a cell). Afterwards each row and each column must hold the same number
@@ -113,10 +113,9 @@ export default function CodeforcesFrogsJump() {
       </p>
 
       <p>
-        That proves “odd needs at least one removal”. For the other half — that an even number
-        of frogs can always manage it, and that removing one frog is enough — a brute-force
-        search over all 120 grids of up to four columns agrees with the formula every time, as
-        does the judge.
+        That proves “odd needs at least one removal”. A brute-force search over all 120 grids of up to four columns supports the other half:
+        an even number of frogs can always manage it, and removing one frog from an odd total
+        is enough. Every case agrees with the formula, as does the judge.
       </p>
 
       <p>
@@ -135,8 +134,8 @@ export default function CodeforcesFrogsJump() {
       <h2>Complexity</h2>
 
       <p>
-        Both are <strong>O(n)</strong> time — <code>count()</code> is one pass over each row —
-        and <strong>O(1)</strong> extra space beyond the input. At the limit of 2·10<sup>5</sup> columns
+        Both take <strong>O(n)</strong> time because <code>count()</code> makes one pass over each row,
+        and use <strong>O(1)</strong> extra space beyond the input. At the limit of 2·10<sup>5</sup> columns
         that is 400,000 character checks. The code is the same in both; what the second version
         adds is the reason it is correct.
       </p>

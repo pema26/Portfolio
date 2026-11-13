@@ -1,5 +1,5 @@
 // ============================================================================
-//  src/pages/NotFound.jsx  —  the custom "page not found" page
+//  src/pages/NotFound.jsx: the custom "page not found" page
 // ============================================================================
 //
 //  Shown when a visitor hits a URL that doesn't match any route in
@@ -10,7 +10,7 @@ import { Link } from 'react-router';
 import { usePageMeta } from '../hooks/usePageMeta';
 
 function NotFound() {
-  usePageMeta('Page not found — Pema Tsering', 'That page could not be found.');
+  usePageMeta('Page not found | Pema Tsering', 'That page could not be found.');
 
   return (
     <section className="py-16 text-center">

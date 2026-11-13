@@ -1,5 +1,5 @@
 // ============================================================================
-//  src/features/fasta/fasta.js  —  the FASTA analyzer's functions, in JavaScript
+//  src/features/fasta/fasta.js: the FASTA analyzer's functions, in JavaScript
 // ============================================================================
 //
 //  A web page cannot run Python, so these are the SAME functions as my Python

@@ -1,5 +1,5 @@
 // ============================================================================
-//  src/pages/ProblemDetail.jsx  —  ONE solved problem's page
+//  src/pages/ProblemDetail.jsx: ONE solved problem's page
 // ============================================================================
 //
 //  Same pattern as ProjectDetail.jsx: the route is "problems/:slug", and this
@@ -19,7 +19,7 @@ function ProblemDetail() {
   const challenge = challenges.find((item) => item.id === slug);
 
   usePageMeta(
-    challenge ? `${challenge.title} — Pema Tsering` : 'Page not found — Pema Tsering',
+    challenge ? `${challenge.title} | Pema Tsering` : 'Page not found | Pema Tsering',
     challenge ? challenge.description : 'That page could not be found.',
   );
 

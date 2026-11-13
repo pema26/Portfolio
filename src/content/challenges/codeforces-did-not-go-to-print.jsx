@@ -7,7 +7,7 @@ export const meta = {
   id: 'codeforces-did-not-go-to-print', // becomes the URL: /problems/codeforces-did-not-go-to-print
   title: 'Did Not Go to Print',
   description:
-    'Replay a printer’s scan / print commands and report which documents never came out — a direct simulation with a stack. Solved in contest (Round 1125, Div. 3).',
+    'Replay a printer’s scan / print commands and report which documents never came out using a direct stack simulation. Solved in contest (Round 1125, Div. 3).',
   source: 'Codeforces', // where the problem came from
   codeforcesId: '2275B', // contest number + problem letter; links it to my live profile
   problemUrl: 'https://codeforces.com/contest/2275/problem/B', // optional
@@ -131,10 +131,10 @@ export default function CodeforcesDidNotGoToPrint() {
 
       <blockquote>
         <p>
-          <strong>2275B — Did Not Go to Print.</strong> Documents are numbered 1 to <em>n</em>,
+          <strong>2275B: Did Not Go to Print.</strong> Documents are numbered 1 to <em>n</em>,
           and command <em>i</em> acts on document <em>i</em>. <code>1</code> scans it into the
           printer’s memory, on top of whatever is there. <code>2</code> prints the top document in
-          memory and removes it — or, if memory is empty, prints document <em>i</em> itself. <code>3</code> prints
+          memory and removes it or, if memory is empty, prints document <em>i</em> itself. <code>3</code> prints
           document <em>i</em> straight away. List the documents that were never printed, in
           increasing order. The total length of all command strings is at most 2·10<sup>5</sup>.
         </p>
@@ -163,7 +163,7 @@ export default function CodeforcesDidNotGoToPrint() {
       <h2>AI’s solution (Python)</h2>
 
       <p>
-        The algorithm is the same stack simulation — it is already the best possible, because
+        The algorithm uses the same stack simulation. It is already optimal because
         every command has to be read at least once. The changes are tidying: <code>enumerate(commands,
         start=1)</code> pairs each command with its document number, a list of True/False flags
         replaces the set, and all the input is read in one go.
@@ -173,7 +173,7 @@ export default function CodeforcesDidNotGoToPrint() {
         Worked example with the commands <code>112332</code>. Document 1 is scanned (memory: 1).
         Document 2 is scanned (memory: 1, 2). Command 3 prints the top, document 2 (memory: 1).
         Command 4 prints document 4. Command 5 prints document 5. Command 6 prints the top,
-        document 1 (memory empty). Printed: 1, 2, 4, 5 — so the answer is 3 and 6.
+        document 1 (memory empty). Printed: 1, 2, 4, 5, so the answer is 3 and 6.
       </p>
 
       <CodeBlock language="python" code={aiSolutionPython} />
@@ -187,8 +187,8 @@ export default function CodeforcesDidNotGoToPrint() {
       <p>
         Both versions are <strong>O(n)</strong> time and <strong>O(n)</strong> extra space: each
         document is pushed at most once, popped at most once, and checked once at the end. At
-        the limit of 2·10<sup>5</sup> commands that is roughly 600,000 simple steps —
-        milliseconds in either language.
+        the limit of 2·10<sup>5</sup> commands that is roughly 600,000 simple steps,
+        taking milliseconds in either language.
       </p>
 
       <p>

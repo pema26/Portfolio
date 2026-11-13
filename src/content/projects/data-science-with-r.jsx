@@ -1,10 +1,10 @@
-// A GUIDED build — following a book.
+// A GUIDED build: following a book.
 
 export const meta = {
   id: 'data-science-with-r', // becomes the URL: /projects/data-science-with-r
   title: 'Data science with R (book)',
   description:
-    'Working through the book R for Data Science by Hadley Wickham, Mine Çetinkaya-Rundel and Garrett Grolemund — turning raw, messy data into clear, reproducible analysis and visualisation.',
+    'Working through the book R for Data Science by Hadley Wickham, Mine Çetinkaya-Rundel and Garrett Grolemund to turn raw, messy data into clear, reproducible analysis and visualisation.',
   category: 'guided', // big-unique | guided | mini-unique
   status: 'complete', // planned | in-progress | complete
   date: '2025-12-05', // YYYY-MM-DD
@@ -43,7 +43,7 @@ export default function DataScienceWithR() {
 
       <h2>What I learned</h2>
       <p>
-        Most of the real work is in <strong>tidying</strong> — getting data into a consistent,
+        Most of the real work is in <strong>tidying</strong>: getting data into a consistent,
         one-observation-per-row shape. Once it’s tidy, the analysis and the graphics fall
         out almost for free. This connects directly to my lab work, where careful,
         documented data handling is the difference between a result you can trust and one

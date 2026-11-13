@@ -1,5 +1,5 @@
 // ============================================================================
-//  src/pages/Home.jsx  —  the HOME page  (the "/" route)
+//  src/pages/Home.jsx: the HOME page  (the "/" route)
 // ============================================================================
 //
 //  WHAT'S HERE: a hero with your name + one-liner, the section portals, a
@@ -20,12 +20,13 @@ import { newestFirst } from '../lib/dates';
 // (filter() returns a new array, so sorting it leaves the original untouched.)
 const featured = projects.filter((project) => project.featured).sort(newestFirst);
 
-// Same for research — a small strip keeps the "code + science" balance on show.
+// Same for research: a small strip keeps the "code + science" balance on show.
 const featuredResearch = research.filter((entry) => entry.featured).sort(newestFirst);
 
 function Home() {
+  // Keep this title in sync with index.html's initial title and sharing metadata.
   usePageMeta(
-    'Pema Tsering — Software Developer',
+    'Pema Tsering website',
     'Software developer based near London, building Python and SQL applications, financial data tools, and interactive web projects.',
   );
 

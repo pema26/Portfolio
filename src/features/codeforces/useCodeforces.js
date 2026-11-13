@@ -1,5 +1,5 @@
 // ============================================================================
-//  src/features/codeforces/useCodeforces.js  —  custom hook: load a live Codeforces profile
+//  src/features/codeforces/useCodeforces.js: custom hook: load a live Codeforces profile
 // ============================================================================
 //
 //  PURPOSE: fetches a user's profile, rating history and submissions from the
@@ -8,10 +8,10 @@
 //
 //      const { data, loading, error } = useCodeforces('Vasta');
 //
-//    data    — null until the answer arrives, then
+//    data: null until the answer arrives, then
 //              { user, ratingChanges, submissions, loadedAt }
-//    loading — true while we are still waiting
-//    error   — null, or the Error if the request failed
+//    loading: true while we are still waiting
+//    error: null, or the Error if the request failed
 //
 //  Fetching is a side effect, so it lives in useEffect. The `ignore` flag
 //  stops us from updating state if the visitor leaves the page before the

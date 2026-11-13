@@ -1,5 +1,5 @@
 // ============================================================================
-//  A MINI project that is PLANNED — not started yet. When you begin, change
+//  A MINI project that is PLANNED: not started yet. When you begin, change
 //  `status` to 'in-progress', and to 'complete' when it is done.
 // ============================================================================
 
@@ -42,15 +42,15 @@ export default function GeneExpressionPipeline() {
           Cluster the remaining genes (k-means or similar).
         </li>
         <li>
-          Plot the results — optionally again in R with ggplot2, to compare.
+          Plot the results, optionally repeating the plots in R with ggplot2 for comparison.
         </li>
       </ul>
 
       <h2>What I want to practise</h2>
 
       <p>
-        Building a <strong>pipeline</strong> with clear stages — load, clean, transform,
-        analyse, visualise — instead of one long script, and being able to explain what each
+        Building a <strong>pipeline</strong> with clear stages for loading, cleaning, transforming,
+        analysing, and visualising data, and being able to explain what each
         transformation does to the data and what the final plot actually shows.
       </p>
 

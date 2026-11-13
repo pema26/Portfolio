@@ -1,5 +1,5 @@
 // ============================================================================
-//  An AMBITIOUS project — Payment Review (the banking transactions dashboard).
+//  An AMBITIOUS project: Payment Review (the banking transactions dashboard).
 //
 //  The project itself is a Python + PostgreSQL app that lives in the
 //  projects/payment-review/ folder in this repository. It needs a
@@ -23,7 +23,7 @@ export const meta = {
     'A Flask and PostgreSQL dashboard that imports seven years of bank transactions, summarises cash flow by month and category, and uses SQL window functions to suggest recurring payments and flag when their amount changes.',
   category: 'big-unique', // big-unique | guided | mini-unique
   status: 'complete', // planned | in-progress | complete
-  date: '2026-11-12', // YYYY-MM-DD — EDIT HERE: set to when you finished it
+  date: '2026-11-12', // YYYY-MM-DD: EDIT HERE: set to when you finished it
   tags: ['Python', 'Flask', 'PostgreSQL', 'SQL window functions', 'unittest'],
   githubUrl: 'https://github.com/pema26/Payment-review-finding-recurring-payments-in-bank-transactions',
   devlog: [],

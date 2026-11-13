@@ -1,5 +1,5 @@
 // ============================================================================
-//  src/App.jsx  —  the route table: which component shows for which URL
+//  src/App.jsx: the route table: which component shows for which URL
 // ============================================================================
 //
 //  Every page of the site is a component in src/pages/. This file couples
@@ -10,7 +10,7 @@
 //    • ":slug" is a DYNAMIC SEGMENT: "/projects/tinyrenderer" and
 //      "/projects/parcel-board" both match "projects/:slug". The page reads
 //      the actual value with the useParams hook.
-//    • path="*" matches anything not listed above — the "not found" page.
+//    • path="*" matches anything not listed above: the "not found" page.
 //
 //  <Layout> wraps the routes, so the header, footer and animated background
 //  stay on screen while only the page in the middle changes.

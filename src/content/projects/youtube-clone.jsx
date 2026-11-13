@@ -12,7 +12,7 @@ export const meta = {
   date: '2026-11-12', // completion date
   tags: ['HTML', 'CSS'],
   progress: 100,
-  // githubUrl: '[[GITHUB_URL]]', // optional — uncomment and set
+  // githubUrl: '[[GITHUB_URL]]', // optional: uncomment and set
   demoUrl: `${import.meta.env.BASE_URL}demos/youtube-clone/index.html`,
   featured: true,
   devlog: [
@@ -67,8 +67,8 @@ export default function YoutubeClone() {
         second course as an additional resource from my wider learning.
       </p>
       <ul>
-        <li><a href="https://www.youtube.com/watch?v=G3e-cpL7ofc&t=15316s" target="_blank" rel="noopener noreferrer">SuperSimpleDev — HTML &amp; CSS course</a></li>
-        <li><a href="https://www.youtube.com/watch?v=EerdGm-ehJQ" target="_blank" rel="noopener noreferrer">SuperSimpleDev — additional learning resource</a></li>
+        <li><a href="https://www.youtube.com/watch?v=G3e-cpL7ofc&t=15316s" target="_blank" rel="noopener noreferrer">SuperSimpleDev: HTML &amp; CSS course</a></li>
+        <li><a href="https://www.youtube.com/watch?v=EerdGm-ehJQ" target="_blank" rel="noopener noreferrer">SuperSimpleDev: additional learning resource</a></li>
       </ul>
     </>
   );

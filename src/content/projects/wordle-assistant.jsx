@@ -1,5 +1,5 @@
 // ============================================================================
-//  A MINI project — the Wordle assistant.
+//  A MINI project: the Wordle assistant.
 //
 //  The original is a Python command-line program; its source lives in
 //  projects/wordle-assistant/wordle/ . Visitors cannot run Python in a web page, so the
@@ -14,12 +14,12 @@ export const meta = {
   id: 'wordle-assistant', // becomes the URL: /projects/wordle-assistant
   title: 'Wordle assistant: a command-line solver',
   description:
-    'A Python command-line tool that narrows down Wordle answers from green / yellow / grey feedback and suggests the next guess — with a live terminal on this page so you can try it.',
+    'A Python command-line tool that narrows down Wordle answers from green / yellow / grey feedback and suggests the next guess with a live terminal on this page so you can try it.',
   category: 'mini-unique', // big-unique | guided | mini-unique
   status: 'complete', // planned | in-progress | complete
   date: '2026-11-11', // YYYY-MM-DD
   tags: ['Python', 'algorithms', 'command line'],
-  // githubUrl: '[[GITHUB_URL]]', // optional — uncomment and set
+  // githubUrl: '[[GITHUB_URL]]', // optional: uncomment and set
   devlog: [],
   featured: true, // show on the home page?
 };

@@ -1,5 +1,5 @@
 // ============================================================================
-//  src/components/layout/animation/morphCanvas.js  —  drawing code for the header's morphing wireframe
+//  src/components/layout/animation/morphCanvas.js: drawing code for the header's morphing wireframe
 // ============================================================================
 //
 //  WHAT IT IS: plain JavaScript (no React in here) that draws a small

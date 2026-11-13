@@ -1,5 +1,5 @@
 // ============================================================================
-//  src/pages/About.jsx  —  the ABOUT page  (the "/about" route)
+//  src/pages/About.jsx: the ABOUT page  (the "/about" route)
 // ============================================================================
 //
 //  WHAT'S HERE: a narrative bio tying together your coding journey and your
@@ -35,7 +35,7 @@ const skillGroups = [
 
 function About() {
   usePageMeta(
-    'About — Pema Tsering',
+    'About | Pema Tsering',
     'The coding journey and research background of a London-based developer and molecular-biology researcher.',
   );
 

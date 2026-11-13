@@ -1,5 +1,5 @@
 // ============================================================================
-//  src/lib/dates.js  —  small helpers for showing and sorting dates
+//  src/lib/dates.js: small helpers for showing and sorting dates
 // ============================================================================
 //
 //  Content entries store their date as a "YYYY-MM-DD" string (for example

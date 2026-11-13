@@ -1,11 +1,11 @@
 // ============================================================================
-//  src/content/projects/index.js  —  the list of every PROJECT on the site
+//  src/content/projects/index.js: the list of every PROJECT on the site
 // ============================================================================
 //
 //  Each project lives in its own .jsx file in this folder. A project file has
 //  two exports:
-//    • `meta`            (a named export)  — the facts: title, date, tags, …
-//    • the write-up      (the default export) — a React component with the prose
+//    • `meta`            (a named export): the facts: title, date, tags, …
+//    • the write-up      (the default export): a React component with the prose
 //
 //  HOW TO ADD A PROJECT:
 //    1. Copy an existing file in this folder and rename it.

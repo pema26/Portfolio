@@ -1,5 +1,5 @@
 // ============================================================================
-//  ChallengeCard.jsx  —  one clickable card for a solved coding problem
+//  ChallengeCard.jsx: one clickable card for a solved coding problem
 // ============================================================================
 //
 //  PURPOSE: shows a single challenge's problem number, source (Codeforces /
@@ -8,11 +8,11 @@
 //  the /problems page.
 //
 //  PROPS:
-//    id          — the URL id of the challenge.
+//    id: the URL id of the challenge.
 //    title, description, source, tags
-//    label       — a sequence label within its source, e.g. "Problem 1".
-//    date        — the date the problem was solved, as "YYYY-MM-DD".
-//    difficulty  — optional rating label, e.g. a Codeforces "800".
+//    label: a sequence label within its source, e.g. "Problem 1".
+//    date: the date the problem was solved, as "YYYY-MM-DD".
+//    difficulty: optional rating label, e.g. a Codeforces "800".
 // ============================================================================
 
 import { Link } from 'react-router';

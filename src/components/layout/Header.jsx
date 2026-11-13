@@ -1,5 +1,5 @@
 // ============================================================================
-//  Header.jsx  —  the top navigation bar shown on every page
+//  Header.jsx: the top navigation bar shown on every page
 // ============================================================================
 //
 //  PURPOSE: your name/logo on the left, the navigation links and the dark-mode

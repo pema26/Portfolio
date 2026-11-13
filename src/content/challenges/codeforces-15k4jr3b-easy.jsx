@@ -58,7 +58,7 @@ export default function Codeforces15k4jr3bEasy() {
 
       <blockquote>
         <p>
-          <strong>2284A1 — 15K4JR3B (Easy Version).</strong> Three points A, B and C all start at
+          <strong>2284A1: 15K4JR3B (Easy Version).</strong> Three points A, B and C all start at
           the origin. You must make exactly <em>n</em> moves; each move shifts one point by 1
           along the x or the y axis. Print the largest possible value of twice the triangle’s
           area. There are up to 1000 tests, with <em>n</em> between 2 and 1000.
@@ -82,8 +82,8 @@ export default function Codeforces15k4jr3bEasy() {
       <h2>AI’s solution (Python)</h2>
 
       <p>
-        This is already the optimal solution — a closed-form formula, with nothing to loop over
-        — so the version below is the same calculation with the two halves named. The idea
+        This is already the optimal solution: a closed-form formula with nothing to loop over.
+        The version below uses the same calculation with the two halves named. The idea
         behind it is worth stating exactly: for a fixed sum a + b = n, the product a × b is
         largest when a and b differ by at most 1, because moving one unit from the bigger side
         to the smaller one changes the product by (bigger − smaller − 1), which is never
@@ -93,7 +93,7 @@ export default function Codeforces15k4jr3bEasy() {
       <p>
         Worked example: n = 5 splits into 2 and 3, giving 2 × 3 = 6. Trying the other splits
         confirms it: 1 × 4 = 4 and 0 × 5 = 0 are both smaller. For n = 15 the split is 7 and 8,
-        giving 56 — both match the sample output.
+        giving 56. Both match the sample output.
       </p>
 
       <CodeBlock language="python" code={aiSolutionPython} />

@@ -1,5 +1,5 @@
 // ============================================================================
-//  src/lib/projectMeta.js  —  shared labels for project categories & statuses
+//  src/lib/projectMeta.js: shared labels for project categories & statuses
 // ============================================================================
 //
 //  WHY THIS EXISTS: several pages (home, /projects, and each project page) need

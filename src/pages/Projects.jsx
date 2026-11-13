@@ -1,9 +1,9 @@
 // ============================================================================
-//  src/pages/Projects.jsx  —  the PROJECTS list  ("/projects" route)
+//  src/pages/Projects.jsx: the PROJECTS list  ("/projects" route)
 // ============================================================================
 //
 //  WHAT'S HERE: every entry in src/content/projects/, grouped into three
-//  labelled sections — Ambitious projects, Guided builds, and Mini projects — based on
+//  labelled sections: Ambitious projects, Guided builds, and Mini projects: based on
 //  each project's `category`. You never edit this page to add a project: add a
 //  new file in src/content/projects/ with the right category (and list it in
 //  that folder's index.js) and it appears under the matching heading.
@@ -54,7 +54,7 @@ function extraCardProps(category, project) {
 
 function Projects() {
   usePageMeta(
-    'Projects — Pema Tsering',
+    'Projects | Pema Tsering',
     'Software projects in three tiers: ambitious projects, guided tutorial builds, and small tools that solve real problems.',
   );
 
@@ -62,7 +62,7 @@ function Projects() {
     <>
       <h1 className="font-serif text-3xl font-bold text-slate-900 dark:text-white">Projects</h1>
       <p className="mt-2 text-slate-600 dark:text-slate-400">
-        My build work, grouped by kind — ambitious applications, guided builds,
+        My build work, grouped by ambitious applications, guided builds,
         and small tools that solve practical problems.
       </p>
 
@@ -75,7 +75,7 @@ function Projects() {
 
           {section.items.length === 0 ? (
             <p className="mt-4 text-sm text-slate-600 dark:text-slate-400">
-              Nothing here yet — watch this space.
+              Nothing here yet. Watch this space.
             </p>
           ) : (
             <div className="mt-5 grid gap-5 sm:grid-cols-2 xl:grid-cols-3">

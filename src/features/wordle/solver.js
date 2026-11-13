@@ -1,5 +1,5 @@
 // ============================================================================
-//  src/features/wordle/solver.js  —  candidate filtering + the ranking heuristic
+//  src/features/wordle/solver.js: candidate filtering + the ranking heuristic
 // ============================================================================
 //
 //  A line-by-line JavaScript port of  projects/wordle-assistant/wordle/solver.py .

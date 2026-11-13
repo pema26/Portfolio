@@ -1,9 +1,9 @@
 // ============================================================================
-//  src/pages/Research.jsx  —  the RESEARCH list  ("/research" route)
+//  src/pages/Research.jsx: the RESEARCH list  ("/research" route)
 // ============================================================================
 //
 //  WHAT'S HERE: every entry in src/content/research/. Add a research write-up
-//  by adding a new file in that folder (and listing it in its index.js) — you
+//  by adding a new file in that folder (and listing it in its index.js): you
 //  don't edit this page.
 // ============================================================================
 
@@ -18,7 +18,7 @@ const sortedResearch = [...research].sort(newestFirst);
 
 function Research() {
   usePageMeta(
-    'Research — Pema Tsering',
+    'Research | Pema Tsering',
     'Molecular biology practical research, a COMT research proposal, and a library dissertation on kinase-targeted therapies, with full PDF documents.',
   );
 

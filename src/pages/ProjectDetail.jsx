@@ -1,5 +1,5 @@
 // ============================================================================
-//  src/pages/ProjectDetail.jsx  —  ONE project's case-study page
+//  src/pages/ProjectDetail.jsx: ONE project's case-study page
 // ============================================================================
 //
 //  WHAT'S HERE: this single component shows the page for EVERY project. The
@@ -7,7 +7,7 @@
 //  the useParams hook gives us  slug === "wordle-assistant". We look that id up in the
 //  projects list and show the matching entry.
 //
-//  You almost never edit this file — it's the template all projects share.
+//  You almost never edit this file: it's the template all projects share.
 //  To change a project's words, edit its file in src/content/projects/.
 // ============================================================================
 
@@ -24,7 +24,7 @@ function ProjectDetail() {
   const project = projects.find((item) => item.id === slug);
 
   usePageMeta(
-    project ? `${project.title} — Pema Tsering` : 'Page not found — Pema Tsering',
+    project ? `${project.title} | Pema Tsering` : 'Page not found | Pema Tsering',
     project ? project.description : 'That page could not be found.',
   );
 
@@ -133,7 +133,7 @@ function ProjectDetail() {
 
       {/* ===================== DEVLOG (guided builds only) ===================== */}
       {/* A day-by-day log of what got done. Add entries to the `devlog` array
-          in the project's meta — each is a { date, summary } object. */}
+          in the project's meta: each is a { date, summary } object. */}
       {isGuided && (
         <section className="mt-12 border-t border-slate-200 pt-8 dark:border-slate-800">
           <h2 className="font-serif text-2xl font-semibold text-slate-900 dark:text-white">Devlog</h2>
@@ -143,7 +143,7 @@ function ProjectDetail() {
 
           {devlog.length === 0 ? (
             <p className="mt-4 text-sm text-slate-600 dark:text-slate-400">
-              No entries yet — I'll add them as I work through this build.
+              No entries yet. I'll add them as I work through this build.
             </p>
           ) : (
             <ol className="mt-6 space-y-5">

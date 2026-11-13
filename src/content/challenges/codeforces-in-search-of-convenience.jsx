@@ -7,7 +7,7 @@ export const meta = {
   id: 'codeforces-in-search-of-convenience', // becomes the URL: /problems/codeforces-in-search-of-convenience
   title: 'In Search of Convenience',
   description:
-    'Find any grid point exactly R away from a router. Solved in contest (Round 1125, Div. 3) by searching — then noticing the answer needs no search at all.',
+    'Find any grid point exactly R away from a router. Solved in contest (Round 1125, Div. 3) by searching, then noticing the answer needs no search at all.',
   source: 'Codeforces', // where the problem came from
   codeforcesId: '2275A', // contest number + problem letter; links it to my live profile
   problemUrl: 'https://codeforces.com/contest/2275/problem/A', // optional
@@ -81,7 +81,7 @@ export default function CodeforcesInSearchOfConvenience() {
 
       <blockquote>
         <p>
-          <strong>2275A — In Search of Convenience.</strong> A router sits at the grid point
+          <strong>2275A: In Search of Convenience.</strong> A router sits at the grid point
           (x<sub>0</sub>, y<sub>0</sub>) and reaches exactly <em>R</em> metres. Print any point
           with whole-number coordinates that is exactly <em>R</em> away from the router. Up to
           10<sup>4</sup> test cases, with coordinates between −10 and 10 and <em>R</em> between 1
@@ -134,8 +134,8 @@ export default function CodeforcesInSearchOfConvenience() {
       <h2>Complexity</h2>
 
       <p>
-        My version does at most R + 1 checks per test before it stops — <strong>O(R)</strong> time
-        — while the direct answer is <strong>O(1)</strong>. Both use <strong>O(1)</strong> extra
+        My version does at most R + 1 checks per test before it stops, taking <strong>O(R)</strong> time,
+        while the direct answer is <strong>O(1)</strong>. Both use <strong>O(1)</strong> extra
         space. At the largest input (10<sup>4</sup> tests, R = 25) that is about 260,000 checks
         against 10,000 additions: both finish in milliseconds, so the difference never matters
         for the time limit.

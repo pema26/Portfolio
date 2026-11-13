@@ -1,5 +1,5 @@
 // ============================================================================
-//  WordleTerminal.jsx  —  the Wordle assistant's command line, in the browser
+//  WordleTerminal.jsx: the Wordle assistant's command line, in the browser
 // ============================================================================
 //
 //  WHAT IT IS: a terminal-style panel that behaves like running
@@ -125,7 +125,7 @@ function parseArguments(tokens) {
 function WordleTerminal() {
   // ---- what is on screen ---------------------------------------------------
   const [lines, setLines] = useState([
-    { id: 0, kind: 'note', text: 'Wordle assistant — a browser port of my Python command-line solver.' },
+    { id: 0, kind: 'note', text: 'Wordle assistant: a browser port of my Python command-line solver.' },
     { id: 1, kind: 'note', text: 'Type a command and press Enter, or use the buttons above. Type "help" for a list.' },
   ]);
   const [mode, setMode] = useState('loading');
@@ -211,7 +211,7 @@ function WordleTerminal() {
     }
   }, [lines, progress, mode]);
 
-  // Python: fetch_words(args.words) — load the chosen word list.
+  // Python: fetch_words(args.words): load the chosen word list.
   const fetchWords = (fileName) => {
     if (!fileName) {
       return parseWords(bundledText, 'words.txt');
@@ -241,7 +241,7 @@ function WordleTerminal() {
   const runBenchmark = async (words) => {
     setMode('busy');
     cancelRef.current = false;
-    print('Solving every word in the list. A long list takes several minutes in a browser — use the Stop button to cancel.', 'note');
+    print('Solving every word in the list. A long list takes several minutes in a browser. Use the Stop button to cancel.', 'note');
 
     const games = [];
     let lastPause = Date.now();
@@ -511,7 +511,7 @@ function WordleTerminal() {
         className="terminal-window overflow-hidden rounded-lg bg-[#24292e] font-mono text-sm leading-relaxed shadow-lg focus-within:ring-2 focus-within:ring-accent-400"
       >
         <div className="border-b border-white/10 px-4 py-2 text-xs text-slate-400">
-          wordle — Python CLI
+          wordle (Python CLI)
         </div>
 
         <div ref={outputRef} tabIndex={0} role="region" aria-label="Scrollable Wordle terminal" className="h-96 overflow-y-auto px-4 py-3">

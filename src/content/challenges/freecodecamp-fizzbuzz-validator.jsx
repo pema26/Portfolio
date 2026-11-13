@@ -7,7 +7,7 @@ export const meta = {
   id: 'freecodecamp-fizzbuzz-validator', // becomes the URL: /problems/freecodecamp-fizzbuzz-validator
   title: 'FizzBuzz Validator',
   description:
-    "Given a slice of a FizzBuzz sequence with no starting number, decide whether it's valid — the trick is recovering the absolute positions from a single integer anchor.",
+    "Given a slice of a FizzBuzz sequence with no starting number, decide whether it's valid by recovering the absolute positions from a single integer anchor.",
   source: 'freeCodeCamp', // where the problem came from
   date: '2026-02-05', // YYYY-MM-DD
   tags: ['arrays', 'simulation'],
@@ -120,7 +120,7 @@ export default function FreecodecampFizzbuzzValidator() {
       </blockquote>
       <p>
         The catch: since some entries are words, you can’t read a position’s true number
-        directly — you have to recover it.
+        directly; you have to recover it.
       </p>
 
       <h2>My solution (Python)</h2>
@@ -134,7 +134,7 @@ export default function FreecodecampFizzbuzzValidator() {
 
       <h2>AI’s solution (Python)</h2>
       <p>
-        The same anchor idea, but without building a second array — it computes each
+        This uses the same anchor idea without building a second array. It computes each
         position’s true number on the fly:
       </p>
       <CodeBlock language="python" code={aiSolutionPython} />
@@ -142,17 +142,17 @@ export default function FreecodecampFizzbuzzValidator() {
       <h2>AI’s solution (C++)</h2>
       <p>
         C++ has no “array of mixed ints and strings”, so the inputs are taken as string
-        tokens — numbers as their digit text (e.g. <code>"16"</code>), words
+        tokens: numbers as their digit text (e.g. <code>"16"</code>), words
         as <code>"Fizz"</code> / <code>"Buzz"</code> / <code>"FizzBuzz"</code>. The logic is otherwise identical.
       </p>
       <CodeBlock language="cpp" code={aiSolutionCpp} />
 
       <h2>Complexity</h2>
       <p>
-        All three run in <strong>O(n)</strong> time — a single pass to find the anchor, then a single
+        All three run in <strong>O(n)</strong> time, with a single pass to find the anchor and a single
         pass to check every entry. On space, my version builds a second array of true
         integers, so it uses <strong>O(n)</strong> extra space; the AI versions compute each position’s
-        number on the fly, so they use <strong>O(1)</strong> extra space. Same time, less memory — a
+        number on the fly, so they use <strong>O(1)</strong> extra space. This uses the same time but less memory, a
         small but clear example of trading away an intermediate array once you spot you
         don’t actually need to store it.
       </p>

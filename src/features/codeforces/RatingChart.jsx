@@ -1,12 +1,12 @@
 // ============================================================================
-//  RatingChart.jsx  —  the Codeforces rating over time, as a line chart
+//  RatingChart.jsx: the Codeforces rating over time, as a line chart
 // ============================================================================
 //
 //  PURPOSE: one point per rated contest, joined by a line, so a visitor can
-//  see the rating climbing. It is drawn by hand as an SVG — no chart library.
+//  see the rating climbing. It is drawn by hand as an SVG: no chart library.
 //
 //  PROPS:
-//    ratingChanges — the list from the Codeforces API (one item per contest).
+//    ratingChanges: the list from the Codeforces API (one item per contest).
 //
 //  HOW THE DRAWING WORKS: two small "scale" functions turn data into pixels.
 //    xOf(time)   -> how far across the chart a date sits

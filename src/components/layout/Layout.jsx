@@ -1,5 +1,5 @@
 // ============================================================================
-//  Layout.jsx  —  the shared "frame" wrapped around every page
+//  Layout.jsx: the shared "frame" wrapped around every page
 // ============================================================================
 //
 //  PURPOSE: the page background, the header navigation and the footer all
