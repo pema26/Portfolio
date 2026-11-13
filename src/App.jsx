@@ -19,7 +19,8 @@
 //  <Route> for it here and a nav link in components/layout/Header.jsx.
 // ============================================================================
 
-import { Routes, Route } from 'react-router';
+import { Routes, Route, useLocation } from 'react-router';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
 import About from './pages/About';
@@ -34,6 +35,8 @@ import NotFound from './pages/NotFound';
 import MotionProvider from './features/preferences/MotionProvider';
 
 function App() {
+  const { pathname } = useLocation();
+
   return (
     <MotionProvider>
       <Layout>
@@ -60,6 +63,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
+      <SpeedInsights route={pathname} />
     </MotionProvider>
   );
 }

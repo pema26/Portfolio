@@ -92,3 +92,9 @@ fallback for direct page links. Commit and push local changes before deploying.
 
 The portfolio does not publish a CV or provide a CV download button. Research
 PDFs remain available under `public/documents/research/`.
+
+Speed Insights is integrated in `src/App.jsx` and tracks the current page through
+React Router. Enable it in the Vercel project's Speed Insights dashboard, then
+commit and push the integration to deploy it. Performance data appears after
+visitors use the deployed website. Local preview does not provide Vercel's
+collection endpoint.
