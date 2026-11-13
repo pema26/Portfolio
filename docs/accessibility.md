@@ -21,7 +21,7 @@ controls and adds ARIA where it supplies missing information.
 | Motion | A named, keyboard-operable Reduce motion toggle stops decorative CSS and canvas motion and remembers the choice. The device preference takes precedence and updates live. Normal-motion visitors keep the existing animations. |
 | Forms and feedback | Problem search has a visible label and a persistent result-count status. FASTA input has instructions, an invalid state, and an associated status message; its results can be focused and scrolled. |
 | Data visualisation | The calendar retains its visual heatmap and pointer/touch daily readout. Its date selector and daily totals table were removed at the owner's request. The rating chart retains keyboard focus, Escape dismissal, hoverable tooltips, and its captioned contest table. |
-| Wordle demo | Command, guess, and feedback fields have readable labels. New output uses a named log; loading and benchmark states have status messages. Commands preserve focus, benchmarks expose Stop, and loading failures offer a retry. Code and terminal output are keyboard-scrollable. |
+| Wordle demo | Command, guess, and feedback fields have readable labels and use the terminal window's outer focus ring instead of an inner input outline. Forced-colour mode uses a system-colour outline on the window. New output uses a named log; loading and benchmark states have status messages. Commands preserve focus, benchmarks expose Stop, and loading failures offer a retry. Code and terminal output are keyboard-scrollable. |
 | Responsive layout | Navigation remains usable at narrow widths; Contact details stack; long text wraps. The suite checks 320 CSS pixels with increased line, letter, word, and paragraph spacing. |
 | Documents and images | Original research PDFs retain descriptive open/download links and named optional previews. Existing project screenshot alt text is preserved. Decorative canvases and icons remain hidden from screen readers. |
 
@@ -33,6 +33,11 @@ gradient stops. These calculations do not replace inspection of hover, focus,
 transparent surfaces, or animated backgrounds.
 
 ## Run the checks
+
+After the folder reorganization on 12 November 2026, the full production-build
+browser suite passed **98 checks** across light and dark themes, including the
+YouTube demo. The production build and ESLint checks also passed. Existing
+manual-verification limits below still apply.
 
 Baseline audit on 12 November 2026 in Chrome: **90 checks passed** against a fresh
 production build. This includes 64 axe route scans (32 routes in each theme)

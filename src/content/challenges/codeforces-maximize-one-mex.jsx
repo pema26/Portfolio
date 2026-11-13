@@ -1,7 +1,7 @@
 // A CODING CHALLENGE entry. Copy this file to add another, then add it to the
 // list in src/content/challenges/index.js.
 
-import CodeBlock from '../../components/CodeBlock';
+import CodeBlock from '../../components/ui/CodeBlock';
 
 export const meta = {
   id: 'codeforces-maximize-one-mex', // becomes the URL: /problems/codeforces-maximize-one-mex

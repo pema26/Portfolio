@@ -3,8 +3,8 @@
 //  Copy this file to add another, then add it to src/content/projects/index.js.
 // ============================================================================
 
-import CodeBlock from '../../components/CodeBlock';
-import FastaAnalyzerDemo from '../../components/FastaAnalyzerDemo';
+import CodeBlock from '../../components/ui/CodeBlock';
+import FastaAnalyzerDemo from '../../features/fasta/FastaAnalyzerDemo';
 
 export const meta = {
   id: 'fasta-analyzer', // becomes the URL: /projects/fasta-analyzer

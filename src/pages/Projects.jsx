@@ -9,7 +9,7 @@
 //  that folder's index.js) and it appears under the matching heading.
 // ============================================================================
 
-import ProjectCard from '../components/ProjectCard';
+import ProjectCard from '../components/cards/ProjectCard';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { projects } from '../content/projects';
 import { CATEGORY_META, STATUS_META } from '../lib/projectMeta';

@@ -19,9 +19,9 @@
 // ============================================================================
 
 import { useState } from 'react';
-import ChallengeCard from '../components/ChallengeCard';
-import CodeforcesProfile from '../components/codeforces/CodeforcesProfile';
-import FreeCodeCampProfile from '../components/FreeCodeCampProfile';
+import ChallengeCard from '../components/cards/ChallengeCard';
+import CodeforcesProfile from '../features/codeforces/CodeforcesProfile';
+import FreeCodeCampProfile from '../features/freecodecamp/FreeCodeCampProfile';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { challenges } from '../content/challenges';
 import { oldestFirst } from '../lib/dates';

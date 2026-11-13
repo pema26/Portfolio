@@ -4,13 +4,13 @@
   "version": "2.0.0",
   "type": "module",
   "scripts": {
-    "demo:youtube": "node scripts/copy-youtube-demo.js",
-    "predev": "npm run demo:youtube",
+    "assets:prepare": "node scripts/prepare-assets.js",
+    "predev": "npm run assets:prepare",
     "dev": "vite",
-    "prestart": "npm run demo:youtube",
+    "prestart": "npm run assets:prepare",
     "start": "vite",
-    "prebuild": "npm run demo:youtube",
-    "build": "vite build && node scripts/copy-404.js",
+    "prebuild": "npm run assets:prepare",
+    "build": "vite build && node scripts/create-spa-fallback.js",
     "lint": "eslint .",
     "preview": "vite preview",
     "test:a11y": "playwright test"

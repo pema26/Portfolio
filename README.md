@@ -1,84 +1,84 @@
-# Personal Portfolio Website
+# Personal Portfolio
 
-It presents software projects, solved coding problems, and scientific research
-side by side as short case studies.
+A React, Vite, and Tailwind CSS portfolio for software projects, coding challenge
+solutions, and scientific research. React Router defines the pages in `src/App.jsx`.
 
-The site is organised into these sections:
+## Run the website
 
-- **Projects** — my build work in three tiers: Ambitious projects, Guided builds following a tutorial/course, and small tools that solve a real, everyday annoyance.
-- **Problems** — my competitive-programming profile (in progress),
-  plus worked coding-challenge solutions with complexity analysis.
-- **Research** — my scientific work, kept in its own section.
+From the repository root:
 
-## How it's built
-
-A single-page application made with **React** and **Vite**, styled with
-**Tailwind CSS**, with **React Router** handling the pages.
-
-```
-index.html            the one real HTML page (React renders inside #root)
-src/main.jsx          entry point: starts React and the router
-src/App.jsx           the route table (which URL shows which page)
-src/pages/            one component per page
-src/components/       reusable pieces (header, cards, canvases, …)
-src/hooks/            custom hooks (useTheme, usePageMeta)
-src/lib/              plain JavaScript helpers (dates, labels, canvas drawing)
-src/content/          the projects, research and problems themselves
-src/styles/global.css colours, fonts and shared styles
-python-projects/      my Python programs (the Wordle assistant and its tests)
-public/wordle/        the word list the in-browser Wordle terminal downloads
-```
-
-## Running it
-
-```bash
+```sh
 npm install
-```
-
-```bash
 npm run dev
 ```
 
-Then open http://localhost:5173. Other commands: `npm run build` (production
-build into `dist/`), `npm run preview` (serve that build), `npm run lint`.
+Open the local URL printed by Vite, usually http://localhost:5173.
 
-## Adding content
+| Command | Purpose |
+| --- | --- |
+| `npm run dev` / `npm start` | Prepare demo assets and start development |
+| `npm run assets:prepare` | Refresh the generated HTML/CSS demo after editing it |
+| `npm run build` | Prepare assets and create `dist/`, including the SPA fallback |
+| `npm run preview` | Serve the last production build |
+| `npm run lint` | Check JavaScript and JSX |
+| `npm run test:a11y` | Build and run the browser/accessibility suite |
 
-Each entry is one `.jsx` file in the matching `src/content/` folder
-(`projects`, `research`, `challenges`). It exports a `meta` object
-(title, date, tags, …) and a default component containing the write-up.
+## Find your files
 
-1. Copy an existing file in the folder and rename it.
-2. Edit its `meta` (the `id` becomes the URL) and the write-up.
-3. Import it in that folder's `index.js` and add one line to the list.
+```text
+Portfolio_test/
+|-- src/                       Portfolio website
+|   |-- App.jsx                Routes and application providers
+|   |-- main.jsx               React entry point
+|   |-- pages/                 Page components
+|   |-- content/               Project, challenge, and research write-ups
+|   |-- components/            Shared layout, cards, navigation, and UI
+|   |-- features/              Feature components with their hooks and logic
+|   |-- hooks/                 Hooks shared across pages
+|   |-- lib/                   Shared dates and project metadata helpers
+|   `-- styles/                Global styles and design tokens
+|-- projects/                  Runnable source for showcased projects
+|   |-- payment-review/        Flask + PostgreSQL dashboard
+|   |-- wordle-assistant/      Python command-line solver and tests
+|   `-- youtube-clone/         HTML/CSS-only demo and its assets
+|-- public/                    Static files served at stable public URLs
+|   |-- projects_images/       Screenshots for project case studies
+|   `-- wordle_words_texts/    Vocabulary shared by both Wordle versions
+|-- scripts/                   Asset preparation and build helpers
+|-- tests/accessibility/       Browser, keyboard, and accessibility checks
+`-- docs/                      Architecture, development, and audit notes
+```
 
-The freeCodeCamp daily challenge total on the Problems page is updated manually.
-Change `DAILY_PROGRESS.solved` and `DAILY_PROGRESS.updatedAt` in
-`src/components/FreeCodeCampProfile.jsx` together. Daily completions are separate
-from curriculum exercises and are not included in freeCodeCamp's public profile API.
+| What you want to change | Where to look |
+| --- | --- |
+| Colours, fonts, shared CSS | [`src/styles/global.css`](src/styles/global.css) |
+| Navigation and site frame | [`src/components/layout/`](src/components/layout/) |
+| Decorative canvas animations | [`src/components/layout/animation/`](src/components/layout/animation/) |
+| Shared cards and small UI elements | [`src/components/`](src/components/) |
+| Codeforces profile, charts, API, and hook | [`src/features/codeforces/`](src/features/codeforces/) |
+| freeCodeCamp progress | [`src/features/freecodecamp/FreeCodeCampProfile.jsx`](src/features/freecodecamp/FreeCodeCampProfile.jsx) |
+| Theme and reduced-motion controls | [`src/features/preferences/`](src/features/preferences/) |
+| Wordle browser terminal and solver | [`src/features/wordle/`](src/features/wordle/) |
+| FASTA browser demo and analysis | [`src/features/fasta/`](src/features/fasta/) |
+| Research document previews | [`src/features/research/`](src/features/research/) |
+| Project descriptions | [`src/content/projects/`](src/content/projects/) |
+| CV, research PDFs, and screenshots | [`public/`](public/) |
 
-Research PDFs live in `public/documents/research/`. Each research entry's
-`meta.documents` array supplies its document titles, descriptions, paths relative
-to `public/`, and page counts. The research detail page adds open/download links
-and optional previews, which keep a white background in both site themes.
+Read [the architecture guide](docs/architecture.md) for folder responsibilities
+and [the development guide](docs/development.md) for content editing and checks.
 
-## Accessibility
+## Standalone projects
 
-The header's **Reduce motion** control stops decorative animation and follows
-device preferences. Run `npm run test:a11y` for the production-build accessibility
-and keyboard checks. See [the accessibility audit](docs/accessibility.md) for
-coverage, setup, and the remaining screen-reader and document checks.
+- [YouTube interface clone](projects/youtube-clone/README.md): edit its HTML/CSS
+  source here; the Live demo opens `/demos/youtube-clone/index.html`.
+- [Wordle assistant](projects/wordle-assistant/README.md): Python CLI using the
+  same vocabulary as the browser demo in `public/wordle_words_texts/words.txt`.
+- [Payment Review](projects/payment-review/README.md): separate Flask application
+  with its own Python dependencies and PostgreSQL setup.
 
-## YouTube interface demo
+The website build prepares the YouTube demo automatically. During a running dev
+session, use `npm run assets:prepare` after editing its source. Treat
+`public/demos/youtube-clone/`, `dist/`, and test reports as generated output.
 
-The completed HTML/CSS source is in `html-css-course/youtube.html`,
-`youtube.css`, and `styles/`. Its six thumbnail/avatar pairs are bundled locally.
-The demo is linked from `/projects/youtube-clone` and served at
-`/demos/youtube-clone/index.html`. The explicit HTML filename also lets Vite's
-development server serve the demo without falling back to the portfolio app.
-
-`npm run dev`, `npm start`, and `npm run build` prepare the demo automatically.
-After editing the course files during a running dev session, run
-`npm run demo:youtube` to refresh the generated copy. The generated
-`public/demos/youtube-clone/` directory is ignored; edit the course source instead.
-Unrelated flexbox/grid exercises stay separate from the published demo.
+Accessibility coverage and manual verification limits are documented in
+[the accessibility audit](docs/accessibility.md).

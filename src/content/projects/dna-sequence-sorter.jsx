@@ -3,7 +3,7 @@
 //  Copy this file to add another, then add it to src/content/projects/index.js.
 // ============================================================================
 
-import CodeBlock from '../../components/CodeBlock';
+import CodeBlock from '../../components/ui/CodeBlock';
 
 export const meta = {
   id: 'dna-sequence-sorter', // becomes the URL: /projects/dna-sequence-sorter

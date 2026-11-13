@@ -1,5 +1,5 @@
 // ============================================================================
-//  A completed GUIDED HTML/CSS build. Editable demo: html-css-course/.
+//  A completed GUIDED HTML/CSS build. Editable demo: projects/youtube-clone/.
 // ============================================================================
 
 export const meta = {
@@ -35,7 +35,7 @@ export default function YoutubeClone() {
       </p>
 
       <img
-        src={`${import.meta.env.BASE_URL}projects/youtube-clone-preview.png`}
+        src={`${import.meta.env.BASE_URL}projects_images/youtube-clone-preview.png`}
         alt="The completed YouTube-style homepage showing its search header, sidebar navigation, topic links, and six video cards with thumbnails and channel details."
         width="1440"
         height="1000"

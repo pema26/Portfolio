@@ -1,7 +1,8 @@
 # build output
 dist/
+.astro/
 
-# Generated from the editable HTML/CSS course project.
+# Generated from projects/youtube-clone/.
 /public/demos/youtube-clone/
 
 # dependencies
@@ -27,5 +28,6 @@ pnpm-debug.log*
 .idea/
 
 # python
+.venv/
 __pycache__/
-*.pyc
+*.py[cod]

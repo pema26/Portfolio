@@ -7,7 +7,7 @@
 //  don't edit this page.
 // ============================================================================
 
-import ProjectCard from '../components/ProjectCard';
+import ProjectCard from '../components/cards/ProjectCard';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { research } from '../content/research';
 import { newestFirst } from '../lib/dates';

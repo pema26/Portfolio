@@ -5,7 +5,7 @@
 //  complexity note.
 // ============================================================================
 
-import CodeBlock from '../../components/CodeBlock';
+import CodeBlock from '../../components/ui/CodeBlock';
 
 export const meta = {
   id: 'codeforces-helpful-maths', // becomes the URL: /problems/codeforces-helpful-maths

@@ -1,0 +1,245 @@
+// ============================================================================
+//  src/components/layout/animation/backgroundCanvas.js  —  the drawing code for the site background
+// ============================================================================
+//
+//  WHAT IT IS: plain JavaScript (no React in here) that draws the faint, slow
+//  wireframe animation behind the Projects, Problems and Research sections on
+//  a <canvas>, in the site's indigo accent. The React component src/components/layout/animation/Background.jsx owns the
+//  <canvas> element and simply calls startBackground() from a useEffect.
+//
+//  MOTIFS (the component picks one per section of the site):
+//    "cubes"  -> rotating wireframe cubes
+//    "graph"  -> graph traversal (edges "grow" node-to-node, like BFS)
+//    "helix"  -> vertical DNA double helix
+//
+//  ACCESSIBILITY / PERFORMANCE:
+//    - pauses when the browser tab is hidden,
+//    - honours "prefers-reduced-motion" by drawing a single still frame,
+//    - re-colours live when the dark/light theme changes,
+//    - returns a cleanup function that removes every listener it added.
+// ============================================================================
+
+export function startBackground(canvas, motif, options = {}) {
+  // Nothing to do if there is no canvas or the browser cannot draw on it.
+  if (!(canvas instanceof HTMLCanvasElement)) return undefined;
+  const ctx = canvas.getContext('2d');
+  if (!ctx) return undefined;
+
+  let dpr = 1, w = 0, h = 0, raf = null, running = false;
+  let reduced = options.reducedMotion ?? window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function size() {
+    dpr = window.devicePixelRatio || 1;
+    w = window.innerWidth;
+    h = window.innerHeight;
+    canvas.width = Math.round(w * dpr);
+    canvas.height = Math.round(h * dpr);
+    // Draw in CSS pixels on sharp ("Retina") screens: scale every drawing
+    // command by the pixel ratio so the motif fills the whole viewport.
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  // ---- theme-driven colours (read live every frame) --------------------
+  function colors() {
+    let d = document.documentElement.classList.contains('dark');
+    return {
+      line: d ? '129,140,248' : '79,70,229',
+      node: d ? '165,180,252' : '99,102,241',
+      glow: d ? '129,140,248' : '99,102,241',
+      dim:  d ? '148,163,184' : '100,116,139'
+    };
+  }
+
+  // ---- shared drawing utilities ---------------------------------------
+  function makeProj(cx, cy, ang, tilt, scale) {
+    let cy2 = Math.cos(ang), sy2 = Math.sin(ang), ct = Math.cos(tilt), st = Math.sin(tilt);
+    return function (x, y, z) {
+      let rx = x * cy2 - z * sy2, rz = x * sy2 + z * cy2;
+      let ry = y * ct - rz * st; rz = y * st + rz * ct;
+      let f = scale / (4.2 - rz);
+      return [cx + rx * f, cy + ry * f, rz];
+    };
+  }
+  function dotLine(x0, y0, x1, y1, rgb, al, gap, sz) {
+    x0 = Math.round(x0); y0 = Math.round(y0); x1 = Math.round(x1); y1 = Math.round(y1);
+    let dx = Math.abs(x1 - x0), dy = -Math.abs(y1 - y0);
+    let sx = x0 < x1 ? 1 : -1, sy = y0 < y1 ? 1 : -1;
+    let err = dx + dy, step = 0, hs = sz / 2;
+    ctx.fillStyle = 'rgba(' + rgb + ',' + al + ')';
+    while (true) {
+      if (step % gap === 0) ctx.fillRect(x0 - hs, y0 - hs, sz, sz);
+      if (x0 === x1 && y0 === y1) break;
+      let e2 = 2 * err;
+      if (e2 >= dy) { err += dy; x0 += sx; }
+      if (e2 <= dx) { err += dx; y0 += sy; }
+      step++; if (step > 5000) break;
+    }
+  }
+  function dot(p, rgb, al, sz) {
+    let s = sz * (0.7 + 0.6 * (p[2] + 1) / 2);
+    ctx.fillStyle = 'rgba(' + rgb + ',' + (al * (0.5 + 0.45 * (p[2] + 1) / 2)) + ')';
+    ctx.beginPath(); ctx.arc(p[0], p[1], s, 0, 6.283); ctx.fill();
+  }
+
+  // ---- MOTIF: rotating wireframe cubes ---------------------------------
+  let cV = [[-1,-1,-1],[1,-1,-1],[1,1,-1],[-1,1,-1],[-1,-1,1],[1,-1,1],[1,1,1],[-1,1,1]];
+  let cE = [[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
+  function drawCubes(ts, C) {
+    ctx.clearRect(0, 0, w, h);
+    let cx = w / 2, cy = h / 2, base = Math.min(w, h);
+    function cube(ang, tilt, scale, al, gap, sz) {
+      let P = makeProj(cx, cy, ang, tilt, scale);
+      for (let i = 0; i < cE.length; i++) {
+        let pa = P(cV[cE[i][0]][0], cV[cE[i][0]][1], cV[cE[i][0]][2]);
+        let pb = P(cV[cE[i][1]][0], cV[cE[i][1]][1], cV[cE[i][1]][2]);
+        let dz = (pa[2] + pb[2]) / 2;
+        dotLine(pa[0], pa[1], pb[0], pb[1], C.line, al * (0.3 + 0.55 * (dz + 1) / 2), gap, sz);
+      }
+      for (let v = 0; v < cV.length; v++) dot(P(cV[v][0], cV[v][1], cV[v][2]), C.node, al, sz + 0.2);
+    }
+    cube(ts * 0.00026, 0.42, base * 0.60, 0.85, 6, 1.8);
+    cube(-ts * 0.0004 + 2.1, 0.8, base * 0.30, 0.45, 5, 1.4);
+  }
+
+  // ---- MOTIF: graph traversal (edges grow node-to-node) ----------------
+  let G = null;
+  function buildGraph() {
+    let div = 210;
+    let cols = Math.max(3, Math.round(w / div)), rows = Math.max(2, Math.round(h / (div * 0.9)));
+    let nodes = [];
+    for (let r = 0; r < rows; r++) for (let c = 0; c < cols; c++) {
+      let x = (c + 0.5) / cols * w + (Math.random() - 0.5) * (w / cols) * 0.5;
+      let y = (r + 0.5) / rows * h + (Math.random() - 0.5) * (h / rows) * 0.5;
+      nodes.push({ x: x, y: y, bx: x, by: y, ph: Math.random() * 6.283 });
+    }
+    let edges = [], lim = Math.min(w / cols, h / rows) * 1.25;
+    for (let i = 0; i < nodes.length; i++) for (let j = i + 1; j < nodes.length; j++) {
+      let d = Math.hypot(nodes[i].bx - nodes[j].bx, nodes[i].by - nodes[j].by);
+      if (d < lim) edges.push([i, j]);
+    }
+    let adj = nodes.map(function () { return []; });
+    edges.forEach(function (e, ki) { adj[e[0]].push([e[1], ki]); adj[e[1]].push([e[0], ki]); });
+    return { w: w, h: h, nodes: nodes, edges: edges, adj: adj, start: 0, t0: 0, wave: null };
+  }
+  function bfs(g, sNode) {
+    let dist = g.nodes.map(function () { return Infinity; }); dist[sNode] = 0;
+    let eTime = g.edges.map(function () { return Infinity; });
+    let q = [sNode];
+    while (q.length) {
+      let u = q.shift();
+      for (let a = 0; a < g.adj[u].length; a++) {
+        let v = g.adj[u][a][0], ki = g.adj[u][a][1];
+        if (dist[v] === Infinity) { dist[v] = dist[u] + 1; eTime[ki] = dist[v]; q.push(v); }
+        else eTime[ki] = Math.min(eTime[ki], Math.max(dist[u], dist[v]));
+      }
+    }
+    let mxd = 0; for (let i = 0; i < dist.length; i++) if (dist[i] < Infinity && dist[i] > mxd) mxd = dist[i];
+    return { dist: dist, eTime: eTime, max: mxd };
+  }
+  function egrow(t) { return t < 0 ? 0 : t > 1 ? 1 : t * t * (3 - 2 * t); }
+  function drawGraph(ts, C) {
+    ctx.clearRect(0, 0, w, h);
+    // Start connecting on entry, then keep the completed purple graph for a
+    // minute before starting the next traversal. All durations are milliseconds.
+    let STEP = 560, GROW = 460, HOLD = 60000;
+    if (!G || G.w !== w || G.h !== h) { G = buildGraph(); G.t0 = ts; G.wave = bfs(G, G.start); }
+    let elapsed = ts - G.t0;
+    if (!reduced && elapsed >= G.wave.max * STEP + GROW + HOLD) {
+      G.start = Math.floor(Math.random() * G.nodes.length);
+      G.t0 = ts;
+      G.wave = bfs(G, G.start);
+      elapsed = 0;
+    }
+    // Reduced motion gets a fully connected still frame, including highlights.
+    if (reduced) elapsed = G.wave.max * STEP + GROW;
+    for (let i = 0; i < G.nodes.length; i++) { let n = G.nodes[i]; n.x = n.bx + Math.sin(ts * 0.0006 + n.ph) * 6; n.y = n.by + Math.cos(ts * 0.0007 + n.ph) * 6; }
+    for (let kk = 0; kk < G.edges.length; kk++) {
+      let e = G.edges[kk], A = G.nodes[e[0]], B = G.nodes[e[1]];
+      ctx.strokeStyle = 'rgba(' + C.line + ',0.12)'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(A.x, A.y); ctx.lineTo(B.x, B.y); ctx.stroke();
+      let p = egrow((elapsed - G.wave.eTime[kk] * STEP) / GROW);
+      if (p > 0) {
+        let from = G.wave.dist[e[0]] <= G.wave.dist[e[1]] ? A : B, to = from === A ? B : A;
+        let tx = from.x + (to.x - from.x) * p, ty = from.y + (to.y - from.y) * p;
+        ctx.strokeStyle = 'rgba(' + C.line + ',0.55)'; ctx.lineWidth = 1.5;
+        ctx.beginPath(); ctx.moveTo(from.x, from.y); ctx.lineTo(tx, ty); ctx.stroke();
+        if (p < 1) { ctx.fillStyle = 'rgba(' + C.glow + ',0.9)'; ctx.beginPath(); ctx.arc(tx, ty, 2.2, 0, 6.283); ctx.fill(); }
+      }
+    }
+    for (let m = 0; m < G.nodes.length; m++) {
+      let nn = G.nodes[m];
+      let pr = egrow((elapsed - G.wave.dist[m] * STEP) / GROW);
+      let rad = 2.2 + 2.8 * pr;
+      if (pr > 0) {
+        ctx.fillStyle = 'rgba(' + C.glow + ',' + (0.18 * pr) + ')';
+        ctx.beginPath(); ctx.arc(nn.x, nn.y, rad + 8, 0, 6.283); ctx.fill();
+        ctx.strokeStyle = 'rgba(' + C.glow + ',' + (0.65 * pr) + ')'; ctx.lineWidth = 1.2;
+        ctx.beginPath(); ctx.arc(nn.x, nn.y, rad + 3, 0, 6.283); ctx.stroke();
+      }
+      ctx.fillStyle = 'rgba(' + C.node + ',' + (0.4 + 0.55 * pr) + ')';
+      ctx.beginPath(); ctx.arc(nn.x, nn.y, rad, 0, 6.283); ctx.fill();
+    }
+  }
+
+  // ---- MOTIF: vertical DNA double helix (seamless scroll) --------------
+  function drawHelix(ts, C) {
+    ctx.clearRect(0, 0, w, h);
+    let along = h, cross = w, center = cross / 2, amp = Math.min(cross * 0.24, 150);
+    let K = 0.016, Period = 2 * Math.PI / K;
+    let scroll = (((ts * 0.05) % Period) + Period) % Period;
+    let spacing = 20, count = Math.ceil((along + Period) / spacing) + 2;
+    function za(z) { return 0.3 + 0.55 * (z + 1) / 2; }
+    function zw(z) { return 0.8 + 1.4 * (z + 1) / 2; }
+    let A = [], B = [];
+    for (let i = 0; i < count; i++) {
+      let pos = i * spacing - scroll, a = pos * K;
+      A.push({ x: center + Math.sin(a) * amp, y: pos, z: Math.cos(a) });
+      B.push({ x: center + Math.sin(a + Math.PI) * amp, y: pos, z: Math.cos(a + Math.PI) });
+    }
+    for (let r = 0; r < count; r += 2) {
+      let pa = A[r], pb = B[r], zc = (pa.z + pb.z) / 2;
+      ctx.strokeStyle = 'rgba(' + C.node + ',' + (za(zc) * 0.5) + ')'; ctx.lineWidth = 1;
+      ctx.beginPath(); ctx.moveTo(pa.x, pa.y); ctx.lineTo(pb.x, pb.y); ctx.stroke();
+    }
+    function strand(arr) {
+      for (let i = 1; i < count; i++) {
+        let p0 = arr[i - 1], p1 = arr[i], z = (p0.z + p1.z) / 2;
+        ctx.strokeStyle = 'rgba(' + C.line + ',' + (za(z) * 0.9) + ')'; ctx.lineWidth = zw(z);
+        ctx.beginPath(); ctx.moveTo(p0.x, p0.y); ctx.lineTo(p1.x, p1.y); ctx.stroke();
+      }
+    }
+    strand(A); strand(B);
+    let all = A.concat(B);
+    for (let d = 0; d < all.length; d++) { let pp = all[d]; ctx.fillStyle = 'rgba(' + C.node + ',' + za(pp.z) + ')'; ctx.beginPath(); ctx.arc(pp.x, pp.y, 1.6 * zw(pp.z), 0, 6.283); ctx.fill(); }
+  }
+
+  // ---- pick the drawing function for the requested motif ---------------
+  const motifs = { cubes: drawCubes, graph: drawGraph, helix: drawHelix };
+  const draw = motifs[motif] || drawCubes;
+
+  // ---- loop + lifecycle -----------------------------------------------
+  function frame(ts) { if (!running) return; draw(ts, colors()); raf = requestAnimationFrame(frame); }
+  function play() { if (running || reduced) return; running = true; raf = requestAnimationFrame(frame); }
+  function pause() { running = false; if (raf) cancelAnimationFrame(raf); raf = null; }
+
+  size();
+  if (reduced) { draw(0, colors()); } else { play(); }
+
+  function onResize() { size(); G = null; if (reduced) draw(0, colors()); }
+  function onVis() { if (document.hidden) pause(); else play(); }
+  window.addEventListener('resize', onResize);
+  document.addEventListener('visibilitychange', onVis);
+
+  // Re-colour immediately when the theme toggle flips the .dark class.
+  let themeObs = new MutationObserver(function () { if (reduced) draw(0, colors()); });
+  themeObs.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+
+  // Hand back a "cleanup" function. React calls it when the motif changes or
+  // the component is removed, so listeners and animation frames never pile up.
+  return function stopBackground() {
+    pause();
+    window.removeEventListener('resize', onResize);
+    document.removeEventListener('visibilitychange', onVis);
+    themeObs.disconnect();
+  };
+}

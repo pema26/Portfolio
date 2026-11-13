@@ -1,7 +1,7 @@
 // A CODING CHALLENGE entry (freeCodeCamp daily challenge). Copy this file to add
 // another, then add it to the list in src/content/challenges/index.js.
 
-import CodeBlock from '../../components/CodeBlock';
+import CodeBlock from '../../components/ui/CodeBlock';
 
 export const meta = {
   id: 'freecodecamp-digital-detox', // becomes the URL: /problems/freecodecamp-digital-detox

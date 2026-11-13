@@ -16,11 +16,11 @@
 //  stay on screen while only the page in the middle changes.
 //
 //  HOW TO ADD A TOP-LEVEL PAGE: create a component in src/pages/, add a
-//  <Route> for it here, and (optionally) a nav link in components/Header.jsx.
+//  <Route> for it here and a nav link in components/layout/Header.jsx.
 // ============================================================================
 
 import { Routes, Route } from 'react-router';
-import Layout from './components/Layout';
+import Layout from './components/layout/Layout';
 import Home from './pages/Home';
 import About from './pages/About';
 import Contact from './pages/Contact';
@@ -31,7 +31,7 @@ import ProblemDetail from './pages/ProblemDetail';
 import Research from './pages/Research';
 import ResearchDetail from './pages/ResearchDetail';
 import NotFound from './pages/NotFound';
-import MotionProvider from './components/MotionProvider';
+import MotionProvider from './features/preferences/MotionProvider';
 
 function App() {
   return (

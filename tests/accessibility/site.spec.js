@@ -92,6 +92,9 @@ test('Wordle commands and prompts have readable labels and preserve keyboard foc
   await page.goto('/projects/wordle-assistant');
   const command = page.getByRole('textbox', { name: 'Terminal command', exact: true });
   await expect(command).toBeVisible();
+  await command.click();
+  await expect(command).toHaveCSS('outline-style', 'none');
+  await expect(page.locator('.terminal-window')).not.toHaveCSS('box-shadow', 'none');
   await command.fill('python -m wordle');
   await page.keyboard.press('Enter');
   const guess = page.getByRole('textbox', { name: 'Wordle guess', exact: true });
@@ -114,10 +117,10 @@ test('Codeforces failure is announced and leaves the profile link usable', async
 });
 
 test('Wordle loading failures are announced and can be retried', async ({ page }) => {
-  await page.route('**/wordle/words.txt', route => route.abort());
+  await page.route('**/wordle_words_texts/words.txt', route => route.abort());
   await page.goto('/projects/wordle-assistant');
   await expect(page.getByRole('status')).toContainText('The word list could not be loaded');
-  await page.unroute('**/wordle/words.txt');
+  await page.unroute('**/wordle_words_texts/words.txt');
   await page.getByRole('button', { name: 'Reload the word list' }).click();
   await expect(page.getByRole('textbox', { name: 'Terminal command', exact: true })).toBeVisible();
 });
@@ -134,6 +137,12 @@ test('keyboard focus is visible in forced colours and below the sticky header', 
   expect(focus.outline).toBe('solid');
   expect(focus.width).toBeGreaterThanOrEqual(3);
   expect(focus.top).toBeGreaterThanOrEqual(focus.headerBottom);
+  await page.goto('/projects/wordle-assistant');
+  const command = page.getByRole('textbox', { name: 'Terminal command', exact: true });
+  await command.focus();
+  await expect(command).toHaveCSS('outline-style', 'none');
+  await expect(page.locator('.terminal-window')).toHaveCSS('outline-style', 'solid');
+  await expect(page.locator('.terminal-window')).toHaveCSS('outline-width', '3px');
 });
 
 test('pages reflow at 320 CSS pixels and with increased text spacing', async ({ page }) => {

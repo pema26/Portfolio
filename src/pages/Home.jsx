@@ -8,8 +8,8 @@
 // ============================================================================
 
 import { Link } from 'react-router';
-import ProjectCard from '../components/ProjectCard';
-import SectionPortals from '../components/SectionPortals';
+import ProjectCard from '../components/cards/ProjectCard';
+import SectionPortals from '../components/navigation/SectionPortals';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { projects } from '../content/projects';
 import { research } from '../content/research';
@@ -73,7 +73,7 @@ function Home() {
 
       {/* ===================== SECTION PORTALS ===================== */}
       {/* Three cards that link to the main sections.
-          See src/components/SectionPortals.jsx. */}
+          See src/components/navigation/SectionPortals.jsx. */}
       <SectionPortals />
 
       {/* ===================== FEATURED PROJECTS ===================== */}

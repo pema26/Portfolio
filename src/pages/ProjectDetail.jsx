@@ -12,7 +12,7 @@
 // ============================================================================
 
 import { Link, useParams } from 'react-router';
-import ProgressBar from '../components/ProgressBar';
+import ProgressBar from '../components/ui/ProgressBar';
 import NotFound from './NotFound';
 import { usePageMeta } from '../hooks/usePageMeta';
 import { projects } from '../content/projects';
@@ -119,7 +119,7 @@ function ProjectDetail() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              View code
+              View Github code
             </a>
           )}
         </div>

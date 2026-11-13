@@ -148,8 +148,15 @@ html[data-reduced-motion="true"] *::after {
 
 .terminal-window { --focus-ring: #c7d2fe; }
 
+/* The terminal window's existing ring marks focus for its command field. */
+.terminal-window #wordle-input:focus-visible { outline: none; }
+
 @media (forced-colors: active) {
   :focus-visible, .interactive-card:focus-within, .file-upload:focus-within { outline-color: Highlight; }
+  .terminal-window:focus-within {
+    outline: 3px solid Highlight;
+    outline-offset: 3px;
+  }
 }
 
 /* --------------------------------------------------------------------------
@@ -209,7 +216,7 @@ html[data-reduced-motion="true"] *::after {
 }
 
 /* The small morphing wireframe next to the name in the header
-   (src/components/HeaderMorph.jsx). EDIT HERE to resize it. */
+   (src/components/layout/animation/HeaderMorph.jsx). EDIT HERE to resize it. */
 .header-morph {
   width: 2.5rem;
   height: 2.5rem;

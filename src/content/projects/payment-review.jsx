@@ -2,19 +2,19 @@
 //  An AMBITIOUS project — Payment Review (the banking transactions dashboard).
 //
 //  The project itself is a Python + PostgreSQL app that lives in the
-//  bank-payment-review/ folder at the top of this repository. It needs a
+//  projects/payment-review/ folder in this repository. It needs a
 //  database server, so it cannot run inside this website; this page explains
 //  it and shows the real code.
 //
 //  The two SQL files are imported with "?raw" on the end. That tells Vite to
 //  hand us the file's contents as plain text, so the code shown on the page is
-//  always exactly the code in bank-payment-review/sql/. The Python excerpt is
+//  always exactly the code in projects/payment-review/sql/. The Python excerpt is
 //  copied into a template literal, like the other project pages.
 // ============================================================================
 
-import CodeBlock from '../../components/CodeBlock';
-import recurringSql from '../../../bank-payment-review/sql/recurring.sql?raw';
-import schemaSql from '../../../bank-payment-review/sql/schema.sql?raw';
+import CodeBlock from '../../components/ui/CodeBlock';
+import recurringSql from '../../../projects/payment-review/sql/recurring.sql?raw';
+import schemaSql from '../../../projects/payment-review/sql/schema.sql?raw';
 
 export const meta = {
   id: 'payment-review', // becomes the URL: /projects/payment-review
@@ -25,12 +25,12 @@ export const meta = {
   status: 'complete', // planned | in-progress | complete
   date: '2026-11-12', // YYYY-MM-DD — EDIT HERE: set to when you finished it
   tags: ['Python', 'Flask', 'PostgreSQL', 'SQL window functions', 'unittest'],
-  // githubUrl: '[[GITHUB_URL]]', // optional — uncomment and set
+  githubUrl: 'https://github.com/pema26/Payment-review-finding-recurring-payments-in-bank-transactions',
   devlog: [],
   featured: true, // show on the home page?
 };
 
-// From bank-payment-review/import_data.py
+// From projects/payment-review/import_data.py
 const readMoneyCode = `PENNY = Decimal("0.01")
 
 
@@ -79,7 +79,7 @@ export default function PaymentReview() {
       </ul>
 
       <img
-        src="/projects/payment-review-cash-flow.png"
+        src="/projects_images/payment-review-cash-flow.png"
         alt="The dashboard's cash flow section for 2022: money in, money out, net cash flow and transaction count, with monthly totals and money out by category."
         width="1600"
         height="1067"
@@ -116,7 +116,7 @@ export default function PaymentReview() {
       <CodeBlock language="sql" code={recurringSql} />
 
       <img
-        src="/projects/payment-review-recurring.png"
+        src="/projects_images/payment-review-recurring.png"
         alt="The dashboard's recurring payments section showing eight suggestions, with one expanded to show its three payments and the confirm and dismiss buttons."
         width="1600"
         height="1091"

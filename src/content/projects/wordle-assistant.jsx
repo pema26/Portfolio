@@ -2,13 +2,13 @@
 //  A MINI project — the Wordle assistant.
 //
 //  The original is a Python command-line program; its source lives in
-//  python-projects/wordle/ . Visitors cannot run Python in a web page, so the
+//  projects/wordle-assistant/wordle/ . Visitors cannot run Python in a web page, so the
 //  <WordleTerminal /> below runs a JavaScript port of the same logic
-//  (src/lib/wordle/) behind a terminal-style interface.
+//  (src/features/wordle/) behind a terminal-style interface.
 // ============================================================================
 
-import CodeBlock from '../../components/CodeBlock';
-import WordleTerminal from '../../components/WordleTerminal';
+import CodeBlock from '../../components/ui/CodeBlock';
+import WordleTerminal from '../../features/wordle/WordleTerminal';
 
 export const meta = {
   id: 'wordle-assistant', // becomes the URL: /projects/wordle-assistant

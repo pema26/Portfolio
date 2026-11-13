@@ -14,7 +14,7 @@ import { usePageMeta } from '../hooks/usePageMeta';
 import { research } from '../content/research';
 import { TONES } from '../lib/projectMeta';
 import { formatMonthYear } from '../lib/dates';
-import ResearchDocuments from '../components/ResearchDocuments';
+import ResearchDocuments from '../features/research/ResearchDocuments';
 
 function ResearchDetail() {
   const { slug } = useParams();
