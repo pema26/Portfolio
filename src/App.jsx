@@ -20,6 +20,7 @@
 // ============================================================================
 
 import { Routes, Route, useLocation } from 'react-router';
+import { Analytics } from '@vercel/analytics/react';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 import Layout from './components/layout/Layout';
 import Home from './pages/Home';
@@ -63,6 +64,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
+      <Analytics />
       <SpeedInsights route={pathname} />
     </MotionProvider>
   );
