@@ -27,7 +27,7 @@ const skillGroups = [
     items: [
       'Data Structures & Algorithms',
       'Unit testing (Python unittest)',
-      'Relational database Design',
+      'Relational Database Design',
       'Rest API Integration',
     ],
   },
