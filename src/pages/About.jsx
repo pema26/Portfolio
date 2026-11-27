@@ -9,6 +9,13 @@
 
 import { usePageMeta } from '../hooks/usePageMeta';
 
+// Add about-photo.jpg, .jpeg, .png, or .webp to src/assets to show a portrait here.
+const [aboutPhoto] = Object.values(import.meta.glob('/src/assets/about-photo.{jpg,jpeg,png,webp}', {
+  eager: true,
+  import: 'default',
+  query: '?url',
+}));
+
 // EDIT HERE: your skills, grouped by category. Add/remove freely.
 // The first three groups mirror my CV; the last one covers skills the
 // projects on this site use. (Certifications live in the CV itself.)
@@ -42,6 +49,14 @@ function About() {
   return (
     <>
       <h1 className="font-serif text-3xl font-bold text-slate-900 dark:text-white">About</h1>
+
+      {aboutPhoto && (
+        <img
+          src={aboutPhoto}
+          alt="Portrait of Pema Tsering"
+          className="mt-6 h-auto w-56 max-w-full rounded-xl"
+        />
+      )}
 
       {/* ===================== BIO ===================== */}
       {/* EDIT HERE: rewrite this narrative in your own voice. */}
